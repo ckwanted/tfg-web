@@ -1,0 +1,345 @@
+///////////////////////////// Breakpoints //////////////////////////
+$screen-sizes : (
+        xxs     : 390px,
+        xs      : 576px,
+        sm      : 768px,
+        md      : 992px,
+        lg      : 1200px,
+        full    : 1400px,
+);
+
+@function breakpoint($col) {
+  @return map_get($screen-sizes, '#{$col}');
+}
+////////////////////////////////////////////////////////////////////
+
+////////////////////////// Margins And Paddings ////////////////////
+
+.m-0-auto {
+  margin: 0 auto !important;
+}
+
+@for $i from 0 through 100 {
+
+  .m-#{$i}px {
+    margin: $i+px !important;
+  }
+
+  .p-#{$i}px {
+    padding: $i+px !important;
+  }
+
+  .m-t-#{$i}px {
+    margin-top: $i+px !important;
+  }
+
+  .p-t-#{$i}px {
+    padding-top: $i+px !important;
+  }
+
+  .m-l-#{$i}px {
+    margin-left: $i+px !important;
+  }
+
+  .p-l-#{$i}px {
+    padding-left: $i+px !important;
+  }
+
+  .m-r-#{$i}px {
+    margin-right: $i+px !important;
+  }
+
+  .p-r-#{$i}px {
+    padding-right: $i+px !important;
+  }
+
+  .m-b-#{$i}px {
+    margin-bottom: $i+px !important;
+  }
+
+  .p-b-#{$i}px {
+    padding-bottom: $i+px !important;
+  }
+
+}
+////////////////////////////////////////////////////////////////////
+
+///////////////////////////// Colors ///////////////////////////////
+$colors : (
+        white          : #ffffff,
+        black          : #000000,
+        blue-dark      : #002e67,
+        blue-light     : #42648e,
+        silver         : #f9f9f6,
+        gray           : #777,
+);
+
+
+@function color($col) {
+  @return map-get($colors, '#{$col}');
+}
+
+@each $key, $value in $colors {
+  .color-#{$key} {
+    color : $value !important;
+  }
+  .bg-#{$key} {
+    background-color : $value !important;
+  }
+}
+///////////////////////////////////////////////////////////////////
+
+///////////////////////////// Borders ////////////////////////////
+@each $radius in 0px, 1px, 2px, 3px {
+  @each $size in 1px, 2px, 3px {
+    @each $ckey, $cvalue in $colors {
+
+      .b-a-#{$size}-#{$ckey}-#{$radius} {
+        border: $size solid $cvalue !important;
+        border-radius: $radius;
+      }
+      .b-t-#{$size}-#{$ckey}-#{$radius} {
+        border-top: $size solid $cvalue !important;
+        border-radius: $radius;
+      }
+      .b-r-#{$size}-#{$ckey}-#{$radius} {
+        border-right: $size solid $cvalue !important;
+        border-radius: $radius;
+      }
+      .b-b-#{$size}-#{$ckey}-#{$radius} {
+        border-bottom: $size solid $cvalue !important;
+        border-radius: $radius;
+      }
+      .b-l-#{$size}-#{$ckey}-#{$radius} {
+        border-left: $size solid $cvalue !important;
+        border-radius: $radius;
+      }
+
+      // Axes
+      .b-x-#{$size}-#{$ckey}-#{$radius} {
+        border-right:  $size solid $cvalue !important;
+        border-left:   $size solid $cvalue !important;
+        border-radius: $radius;
+      }
+      .b-y-#{$size}-#{$ckey}-#{$radius} {
+        border-top:    $size solid $cvalue !important;
+        border-bottom: $size solid $cvalue !important;
+        border-radius: $radius;
+      }
+
+    }
+  }
+}
+//////////////////////////////////////////////////////////////////
+
+///////////////////////////// Font sizes /////////////////////////
+$i : 10;
+@while $i < 60 {
+  .f-s-#{$i}px {
+    font-size: $i+px !important;
+  }
+  $i : $i + 2;
+}
+//////////////////////////////////////////////////////////////////
+
+///////////////////////////// Font weights ///////////////////////
+$font-weights: (
+        light: 300,
+        regular: 400,
+        medium: 600,
+        bold: 700
+);
+
+@each $key, $value in $font-weights {
+  .f-w-#{$key} {
+    font-weight: $value !important;
+  }
+}
+//////////////////////////////////////////////////////////////////
+
+///////////////////////////// Line Heights ///////////////////////
+@for $i from 1 through 60 {
+  .l-h-#{$i}px {
+    line-height: $i+px !important;
+  }
+}
+//////////////////////////////////////////////////////////////////
+
+///////////////////////////// Letter Spacing /////////////////////
+@for $i from 1 through 30 {
+  .l-s-#{$i}px {
+    letter-spacing: $i+px !important;
+  }
+}
+//////////////////////////////////////////////////////////////////
+
+.d-flex {
+  display: flex;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.m-r-auto {
+  margin-right: auto;
+}
+
+.m-l-auto {
+  margin-left: auto;
+}
+
+.m-auto {
+  margin: auto;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-main-axis-center {
+  justify-content: center;
+}
+
+.flex-main-axis-end {
+  justify-content: flex-end;
+}
+
+.flex-cross-axis-center {
+  align-items: center;
+}
+
+.flex-center-center {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.d-b {
+  display: block;
+
+  &--important {
+    display: block !important;
+  }
+}
+
+.d-i-b {
+  display: inline-block;
+}
+
+.d-none {
+  display: none;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.vh-100 {
+  height: 100vh;
+  &-min {
+    min-height: 100vh;
+  }
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.h-0px {
+  height: 0;
+}
+
+.position-r {
+  position: relative;
+}
+
+.divider {
+  width: 100%;
+  background: #ddd;
+  height: 1px;
+}
+
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.outline-none {
+  outline: none;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.img-center {
+  display: block;
+  margin: 0 auto;
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.read-more {
+  position: relative;
+
+  &:after {
+    content: "\f054";
+    font-family: fontawesome;
+    font-size: 11px;
+    margin-left: 5px;
+  }
+}
+
+div.separator {
+  position: relative;
+  margin-top: 8px;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+
+  &:before {
+    position: absolute;
+    background: #002e67;
+    border-radius: 8px;
+    bottom: -1px;
+    content: "";
+    height: 6px;
+    left: 10px;
+    width: 24px;
+  }
+
+  &:after {
+    position: absolute;
+    background: #42648e;
+    border-radius: 8px;
+    bottom: 1px;
+    content: "";
+    height: 2px;
+    left: 0;
+    width: 64px;
+  }
+}

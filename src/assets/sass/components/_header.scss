@@ -1,0 +1,42 @@
+.header {
+  padding: 20px 0;
+  background: linear-gradient(to bottom, color(blue-dark) 0%,color(blue-light) 100%);
+  color: white;
+
+  .widget {
+    margin-bottom: 0;
+    font-size: 14px;
+  }
+
+  .widget-social {
+    @extend .widget;
+    font-size: 18px;
+  }
+
+  .widget–auth {
+    @extend .widget;
+  }
+
+}
+
+@media screen and(min-width: breakpoint(sm)) {
+
+  ul {
+    margin: 0;
+  }
+
+  header {
+    padding: 10px 0 !important;
+  }
+
+  .widget-social {
+    font-size: 14px !important;
+  }
+
+  .widget–auth {
+    i {
+      display: none;
+    }
+  }
+
+}

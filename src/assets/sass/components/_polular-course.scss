@@ -1,0 +1,11 @@
+.popular-course-wrapper {
+  background-color: #f9f9f6;
+}
+
+.popular-course-body {
+  padding: 0 15px;
+
+  @media screen and(min-width: breakpoint(sm)) {
+    padding: 0;
+  }
+}
