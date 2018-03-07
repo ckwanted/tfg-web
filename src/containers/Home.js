@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 
+import MasterTemplate from './MasterTemplate'
+
 import {
-    MasterTemplate,
     MySlider,
     Feature,
     About,
@@ -16,6 +17,7 @@ class Home extends Component {
             <MasterTemplate>
 
                 <MySlider
+                    loop={true}
                     data={[
                         'images/slider/slider1.jpg',
                         'images/slider/slider2.jpg',

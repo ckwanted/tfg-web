@@ -44,14 +44,15 @@ class PopularCourse extends Component {
 
                                 <MySlider
                                     type={Constant.SLIDER.COURSE}
+                                    loop={false}
+                                    dots={true}
                                     margin={10}
                                     items={this.state.items}
-                                    dots={true}
                                     data={[
-                                        {title: 'lorem 1', image: 'images/slider/slider1.jpg'},
-                                        {title: 'lorem 2', image: 'images/slider/slider2.jpg'},
-                                        {title: 'lorem 3', image: 'images/slider/slider3.jpg'},
-                                        {title: 'lorem 4', image: 'images/slider/slider4.jpg'},
+                                        {title: 'lorem 1', description: 'Lorem ipsum dolor sit amet, consec teturadipsi cing elit. Nobis commodi esse aliquam eligend reprehenderit, numquam a odio.', image: 'images/slider/slider1.jpg', price: 100},
+                                        {title: 'lorem 2', description: 'Lorem ipsum dolor sit amet, consec teturadipsi cing elit. Nobis commodi esse aliquam eligend reprehenderit, numquam a odio.', image: 'images/slider/slider2.jpg', price: 0},
+                                        {title: 'lorem 3', description: 'Lorem ipsum dolor sit amet, consec teturadipsi cing elit. Nobis commodi esse aliquam eligend reprehenderit, numquam a odio.', image: 'images/slider/slider3.jpg', price: 40},
+                                        {title: 'lorem 4', description: 'Lorem ipsum dolor sit amet, consec teturadipsi cing elit. Nobis commodi esse aliquam eligend reprehenderit, numquam a odio.', image: 'images/slider/slider4.jpg', price: 25}
                                     ]}
                                 />
 

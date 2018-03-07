@@ -91,7 +91,9 @@ $colors : (
 
 ///////////////////////////// Borders ////////////////////////////
 @each $radius in 0px, 1px, 2px, 3px {
+
   @each $size in 1px, 2px, 3px {
+
     @each $ckey, $cvalue in $colors {
 
       .b-a-#{$size}-#{$ckey}-#{$radius} {
@@ -342,4 +344,17 @@ div.separator {
     left: 0;
     width: 64px;
   }
+}
+
+.price-tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #002e67;
+  color: #fff !important;
+  border-radius: 0;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  padding: 5px 10px;
+  text-align: center;
 }

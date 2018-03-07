@@ -5,7 +5,8 @@ import { OffCanvas, OffCanvasMenu, OffCanvasBody } from 'react-offcanvas'
 import {
     Header,
     Navigation,
-} from '../components'
+    Footer
+} from '../components/index'
 
 class MasterTemplate extends Component {
 
@@ -34,6 +35,7 @@ class MasterTemplate extends Component {
                             <Navigation />
                         </div>
                         {this.props.children}
+                        <Footer />
 
                     </OffCanvasBody>
                     <OffCanvasMenu className={{}}>
