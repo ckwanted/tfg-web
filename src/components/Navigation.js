@@ -13,7 +13,7 @@ class Navigation extends Component {
 
                     <div className="m-r-auto">
                         <Link to="/">
-                            <img className="logo" src="/images/logo.png" alt="logo" />
+                            <img className="logo" src="/images/ulpgc-course-1x.png" alt="logo" />
                         </Link>
                     </div>
 
@@ -21,19 +21,19 @@ class Navigation extends Component {
                         <i className="fa fa-bars"></i>
                         <ul className="p-0px m-0px">
                             <li className="p-l-10px p-r-10px">
-                                <Link to="/">Inicio</Link>
+                                <Link to="/" className="active">Inicio</Link>
                             </li>
                             <li className="p-l-10px p-r-10px">
-                                <Link to="/">Inicio</Link>
+                                <Link to="/">Cursos</Link>
                             </li>
                             <li className="p-l-10px p-r-10px">
-                                <Link to="/">Inicio</Link>
+                                <Link to="/">Eventos</Link>
                             </li>
                             <li className="p-l-10px p-r-10px">
-                                <Link to="/">Inicio</Link>
+                                <Link to="/">Profesores</Link>
                             </li>
                             <li>
-                                <Link to="/">Inicio</Link>
+                                <Link to="/">Libros</Link>
                             </li>
                         </ul>
                     </nav>
