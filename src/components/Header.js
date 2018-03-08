@@ -15,7 +15,7 @@ class Header extends Component {
                         <div className="col-md-6">
                             <div className="widget">
 
-                                <ul className="p-0 d-flex justify-content-around">
+                                <ul className="p-0 header-contact">
                                     <li>
                                         <a href="tel:34928451000" className="text-white">
                                             <i className="fa fa-phone text-white"></i> (+34) 928 451 000
@@ -31,34 +31,10 @@ class Header extends Component {
                             </div>
                         </div>
 
-                        <div className="col-md-4">
-
-                            <div className="widget-social">
-                                <ul className="p-0 d-flex justify-content-around">
-                                    <li>
-                                        <a href="https://www.facebook.com/universidadlaspalmas.ulpgc"><i className="fa fa-facebook text-white"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://twitter.com/ulpgc"><i className="fa fa-twitter text-white"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.youtube.com/user/ulpgc"><i className="fa fa-youtube text-white"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.linkedin.com/groups/148332"><i className="fa fa-linkedin text-white"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.flickr.com/photos/ulpgc"><i className="fa fa-flickr text-white"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                        </div>
-
-                        <div className="col-md-2">
+                        <div className="col-md-6">
                             <div className="widget–auth">
 
-                                <ul className="p-0 m-0 d-flex justify-content-center">
+                                <ul className="p-0 m-0 header-auth">
 
                                     <li className="p-l-5px p-r-5px">
                                         <Link to="#" className="text-white">

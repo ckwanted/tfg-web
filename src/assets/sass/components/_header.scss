@@ -40,3 +40,34 @@
   }
 
 }
+
+.header-contact {
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and(min-width: breakpoint(sm)) {
+    justify-content: flex-start;
+
+    li:last-child {
+      padding-left: 25px;
+
+      @media screen and(min-width: breakpoint(md)) {
+        padding-left: 50px;
+      }
+
+    }
+  }
+
+}
+
+.header-auth {
+  display: flex;
+  justify-content: center;
+
+  @media screen and(min-width: breakpoint(sm)) {
+    justify-content: flex-end;
+  }
+
+}
+
+

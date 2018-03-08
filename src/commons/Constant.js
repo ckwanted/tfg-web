@@ -14,7 +14,8 @@ const SLIDER = {
 
 const Constant = {
     Breakpoints,
-    SLIDER
+    SLIDER,
+    GOOGLE_MAP_API_KEY: 'AIzaSyCfXisbBfTDFgMW5EQ4PyCBOLVbRFju54Y',
 }
 
 export default Constant
