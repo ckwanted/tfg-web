@@ -1,0 +1,17 @@
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+
+  &-margin {
+    margin-top: 155px;
+
+    @media screen and(min-width: breakpoint(xs)) {
+      margin-top: 99px;
+    }
+
+  }
+
+}
