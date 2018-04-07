@@ -10,10 +10,12 @@ import {
 /*
  * REDUX
  */
-import store from './store'
+import { store, persistor } from './store'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory'
+
+import { PersistGate } from 'redux-persist/integration/react'
 
 /*
  * CONTAINERS
@@ -31,14 +33,16 @@ class App extends Component {
 
         return (
             <Provider store={store}>
-                { /* ConnectedRouter will use the store from Provider automatically */ }
-                <ConnectedRouter history={history}>
-                    <div>
+                <PersistGate loading={null} persistor={persistor}>
+                    { /* ConnectedRouter will use the store from Provider automatically */ }
+                    <ConnectedRouter history={history}>
+                        <div>
 
-                        <Route exact path="/" component={Home} />
+                            <Route exact path="/" component={Home} />
 
-                    </div>
-                </ConnectedRouter>
+                        </div>
+                    </ConnectedRouter>
+                </PersistGate>
             </Provider>
         )
     }
