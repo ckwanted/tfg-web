@@ -1,0 +1,45 @@
+.footer-wrapper {
+  background: rgb(33, 35, 49);
+  color: #777777;
+  padding: 25px;
+
+  p,
+  a {
+    font-size: 14px;
+    color: #777;
+  }
+
+  a {
+    line-height: 2;
+  }
+
+  h4 {
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+
+
+  @media screen and(min-width: breakpoint(sm)) {
+    padding: 0;
+  }
+
+}
+
+.fpct {
+  max-width: 180px;
+  background: url(images/sprite.svg) -145px -1910px no-repeat;
+  display: block;
+  height: 80px;
+}
+
+.universia {
+  max-width: 160px;
+  background: url(images/sprite.svg) -155px -1822px no-repeat;
+  display: block;
+  height: 80px;
+}
+
+.footer-bottom {
+  background: rgb(43, 45, 59);
+  padding: 20px 0;
+}

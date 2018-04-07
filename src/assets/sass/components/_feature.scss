@@ -1,0 +1,27 @@
+.feature-wrapper {
+
+  background-color: #f9f9f6;
+
+}
+
+.feature {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+}
+
+.feature-icon {
+  position: relative;
+  width: 80px;
+
+  img {
+    width: 65px;
+  }
+
+}
+
+.feature-title {
+  > * {
+    font-size: 24px;
+  }
+}
