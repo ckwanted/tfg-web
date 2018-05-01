@@ -4,6 +4,8 @@ import {
     Route,
 } from 'react-router-dom'
 
+import 'izitoast/dist/css/iziToast.min.css'
+
 /*
  * REDUX
  */

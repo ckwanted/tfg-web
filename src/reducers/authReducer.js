@@ -13,9 +13,12 @@ export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
 
         case actionType.AUTH_LOGIN_SUCCESS:
+            const {access_token, user} = action.payload
             return {
                 ...state,
-                ...action.payload,
+                access_token: access_token,
+                user: user,
+                modal: false,
                 loading: false,
             }
         case actionType.LOG_OUT:
@@ -23,6 +26,7 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 access_token: null,
                 user: null,
+                loading: false,
             }
         case actionType.OPEN_MODAL:
             return {

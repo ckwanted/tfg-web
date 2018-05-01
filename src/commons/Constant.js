@@ -14,6 +14,8 @@ const SLIDER = {
 
 const Constant = {
 
+    API: 'https://ulpgc-course-api-test.herokuapp.com/api/v1',
+
     Breakpoints,
     SLIDER,
     GOOGLE_MAP_API_KEY: 'AIzaSyCfXisbBfTDFgMW5EQ4PyCBOLVbRFju54Y',

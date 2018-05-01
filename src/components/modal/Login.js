@@ -12,6 +12,17 @@ class Login extends Component {
         this.props.dispatch(actionCreators.authLogin())
     }
 
+    _renderButton = (AUTH) => {
+
+        let data = AUTH.loading ? <i className="fa fa-circle-o-notch fa-spin" aria-hidden="true" /> : 'Iniciar sesión'
+
+        return (
+            <button type="submit" className="button w-100" disabled={AUTH.loading}>
+                {data}
+            </button>
+        )
+    }
+
     render() {
 
         const {dispatch} = this.props
@@ -51,7 +62,9 @@ class Login extends Component {
                         />
                     </label>
 
-                    <button type="submit" className="button w-100">Iniciar sesión</button>
+                    <button type="submit" className="button w-100">
+                        {(!AUTH.loading) ? 'Iniciar sesión' : <i className="fa fa-circle-o-notch fa-spin" aria-hidden="true" />}
+                    </button>
 
                 </form>
 
