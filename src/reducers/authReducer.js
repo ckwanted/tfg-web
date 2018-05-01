@@ -27,6 +27,8 @@ export default (state = INITIAL_STATE, action) => {
                 access_token: null,
                 user: null,
                 loading: false,
+                email: '',
+                password: ''
             }
         case actionType.OPEN_MODAL:
             return {
