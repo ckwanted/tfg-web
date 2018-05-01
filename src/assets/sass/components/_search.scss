@@ -1,0 +1,38 @@
+.search-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("/images/home-bg.jpg") no-repeat fixed center;
+  background-size: cover;
+  height: 300px;
+
+  @media screen and (min-width: breakpoint(sm)) {
+    height: 500px;
+  }
+
+  > * {
+    max-width: 560px;
+    padding: 10px;
+  }
+
+  &__title,
+  &__subtitle {
+    font-weight: 300;
+    line-height: 1.33;
+    color: white;
+  }
+
+  &__title {
+    font-size: 30px;
+    margin: 0;
+
+    @media screen and (min-width: breakpoint(sm)) {
+      font-size: 40px;
+    }
+  }
+
+  &__subtitle {
+    font-size: 14px;
+  }
+
+}

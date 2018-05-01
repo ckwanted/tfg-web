@@ -12,6 +12,7 @@
 @import "components/footer";
 @import "components/sticky-header";
 @import "components/modal";
+@import "components/search";
 
 $font-size: 14px;
 $padding: 10px 20px;
@@ -22,12 +23,23 @@ $padding: 10px 20px;
 }
 
 .input {
+  position: relative;
   outline: 0;
   background: color(gray-input);
   border: 0;
   margin: 5px 0 15px 0;
   padding: $padding;
   font-size: $font-size;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  font-size: $font-size;
+  pointer-events: none;
+  color: #aaa;
 }
 
 .button {
@@ -45,4 +57,8 @@ $padding: 10px 20px;
     background-color: darken(color(blue-dark), 10%);
   }
 
+}
+
+.basic-shadow {
+  box-shadow: 0 0 5px rgba(black, .1);
 }
