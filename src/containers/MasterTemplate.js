@@ -4,6 +4,7 @@ import {
     Header,
     Navigation,
     Footer,
+    Login
 } from '../components/index'
 
 import Modal from 'react-responsive-modal'
@@ -30,20 +31,31 @@ class MasterTemplate extends Component {
 
     _renderLoginModal = () => {
         return (
-            <Modal open={true}  onClose={() => this.props.dispatch(actionCreators.closeModal())} center>
-                <div className="pt-5">
-                    <h2>Login</h2>
+            <Modal
+                open={true}
+                showCloseIcon={true}
+                onClose={() => this.props.dispatch(actionCreators.closeModal())}
+                center
+                classNames={{ overlay: 'custom-overlay', modal: 'modal-wrapper' }}
+            >
+                <div className="modal-decorator">
+                    <img className="logo" src="/images/ulpgc-course-white-1x.png" alt="logo" />
                 </div>
+                <Login />
             </Modal>
         )
     }
 
     _renderRegisterModal = () => {
         return (
-            <Modal open={true}  onClose={() => this.props.dispatch(actionCreators.closeModal())} center>
-                <div className="pt-5">
-                    <h2>Register</h2>
-                </div>
+            <Modal
+                open={true}
+                showCloseIcon={true}
+                onClose={() => this.props.dispatch(actionCreators.closeModal())}
+                center
+                classNames={{ overlay: 'custom-overlay', modal: 'modal-wrapper' }}
+            >
+                <h2>Register</h2>
             </Modal>
         )
     }

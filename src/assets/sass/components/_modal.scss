@@ -1,0 +1,21 @@
+.modal-wrapper {
+  position: relative;
+  max-width: 400px !important;
+  width: 100%;
+}
+
+.custom-overlay {
+  background: linear-gradient(to bottom, #002e67 0%, #42648e 100%) !important;
+}
+
+.modal-content {
+  padding: 20px;
+  border: none !important;
+}
+
+.modal-decorator {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  right: 0;
+}

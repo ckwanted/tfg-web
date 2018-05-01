@@ -1,7 +1,5 @@
 import {combineReducers} from 'redux'
 import {routerReducer} from 'react-router-redux'
-import {reducer as formReducer} from 'redux-form'
-
 
 import authReducer from './authReducer'
 
@@ -14,10 +12,10 @@ import storage from 'redux-persist/lib/storage' // default: localStorage if web,
 const authReducerConfig = {
     key: 'auth',
     storage,
+    blacklist: ['password']
 }
 
 export default combineReducers({
     routerReducer,
-    formReducer,
     authReducer: persistReducer(authReducerConfig, authReducer),
 })

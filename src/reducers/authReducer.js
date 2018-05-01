@@ -5,6 +5,8 @@ const INITIAL_STATE = {
     user: null,
     loading: false,
     modal: false,
+    email: '',
+    password: ''
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -30,7 +32,14 @@ export default (state = INITIAL_STATE, action) => {
         case actionType.CLOSE_MODAL:
             return {
                 ...state,
-                modal: null
+                modal: null,
+                loading: false
+            }
+        case actionType.AUTH_CHANGE_VALUE:
+            const {key, value} = action.payload
+            return {
+                ...state,
+                [key]: value
             }
         default:
             return state

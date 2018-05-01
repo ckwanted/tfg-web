@@ -11,3 +11,38 @@
 @import "components/polular-course";
 @import "components/footer";
 @import "components/sticky-header";
+@import "components/modal";
+
+$font-size: 14px;
+$padding: 10px 20px;
+
+.label {
+  display: block;
+  font-size: $font-size;
+}
+
+.input {
+  outline: 0;
+  background: color(gray-input);
+  border: 0;
+  margin: 5px 0 15px 0;
+  padding: $padding;
+  font-size: $font-size;
+}
+
+.button {
+  text-transform: uppercase;
+  outline: 0;
+  background-color: color(blue-dark);
+  border: 0;
+  padding: $padding;
+  color: white;
+  font-size: $font-size;
+  cursor: pointer;
+  transition: all .3s ease;
+
+  &:hover {
+    background-color: darken(color(blue-dark), 10%);
+  }
+
+}
