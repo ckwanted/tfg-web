@@ -20,7 +20,8 @@ import { PersistGate } from 'redux-persist/integration/react'
  * CONTAINERS
  */
 import {
-    Home
+    Home,
+    AboutUs
 } from './containers'
 
 // Create a history of your choosing (we're using a browser history in this case)
@@ -38,6 +39,7 @@ class App extends Component {
                         <div>
 
                             <Route exact path="/" component={Home} />
+                            <Route exact path="/about" component={AboutUs} />
 
                         </div>
                     </ConnectedRouter>

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 
 import {connect} from 'react-redux'
 import * as actionCreators from '../../actions'
-import {Constant} from '../../commons'
 
 class Login extends Component {
 
@@ -10,17 +9,6 @@ class Login extends Component {
         e.preventDefault()
 
         this.props.dispatch(actionCreators.authLogin())
-    }
-
-    _renderButton = (AUTH) => {
-
-        let data = AUTH.loading ? <i className="fa fa-circle-o-notch fa-spin" aria-hidden="true" /> : 'Iniciar sesión'
-
-        return (
-            <button type="submit" className="button w-100" disabled={AUTH.loading}>
-                {data}
-            </button>
-        )
     }
 
     render() {
@@ -62,7 +50,7 @@ class Login extends Component {
                         />
                     </label>
 
-                    <button type="submit" className="button w-100">
+                    <button type="submit" className="button w-100" disabled={AUTH.loading}>
                         {(!AUTH.loading) ? 'Iniciar sesión' : <i className="fa fa-circle-o-notch fa-spin" aria-hidden="true" />}
                     </button>
 
@@ -86,6 +74,6 @@ const mapStateToProps = (state) => {
     return {
         auth: state.authReducer
     }
-};
+}
 
 export default connect(mapStateToProps)(Login)

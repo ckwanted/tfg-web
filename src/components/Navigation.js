@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 
 import { Link } from 'react-router-dom'
+import {connect} from 'react-redux'
 
 class Navigation extends Component {
 
     render() {
+        const {location} = this.props.router
 
         return (
             <section className="nav-wrapper">
@@ -21,19 +23,19 @@ class Navigation extends Component {
                         <i className="fa fa-bars" />
                         <ul className="p-0px m-0px">
                             <li className="p-l-10px p-r-10px">
-                                <Link to="/" className="active">Inicio</Link>
+                                <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Inicio</Link>
                             </li>
                             <li className="p-l-10px p-r-10px">
-                                <Link to="/">Cursos</Link>
+                                <Link to="/" className={location.pathname === '/courses' ? 'active' : ''}>Cursos</Link>
                             </li>
                             <li className="p-l-10px p-r-10px">
-                                <Link to="/">Eventos</Link>
+                                <Link to="/" className={location.pathname === '/events' ? 'active' : ''}>Eventos</Link>
                             </li>
                             <li className="p-l-10px p-r-10px">
-                                <Link to="/">Profesores</Link>
+                                <Link to="/" className={location.pathname === '/teachers' ? 'active' : ''}>Profesores</Link>
                             </li>
                             <li>
-                                <Link to="/">Libros</Link>
+                                <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>Sobre Nosotros</Link>
                             </li>
                         </ul>
                     </nav>
@@ -47,4 +49,10 @@ class Navigation extends Component {
 
 }
 
-export default Navigation
+const mapStateToProps = (state) => {
+    return {
+        router: state.routerReducer
+    }
+}
+
+export default connect(mapStateToProps)(Navigation)
