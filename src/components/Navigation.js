@@ -18,7 +18,7 @@ class Navigation extends Component {
                     </div>
 
                     <nav className="nav d-flex">
-                        <i className="fa fa-bars"></i>
+                        <i className="fa fa-bars" />
                         <ul className="p-0px m-0px">
                             <li className="p-l-10px p-r-10px">
                                 <Link to="/" className="active">Inicio</Link>

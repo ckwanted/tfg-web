@@ -3,19 +3,57 @@ import React, { Component } from 'react'
 import {
     Header,
     Navigation,
-    Footer
+    Footer,
 } from '../components/index'
+
+import Modal from 'react-responsive-modal'
+
+import {connect} from 'react-redux'
+import * as actionCreators from '../actions'
+import {Constant} from '../commons'
 
 class MasterTemplate extends Component {
 
-    constructor(props) {
-        super(props)
+    _renderModal = () => {
+        const MODAL = this.props.auth.modal
+
+        switch(MODAL) {
+            case Constant.LOGIN:
+                return this._renderLoginModal()
+            case Constant.REGISTER:
+                return this._renderRegisterModal()
+            default:
+                break
+        }
+
+    }
+
+    _renderLoginModal = () => {
+        return (
+            <Modal open={true}  onClose={() => this.props.dispatch(actionCreators.closeModal())} center>
+                <div className="pt-5">
+                    <h2>Login</h2>
+                </div>
+            </Modal>
+        )
+    }
+
+    _renderRegisterModal = () => {
+        return (
+            <Modal open={true}  onClose={() => this.props.dispatch(actionCreators.closeModal())} center>
+                <div className="pt-5">
+                    <h2>Register</h2>
+                </div>
+            </Modal>
+        )
     }
 
     render() {
 
         return (
             <div>
+
+                {this._renderModal()}
 
                 <div className="sticky-header">
                     <Header />
@@ -33,4 +71,10 @@ class MasterTemplate extends Component {
 
 }
 
-export default MasterTemplate
+const mapStateToProps = (state) => {
+    return {
+        auth: state.authReducer
+    }
+};
+
+export default connect(mapStateToProps)(MasterTemplate)

@@ -26,23 +26,22 @@
   a {
     position: relative;
     color: #002e67;
-    transition: all .3s ease;
 
     &:before {
       position: absolute;
       bottom: -5px;
       content: "";
-      width: 100%;
+      width: 0;
       height: 2px;
       background: #002e67;
-      opacity: 0;
+      transition: all .3s ease;
     }
 
     &.active,
     &:hover {
 
       &:before {
-        opacity: 1;
+        width: 100%;
       }
 
     }
