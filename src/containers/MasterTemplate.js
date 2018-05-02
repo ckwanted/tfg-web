@@ -4,7 +4,8 @@ import {
     Header,
     Navigation,
     Footer,
-    Login
+    Login,
+    Register
 } from '../components/index'
 
 import Modal from 'react-responsive-modal'
@@ -55,7 +56,10 @@ class MasterTemplate extends Component {
                 center
                 classNames={{ overlay: 'custom-overlay', modal: 'modal-wrapper' }}
             >
-                <h2>Register</h2>
+                <div className="modal-decorator">
+                    <img className="logo" src="/images/ulpgc-course-white-1x.png" alt="logo" />
+                </div>
+                <Register />
             </Modal>
         )
     }

@@ -6,7 +6,13 @@ const INITIAL_STATE = {
     loading: false,
     modal: false,
     email: '',
-    password: ''
+    password: '',
+
+    register_name: '',
+    register_last_name: '',
+    register_email: '',
+    register_password: '',
+    register_re_password: '',
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -21,14 +27,14 @@ export default (state = INITIAL_STATE, action) => {
                 modal: false,
                 loading: false,
             }
-        case actionType.LOG_OUT:
+        case actionType.AUTH_REGISTER_SUCCESS:
             return {
                 ...state,
-                access_token: null,
-                user: null,
-                loading: false,
-                email: '',
-                password: ''
+                modal: false,
+            }
+        case actionType.LOG_OUT:
+            return {
+                ...INITIAL_STATE
             }
         case actionType.OPEN_MODAL:
             return {

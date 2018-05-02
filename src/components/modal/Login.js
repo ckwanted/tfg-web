@@ -29,7 +29,7 @@ class Login extends Component {
                 <form onSubmit={this._handleSubmit}>
 
                     <label className="label">
-                        Email
+                        Correo
                         <input
                             type="email"
                             className="input w-100"
@@ -40,7 +40,7 @@ class Login extends Component {
                     </label>
 
                     <label className="label">
-                        Password
+                        Contraseña
                         <input
                             type="password"
                             className="input w-100"

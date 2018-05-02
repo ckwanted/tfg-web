@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Constant from './Constant'
+import $ from 'jquery'
 import iziToast from 'izitoast'
 
 class Api {
@@ -26,6 +27,15 @@ class Api {
                         position: 'topRight'
                     })
                     break
+                case 422:
+                    $.each(error.response.data.errors, function(key, value) {
+                        iziToast.error({
+                            title: '',
+                            message: value,
+                            position: 'topRight'
+                        })
+                    })
+                    break
                 default:
                     break
             }
@@ -34,6 +44,15 @@ class Api {
 
     login(email, password) {
         return this.axios.post('/auth/login', {
+            email,
+            password
+        })
+    }
+
+    register(name, last_name, email, password) {
+        return this.axios.post('/auth/register', {
+            name,
+            last_name,
             email,
             password
         })

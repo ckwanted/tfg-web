@@ -11,6 +11,15 @@
 .modal-content {
   padding: 20px;
   border: none !important;
+
+  &__logo {
+    display: none;
+
+    @media screen and(min-width: breakpoint(sm)) {
+      display: block;
+    }
+  }
+
 }
 
 .modal-decorator {

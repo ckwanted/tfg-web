@@ -6,6 +6,7 @@ import About from './About'
 import PopularCourse from './PopularCourse'
 import Footer from './Footer'
 import Login from './modal/Login'
+import Register from './modal/Register'
 
 export {Header}
 export {Navigation}
@@ -15,3 +16,4 @@ export {About}
 export {PopularCourse}
 export {Footer}
 export {Login}
+export {Register}

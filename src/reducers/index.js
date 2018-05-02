@@ -12,7 +12,7 @@ import storage from 'redux-persist/lib/storage' // default: localStorage if web,
 const authReducerConfig = {
     key: 'auth',
     storage,
-    blacklist: ['email', 'password']
+    blacklist: ['email', 'password', 'register_name', 'register_last_name', 'register_email', 'register_password', 'register_re_password']
 }
 
 export default combineReducers({

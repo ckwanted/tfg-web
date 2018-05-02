@@ -19,7 +19,7 @@ export const authLogin = () => {
                 title: '',
                 message: 'Credenciales invalidas',
                 position: 'topRight'
-            });
+            })
             dispatch(authChangeValue("loading", false))
         });
     }
@@ -33,6 +33,40 @@ export const authLoginSuccess = (access_token, user) => {
             access_token,
             user
         }
+    }
+}
+
+export const authRegister = () => {
+    return (dispatch, getState) => {
+
+        const { authReducer: {register_name, register_last_name, register_email, register_password} } = getState();
+
+        dispatch(authChangeValue("loading", true))
+
+        new Api().register(register_name, register_last_name, register_email, register_password).then(response => {
+            dispatch(authRegisterSuccess())
+            dispatch(authChangeValue("loading", false))
+            //TODO: check error
+            iziToast.success({
+                title: '',
+                message: 'Usuario creado correctamente ...',
+                position: 'topRight'
+            })
+        }).catch(error => {
+            iziToast.error({
+                title: '',
+                message: 'No se ha podido crear el usuario',
+                position: 'topRight'
+            })
+            dispatch(authChangeValue("loading", false))
+        });
+    }
+}
+
+export const authRegisterSuccess = () => {
+
+    return {
+        type: actionType.AUTH_REGISTER_SUCCESS,
     }
 }
 
