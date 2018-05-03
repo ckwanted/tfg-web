@@ -142,6 +142,6 @@ const mapStateToProps = (state) => {
     return {
         auth: state.authReducer
     }
-};
+}
 
 export default connect(mapStateToProps)(Header)

@@ -58,6 +58,10 @@ class Api {
         })
     }
 
+    allCourses() {
+        return this.axios.get('/courses')
+    }
+
 }
 
 export default Api

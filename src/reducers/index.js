@@ -2,6 +2,7 @@ import {combineReducers} from 'redux'
 import {routerReducer} from 'react-router-redux'
 
 import authReducer from './authReducer'
+import courseReducer from './courseReducer'
 
 /*
  * REDUX PERSIST
@@ -18,4 +19,5 @@ const authReducerConfig = {
 export default combineReducers({
     routerReducer,
     authReducer: persistReducer(authReducerConfig, authReducer),
+    courseReducer,
 })

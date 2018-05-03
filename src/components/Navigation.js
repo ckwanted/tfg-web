@@ -26,10 +26,7 @@ class Navigation extends Component {
                                 <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Inicio</Link>
                             </li>
                             <li className="p-l-10px p-r-10px">
-                                <Link to="/" className={location.pathname === '/courses' ? 'active' : ''}>Cursos</Link>
-                            </li>
-                            <li className="p-l-10px p-r-10px">
-                                <Link to="/" className={location.pathname === '/events' ? 'active' : ''}>Eventos</Link>
+                                <Link to="/courses" className={location.pathname === '/courses' ? 'active' : ''}>Cursos</Link>
                             </li>
                             <li className="p-l-10px p-r-10px">
                                 <Link to="/" className={location.pathname === '/teachers' ? 'active' : ''}>Profesores</Link>

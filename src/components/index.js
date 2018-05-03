@@ -5,6 +5,8 @@ import Feature from './Feature'
 import About from './About'
 import PopularCourse from './PopularCourse'
 import Footer from './Footer'
+import CardCourse from './CardCourse'
+
 import Login from './modal/Login'
 import Register from './modal/Register'
 
@@ -15,5 +17,7 @@ export {Feature}
 export {About}
 export {PopularCourse}
 export {Footer}
+export {CardCourse}
+
 export {Login}
 export {Register}

@@ -1,0 +1,12 @@
+.course-wrapper {
+  padding: 50px 25px;
+
+  @media screen and(min-width: breakpoint(xs)) {
+    padding: 100px 0;
+  };
+
+  @media screen and(min-width: breakpoint(sm)) {
+    padding: 50px 0;
+  }
+
+}

@@ -9,3 +9,9 @@ export const LOG_OUT = 'LOG_OUT'
 export const OPEN_MODAL = 'OPEN_MODAL'
 export const CLOSE_MODAL = 'CLOSE_MODAL'
 export const AUTH_CHANGE_VALUE = 'AUTH_CHANGE_VALUE'
+
+/*
+ * COURSE
+ */
+export const FETCH_ALL_COURSES = 'FETCH_ALL_COURSES'
+export const COURSE_CHANGE_VALUE = 'COURSE_CHANGE_VALUE'

@@ -21,6 +21,7 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.9",
     "react-scripts": "1.1.1",
+    "react-spinkit": "^3.0.0",
     "react-stars": "^2.2.5",
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
