@@ -7,7 +7,7 @@ const CardCourse = (props) => {
 
     return(
         <div className="item bg-white position-r mb-2" style={{border: '1px solid #eee'}}>
-            <img src={`${ITEM.image}`} alt={ITEM.name} />
+            <img src={`${ITEM.photo}`} alt={ITEM.name} />
             <div className="p-20px">
                 <h4 className="m-b-5px f-s-18px" style={styles.a}>{ITEM.name.toUpperCase()}</h4>
                 <div className="price-tag" style={styles.a}>
