@@ -7,6 +7,14 @@ import {
 import 'izitoast/dist/css/iziToast.min.css'
 
 /*
+ * SET UP FONTAWESOME 5
+ */
+import fontawesome from '@fortawesome/fontawesome'
+import brands from '@fortawesome/fontawesome-free-brands'
+import faCheckSquare from '@fortawesome/fontawesome-free-solid/faCheckSquare'
+import faCoffee from '@fortawesome/fontawesome-free-solid/faCoffee'
+
+/*
  * REDUX
  */
 import { store, persistor } from './store'
@@ -25,6 +33,8 @@ import {
     CourseDetail,
     AboutUs
 } from './containers'
+
+fontawesome.library.add(brands, faCheckSquare, faCoffee)
 
 // Create a history of your choosing (we're using a browser history in this case)
 const history = createHistory()

@@ -64,3 +64,42 @@ $padding: 10px 20px;
 .basic-shadow {
   box-shadow: 0 0 5px rgba(black, .1);
 }
+
+.my-menu {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+
+  &__title {
+
+  }
+
+  &__submenu {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    z-index: 1000;
+    min-width: 170px;
+    background: white;
+    display: none;
+    text-align: center;
+    box-shadow: 0 0 5px rgba(black, .3);
+
+    a {
+      color: black;
+      padding: 10px 0;
+      border: 1px solid #F5F5F5;
+
+      &:hover {
+        background: #f2f2f2;
+        color: color(blue-dark);
+      }
+
+    }
+  }
+
+  &:hover &__submenu {
+    display: block;
+  }
+
+}

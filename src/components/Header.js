@@ -8,6 +8,9 @@ import {Constant} from '../commons'
 
 import iziToast from 'izitoast'
 
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import cartIcon from '@fortawesome/fontawesome-free-solid/faShoppingCart'
+
 class Header extends Component {
 
     _renderMyProfile = () => {
@@ -16,9 +19,26 @@ class Header extends Component {
 
         if(AUTH.access_token) {
             return (
-                <Link to="#" className="text-white" onClick={() => alert("Mi perfil")}>
-                    Mi perfil
-                </Link>
+                <div className="my-menu">
+
+                    <span className="my-menu__title">Mi perfil</span>
+                    <div className="my-menu__submenu">
+
+                        <Link to="#" className="d-block cursor-pointer" onClick={() => alert("Mi perfil")}>
+                            Mis Cursos
+                        </Link>
+
+                        <Link to="#" className="d-block cursor-pointer" onClick={() => alert("Mi perfil")}>
+                            Cambiar Contraseña
+                        </Link>
+
+                        <Link to="#" className="d-block cursor-pointer" onClick={() => this._showConfirm(dispatch)}>
+                            Log out
+                        </Link>
+
+                    </div>
+
+                </div>
             )
         }
 
@@ -35,8 +55,8 @@ class Header extends Component {
 
         if(AUTH.access_token) {
             return (
-                <Link to="#" className="text-white" onClick={() => this._showConfirm(dispatch)}>
-                    Log out
+                <Link to="#" className="text-white" onClick={() => alert("cart")}>
+                    <FontAwesomeIcon icon={cartIcon} />
                 </Link>
             )
         }
