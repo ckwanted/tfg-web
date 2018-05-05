@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import * as actionCreators from '../actions'
 
 import Spinner from 'react-spinkit'
+import {Constant} from '../commons'
 
 
 import {
@@ -19,7 +20,22 @@ class Course extends Component {
     }
 
     componentDidMount() {
+        window.addEventListener('scroll', this._handleScroll)
+    }
 
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this._handleScroll)
+    }
+
+    _handleScroll = (e) => {
+        const FILTER = this.refs.filter
+        const SCROLL_Y = window.scrollY
+        const WIDTH = window.innerWidth
+
+        if(SCROLL_Y > 300 && WIDTH < Constant.Breakpoints.sm) FILTER.style.opacity = 0
+        else FILTER.style.opacity = 1
+
+        FILTER.style.transform = `translateY(${SCROLL_Y}px)`
     }
 
     _handleSubmit = (e) => {
@@ -51,7 +67,7 @@ class Course extends Component {
 
                         <div className="col-md-3">
 
-                            <div>
+                            <div ref="filter">
 
                                 <div className="position-relative">
                                     <input
