@@ -1,13 +1,14 @@
 import axios from 'axios'
-import Constant from './Constant'
 import $ from 'jquery'
 import iziToast from 'izitoast'
+
+const API = process.env.REACT_APP_API
 
 class Api {
 
     constructor(token) {
         this.axios = axios.create({
-            baseURL: Constant.API,
+            baseURL: API,
             timeout: 30000,
             headers: {'Authorization': 'Bearer ' + token}
         })
