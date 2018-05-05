@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import ReactStars from 'react-stars'
 
 const CardCourse = (props) => {
@@ -6,8 +6,8 @@ const CardCourse = (props) => {
     const ITEM = props.item
 
     return(
-        <div className="item bg-white position-r mb-2" style={{border: '1px solid #eee'}}>
-            <img src={`${ITEM.photo}`} alt={ITEM.name} />
+        <div className="card-course bg-white position-r mb-2" style={{border: '1px solid #eee'}}>
+            <img className="card-course__img" src={`${ITEM.photo}`} alt={ITEM.name} />
             <div className="p-20px">
                 <h4 className="m-b-5px f-s-18px" style={styles.a}>{ITEM.name.toUpperCase()}</h4>
                 <div className="price-tag" style={styles.a}>

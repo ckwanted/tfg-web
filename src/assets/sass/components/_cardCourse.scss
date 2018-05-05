@@ -1,0 +1,40 @@
+$card-duration: .5s;
+
+.card-course-wrapper {
+  cursor: pointer;
+
+  &:hover .card-course:not(:hover) {
+    filter: grayscale(100%);
+  }
+
+}
+
+.card-course {
+  transform: scale(1) translateX(0);
+  animation: card-course-animation-in $card-duration;
+
+  &__img {
+    transform: scale(0);
+    animation: card-course-photo $card-duration $card-duration forwards;
+    animation-timing-function: ease-out;
+  }
+
+}
+
+@keyframes card-course-animation-in {
+  from {
+    transform: scale(0) translateX(-100%);
+  }
+}
+
+@keyframes card-course-photo {
+  0% {
+    transform: scale(0);
+  }
+  90% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

@@ -23,7 +23,6 @@
     "react-scripts": "1.1.1",
     "react-spinkit": "^3.0.0",
     "react-stars": "^2.2.5",
-    "react-transition-group": "^2.3.1",
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",

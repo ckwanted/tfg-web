@@ -7,6 +7,7 @@ import * as actionCreators from '../actions'
 
 import Spinner from 'react-spinkit'
 
+
 import {
     CardCourse
 } from '../components'
@@ -15,6 +16,10 @@ class Course extends Component {
 
     componentWillMount() {
         this.props.dispatch(actionCreators.fetchAllCourses())
+    }
+
+    componentDidMount() {
+
     }
 
     _handleSubmit = (e) => {
@@ -46,25 +51,29 @@ class Course extends Component {
 
                         <div className="col-md-3">
 
-                            <div className="position-relative">
-                                <input
-                                    className="input m-0 p-l-30px w-100 bg-white basic-shadow"
-                                    type="text"
-                                    placeholder="Busca tu curso"
-                                />
-                                <i className="fa fa-search input-icon" aria-hidden="true" />
-                            </div>
+                            <div>
 
-                            <div className="mt-3">
-                                <h5>Categorías</h5>
-                                <p>111111</p>
+                                <div className="position-relative">
+                                    <input
+                                        className="input m-0 p-l-30px w-100 bg-white basic-shadow"
+                                        type="text"
+                                        placeholder="Busca tu curso"
+                                    />
+                                    <i className="fa fa-search input-icon" aria-hidden="true" />
+                                </div>
+
+                                <div className="mt-3">
+                                    <h5>Categorías</h5>
+                                    <p>111111</p>
+                                </div>
+
                             </div>
 
                         </div>
 
                         <div className="col-md-9">
 
-                            <div className="row justify-content-center">
+                            <div className="row justify-content-center card-course-wrapper">
                                 {this._renderCourses()}
                             </div>
 
