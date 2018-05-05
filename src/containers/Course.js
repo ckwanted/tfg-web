@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import MasterTemplate from './MasterTemplate'
 
@@ -16,7 +17,7 @@ import {
 class Course extends Component {
 
     componentWillMount() {
-        this.props.dispatch(actionCreators.fetchAllCourses())
+        this.props.fetchAllCourses()
     }
 
     componentDidMount() {
@@ -50,7 +51,9 @@ class Course extends Component {
         return COURSES.data.map((course) => {
             return (
                 <div key={course.id} className="col-md-6 col-lg-4">
-                    <CardCourse item={course} />
+                    <Link to={`courses/${course.name}`}>
+                        <CardCourse item={course} />
+                    </Link>
                 </div>
             )
         })
@@ -111,4 +114,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Course)
+export default connect(mapStateToProps, actionCreators)(Course)

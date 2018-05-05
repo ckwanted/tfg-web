@@ -22,6 +22,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import {
     Home,
     Course,
+    CourseDetail,
     AboutUs
 } from './containers'
 
@@ -40,8 +41,11 @@ class App extends Component {
                         <div>
 
                             <Route exact path="/" component={Home} />
+
                             <Route exact path="/courses" component={Course} />
-                            <Route exact path="/about" component={AboutUs} />
+                            <Route path="/courses/:name" component={CourseDetail} />
+
+                            <Route path="/about" component={AboutUs} />
 
                         </div>
                     </ConnectedRouter>

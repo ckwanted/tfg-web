@@ -35,7 +35,7 @@ class MasterTemplate extends Component {
             <Modal
                 open={true}
                 showCloseIcon={true}
-                onClose={() => this.props.dispatch(actionCreators.closeModal())}
+                onClose={() => this.props.closeModal()}
                 center
                 classNames={{ overlay: 'custom-overlay', modal: 'modal-wrapper' }}
             >
@@ -52,7 +52,7 @@ class MasterTemplate extends Component {
             <Modal
                 open={true}
                 showCloseIcon={true}
-                onClose={() => this.props.dispatch(actionCreators.closeModal())}
+                onClose={() => this.props.closeModal()}
                 center
                 classNames={{ overlay: 'custom-overlay', modal: 'modal-wrapper' }}
             >
@@ -93,4 +93,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps)(MasterTemplate)
+export default connect(mapStateToProps, actionCreators)(MasterTemplate)
