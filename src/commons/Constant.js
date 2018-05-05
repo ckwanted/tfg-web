@@ -16,7 +16,6 @@ const Constant = {
 
     Breakpoints,
     SLIDER,
-    GOOGLE_MAP_API_KEY: 'AIzaSyCfXisbBfTDFgMW5EQ4PyCBOLVbRFju54Y',
 
     LOGIN: 'login',
     REGISTER: 'register',

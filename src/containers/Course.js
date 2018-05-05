@@ -4,7 +4,6 @@ import MasterTemplate from './MasterTemplate'
 
 import {connect} from 'react-redux'
 import * as actionCreators from '../actions'
-import {Constant} from '../commons'
 
 import Spinner from 'react-spinkit'
 
