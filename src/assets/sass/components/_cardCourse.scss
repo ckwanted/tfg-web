@@ -1,7 +1,6 @@
 $card-duration: .5s;
 
 .card-course-wrapper {
-  cursor: pointer;
 
   &:hover .card-course:not(:hover) {
     filter: grayscale(100%);
@@ -10,6 +9,8 @@ $card-duration: .5s;
 }
 
 .card-course {
+  cursor: pointer;
+  transition: filter .5s ease-in-out;
   transform: scale(1) translateX(0);
   animation: card-course-animation-in $card-duration;
 
