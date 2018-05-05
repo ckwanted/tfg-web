@@ -8,12 +8,12 @@ class Login extends Component {
     _handleSubmit = (e) =>  {
         e.preventDefault()
 
-        this.props.dispatch(actionCreators.authLogin())
+        this.props.authLogin()
     }
 
     render() {
 
-        const {dispatch} = this.props
+        const {authChangeValue} = this.props
         const AUTH = this.props.auth
 
         return (
@@ -34,7 +34,7 @@ class Login extends Component {
                             type="email"
                             className="input w-100"
                             value={AUTH.email}
-                            onChange={(e) => dispatch(actionCreators.authChangeValue("email", e.target.value))}
+                            onChange={(e) => authChangeValue("email", e.target.value)}
                             required
                         />
                     </label>
@@ -45,13 +45,13 @@ class Login extends Component {
                             type="password"
                             className="input w-100"
                             value={AUTH.password}
-                            onChange={(e) => dispatch(actionCreators.authChangeValue("password", e.target.value))}
+                            onChange={(e) => authChangeValue("password", e.target.value)}
                             required
                         />
                     </label>
 
                     <button type="submit" className="button w-100" disabled={AUTH.loading}>
-                        {(!AUTH.loading) ? 'Iniciar sesión' : <i className="fa fa-circle-o-notch fa-spin" aria-hidden="true" />}
+                        {(!AUTH.loading) ? 'Iniciar sesión' : <i className="fas fa-circle-notch fa-spin" aria-hidden="true" />}
                     </button>
 
                 </form>
@@ -76,4 +76,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Login)
+export default connect(mapStateToProps, actionCreators)(Login)

@@ -5,8 +5,13 @@ import MasterTemplate from './MasterTemplate'
 import {connect} from 'react-redux'
 import * as actionCreators from '../actions'
 
-import Spinner from 'react-spinkit'
-
+import {
+    Accordion,
+    AccordionItem,
+    AccordionItemTitle,
+    AccordionItemBody,
+} from 'react-accessible-accordion'
+import 'react-accessible-accordion/dist/fancy-example.css'
 
 import {
 
@@ -16,6 +21,8 @@ class CourseDetail extends Component {
 
     render() {
 
+        const {name} = this.props.match.params
+
         return (
             <MasterTemplate>
 
@@ -24,7 +31,27 @@ class CourseDetail extends Component {
 
                         <div className="col-md-12">
 
-                            asas
+                            <h2>{name}</h2>
+
+                            <Accordion>
+                                <AccordionItem>
+                                    <AccordionItemTitle>
+                                        <h3>Simple title</h3>
+                                    </AccordionItemTitle>
+                                    <AccordionItemBody>
+                                        <p>Body content</p>
+                                    </AccordionItemBody>
+                                </AccordionItem>
+                                <AccordionItem>
+                                    <AccordionItemTitle>
+                                        <h3>Complex title</h3>
+                                        <div>With a bit of description</div>
+                                    </AccordionItemTitle>
+                                    <AccordionItemBody>
+                                        <p>Body content</p>
+                                    </AccordionItemBody>
+                                </AccordionItem>
+                            </Accordion>
 
                         </div>
 
@@ -40,6 +67,7 @@ class CourseDetail extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        router: state.routerReducer,
         courses: state.courseReducer
     }
 }

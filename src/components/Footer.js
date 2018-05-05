@@ -21,28 +21,28 @@ class Footer extends Component {
                                 <ul className="p-0">
                                     <li>
                                         <a href="tel:34928451000">
-                                            <i className="fa fa-phone"></i> (+34) 928 451 000
+                                            <i className="fas fa-phone-volume"></i> (+34) 928 451 000
                                         </a>
                                     </li>
                                     <li>
                                         <a href="fax:+34928451022">
-                                            <i className="fa fa-fax"></i> (+34) 928 451 022
+                                            <i className="fas fa-fax"></i> (+34) 928 451 022
                                         </a>
                                     </li>
                                     <li>
                                         <a href="mailto:universidad@ulpgc.es">
-                                            <i className="fa fa-envelope-o"></i> universidad@ulpgc.es
+                                            <i className="fas fa-envelope"></i> universidad@ulpgc.es
                                         </a>
                                     </li>
                                 </ul>
 
                                 <div className="m-t-10px d-flex justify-content-between" style={styles.social}>
 
-                                    <a href="https://www.facebook.com/universidadlaspalmas.ulpgc"><i className="fa fa-facebook "></i></a>
-                                    <a href="https://twitter.com/ulpgc"><i className="fa fa-twitter "></i></a>
-                                    <a href="https://www.youtube.com/user/ulpgc"><i className="fa fa-youtube "></i></a>
-                                    <a href="https://www.linkedin.com/groups/148332"><i className="fa fa-linkedin "></i></a>
-                                    <a href="https://www.flickr.com/photos/ulpgc"><i className="fa fa-flickr "></i></a>
+                                    <a href="https://www.facebook.com/universidadlaspalmas.ulpgc"><i className="fab fa-facebook-square "></i></a>
+                                    <a href="https://twitter.com/ulpgc"><i className="fab fa-twitter-square "></i></a>
+                                    <a href="https://www.youtube.com/user/ulpgc"><i className="fab fa-youtube "></i></a>
+                                    <a href="https://www.linkedin.com/groups/148332"><i className="fab fa-linkedin "></i></a>
+                                    <a href="https://www.flickr.com/photos/ulpgc"><i className="fab fa-flickr "></i></a>
 
                                 </div>
 

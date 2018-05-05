@@ -13,7 +13,7 @@ class Register extends Component {
 
     render() {
 
-        const {dispatch} = this.props
+        const {authChangeValue} = this.props
         const AUTH = this.props.auth
 
         return (
@@ -34,7 +34,7 @@ class Register extends Component {
                             type="text"
                             className="input w-100"
                             value={AUTH.register_name}
-                            onChange={(e) => dispatch(actionCreators.authChangeValue("register_name", e.target.value))}
+                            onChange={(e) => authChangeValue("register_name", e.target.value)}
                             required
                         />
                     </label>
@@ -45,7 +45,7 @@ class Register extends Component {
                             type="text"
                             className="input w-100"
                             value={AUTH.register_last_name}
-                            onChange={(e) => dispatch(actionCreators.authChangeValue("register_last_name", e.target.value))}
+                            onChange={(e) => authChangeValue("register_last_name", e.target.value)}
                             required
                         />
                     </label>
@@ -56,7 +56,7 @@ class Register extends Component {
                             type="email"
                             className="input w-100"
                             value={AUTH.register_email}
-                            onChange={(e) => dispatch(actionCreators.authChangeValue("register_email", e.target.value))}
+                            onChange={(e) => authChangeValue("register_email", e.target.value)}
                             required
                         />
                     </label>
@@ -67,7 +67,7 @@ class Register extends Component {
                             type="password"
                             className="input w-100"
                             value={AUTH.register_password}
-                            onChange={(e) => dispatch(actionCreators.authChangeValue("register_password", e.target.value))}
+                            onChange={(e) => authChangeValue("register_password", e.target.value)}
                             required
                         />
                     </label>
@@ -78,13 +78,13 @@ class Register extends Component {
                             type="password"
                             className="input w-100"
                             value={AUTH.register_re_password}
-                            onChange={(e) => dispatch(actionCreators.authChangeValue("register_re_password", e.target.value))}
+                            onChange={(e) => authChangeValue("register_re_password", e.target.value)}
                             required
                         />
                     </label>
 
                     <button type="submit" className="button w-100" disabled={AUTH.loading}>
-                        {(!AUTH.loading) ? 'Registrar' : <i className="fa fa-circle-o-notch fa-spin" aria-hidden="true" />}
+                        {(!AUTH.loading) ? 'Registrar' : <i className="fas fa-circle-notch fa-spin" aria-hidden="true" />}
                     </button>
 
                 </form>
@@ -109,4 +109,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Register)
+export default connect(mapStateToProps, actionCreators)(Register)

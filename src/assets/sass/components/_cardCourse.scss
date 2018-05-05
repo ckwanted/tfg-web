@@ -9,7 +9,6 @@ $card-duration: .5s;
 }
 
 .card-course {
-  cursor: pointer;
   transition: filter .5s ease-in-out;
   transform: scale(1) translateX(0);
   animation: card-course-animation-in $card-duration;
@@ -37,5 +36,14 @@ $card-duration: .5s;
   }
   100% {
     transform: scale(1);
+  }
+}
+
+.cart {
+  cursor: pointer;
+  transition: color .5s ease;
+
+  &:hover {
+    color: color(blue-dark);
   }
 }

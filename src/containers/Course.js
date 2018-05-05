@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 
 import MasterTemplate from './MasterTemplate'
 
@@ -51,9 +50,7 @@ class Course extends Component {
         return COURSES.data.map((course) => {
             return (
                 <div key={course.id} className="col-md-6 col-lg-4">
-                    <Link to={`courses/${course.name}`}>
-                        <CardCourse item={course} />
-                    </Link>
+                    <CardCourse item={course} />
                 </div>
             )
         })

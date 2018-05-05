@@ -17,14 +17,14 @@ class Header extends Component {
         if(AUTH.access_token) {
             return (
                 <Link to="#" className="text-white" onClick={() => alert("Mi perfil")}>
-                    <i className="fa fa-user-o text-white" /> Mi perfil
+                    Mi perfil
                 </Link>
             )
         }
 
         return (
             <Link to="#" className="text-white" onClick={() => dispatch(actionCreators.openModal(Constant.LOGIN))}>
-                <i className="fa fa-user-o text-white" /> Login
+                Login
             </Link>
         )
     }
@@ -36,14 +36,14 @@ class Header extends Component {
         if(AUTH.access_token) {
             return (
                 <Link to="#" className="text-white" onClick={() => this._showConfirm(dispatch)}>
-                    <i className="fa fa-edit text-white" /> Log out
+                    Log out
                 </Link>
             )
         }
 
         return (
             <Link to="#" className="text-white" onClick={() => dispatch(actionCreators.openModal(Constant.REGISTER))}>
-                <i className="fa fa-edit text-white" /> Register
+                Register
             </Link>
         )
     }
@@ -91,12 +91,12 @@ class Header extends Component {
                                 <ul className="p-0 header-contact">
                                     <li>
                                         <a href="tel:34928451000" className="text-white">
-                                            <i className="fa fa-phone text-white" /> (+34) 928 451 000
+                                            <i className="fas fa-phone-volume text-white" /> (+34) 928 451 000
                                         </a>
                                     </li>
                                     <li>
                                         <a href="mailto:universidad@ulpgc.es" className="text-white">
-                                            <i className="fa fa-envelope-o text-white" /> universidad@ulpgc.es
+                                            <i className="fas fa-envelope text-white" /> universidad@ulpgc.es
                                         </a>
                                     </li>
                                 </ul>
