@@ -43,27 +43,32 @@ class Header extends Component {
         }
 
         return (
-            <Link to="#" className="text-white" onClick={() => dispatch(actionCreators.openModal(Constant.LOGIN))}>
-                Login
-            </Link>
+            <div className="my-menu">
+
+                <span className="my-menu__title">Incresar</span>
+                <div className="my-menu__submenu">
+
+                    <Link to="#" className="d-block cursor-pointer" onClick={() => dispatch(actionCreators.openModal(Constant.LOGIN))}>
+                        Login
+                    </Link>
+
+                    <Link to="#" className="d-block cursor-pointer" onClick={() => dispatch(actionCreators.openModal(Constant.REGISTER))}>
+                        Register
+                    </Link>
+
+                </div>
+
+            </div>
         )
     }
 
-    _renderLogout = () => {
+    _renderCart = () => {
         const {dispatch} = this.props
-        const AUTH = this.props.auth
-
-        if(AUTH.access_token) {
-            return (
-                <Link to="#" className="text-white" onClick={() => alert("cart")}>
-                    <FontAwesomeIcon icon={cartIcon} />
-                </Link>
-            )
-        }
 
         return (
-            <Link to="#" className="text-white" onClick={() => dispatch(actionCreators.openModal(Constant.REGISTER))}>
-                Register
+            <Link to="#" className="text-white" onClick={() => alert("cart")}>
+                <FontAwesomeIcon icon={cartIcon} />
+                <span> (0)</span>
             </Link>
         )
     }
@@ -138,7 +143,7 @@ class Header extends Component {
                                     </li>
 
                                     <li className="p-l-5px p-r-5px">
-                                        {this._renderLogout()}
+                                        {this._renderCart()}
                                     </li>
 
                                 </ul>

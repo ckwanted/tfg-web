@@ -8,10 +8,12 @@ import * as actionCreators from '../actions'
 import Spinner from 'react-spinkit'
 import {Constant} from '../commons'
 
-
 import {
     CardCourse
 } from '../components'
+
+import RaisedButton from 'material-ui/RaisedButton'
+import Checkbox from 'material-ui/Checkbox'
 
 class Course extends Component {
 
@@ -32,14 +34,10 @@ class Course extends Component {
         const SCROLL_Y = window.scrollY
         const WIDTH = window.innerWidth
 
-        if(SCROLL_Y > 300 && WIDTH < Constant.Breakpoints.sm) FILTER.style.opacity = 0
+        if(SCROLL_Y > 500 && WIDTH < Constant.Breakpoints.sm) FILTER.style.opacity = 0
         else FILTER.style.opacity = 1
 
         FILTER.style.transform = `translateY(${SCROLL_Y}px)`
-    }
-
-    _handleSubmit = (e) => {
-        e.preventDefault()
     }
 
     _renderCourses() {
@@ -59,6 +57,15 @@ class Course extends Component {
 
     render() {
 
+        const CHECKBOX_STYLE_ICON = {
+            marginRight: '5px',
+            fill: '#42648e',
+        }
+
+        const CHECKBOX_STYLE_LABEL = {
+            fontSize: '15px'
+        }
+
         return (
             <MasterTemplate>
 
@@ -67,7 +74,7 @@ class Course extends Component {
 
                         <div className="col-md-3">
 
-                            <div ref="filter">
+                            <div ref="filter" className="filter-wrapper">
 
                                 <div className="position-relative">
                                     <input
@@ -79,11 +86,79 @@ class Course extends Component {
                                 </div>
 
                                 <div className="mt-3">
-                                    <h5>Categorías</h5>
-                                    <p>111111</p>
+                                    <h5>Categoría</h5>
+                                    <div className="mt-3">
+
+                                        <Checkbox
+                                            label="Front End"
+                                            iconStyle={CHECKBOX_STYLE_ICON}
+                                            labelStyle={CHECKBOX_STYLE_LABEL}
+                                        />
+
+                                        <Checkbox
+                                            label="Back End"
+                                            iconStyle={CHECKBOX_STYLE_ICON}
+                                            labelStyle={CHECKBOX_STYLE_LABEL}
+                                        />
+
+                                        <Checkbox
+                                            label="Full Stack"
+                                            iconStyle={CHECKBOX_STYLE_ICON}
+                                            labelStyle={CHECKBOX_STYLE_LABEL}
+                                        />
+
+                                        <Checkbox
+                                            label="Dev Ops"
+                                            iconStyle={CHECKBOX_STYLE_ICON}
+                                            labelStyle={CHECKBOX_STYLE_LABEL}
+                                        />
+
+                                        <Checkbox
+                                            label="Android"
+                                            iconStyle={CHECKBOX_STYLE_ICON}
+                                            labelStyle={CHECKBOX_STYLE_LABEL}
+                                        />
+
+                                        <Checkbox
+                                            label="IOS"
+                                            iconStyle={CHECKBOX_STYLE_ICON}
+                                            labelStyle={CHECKBOX_STYLE_LABEL}
+                                        />
+
+                                    </div>
+                                </div>
+
+                                <div className="mt-3">
+                                    <h5>Dificultad</h5>
+                                    <div className="mt-3">
+
+                                        <Checkbox
+                                            label="Principiante"
+                                            iconStyle={CHECKBOX_STYLE_ICON}
+                                            labelStyle={CHECKBOX_STYLE_LABEL}
+                                        />
+
+                                        <Checkbox
+                                            label="Intermedio"
+                                            iconStyle={CHECKBOX_STYLE_ICON}
+                                            labelStyle={CHECKBOX_STYLE_LABEL}
+                                        />
+
+                                        <Checkbox
+                                            label="Avanzado"
+                                            iconStyle={CHECKBOX_STYLE_ICON}
+                                            labelStyle={CHECKBOX_STYLE_LABEL}
+                                        />
+
+                                    </div>
+                                </div>
+
+                                <div className="mt-3">
+                                    <RaisedButton label="Buscar" backgroundColor="#42648e" labelColor="#FFF" />
                                 </div>
 
                             </div>
+
 
                         </div>
 

@@ -16,6 +16,11 @@
 @import "components/courses";
 @import "components/cardCourse";
 
+.filter-wrapper {
+  transition: all .3s ease-out;
+}
+
+
 $font-size: 14px;
 $padding: 10px 20px;
 
