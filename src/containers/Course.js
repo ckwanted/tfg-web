@@ -40,7 +40,7 @@ class Course extends Component {
         FILTER.style.transform = `translateY(${SCROLL_Y}px)`
     }
 
-    _renderCourses() {
+    _renderCourses = () => {
         const COURSES = this.props.courses
 
         if(COURSES.loading) return <Spinner name="folding-cube" color="#42648e"/>
@@ -53,6 +53,11 @@ class Course extends Component {
             )
         })
 
+    }
+
+    _handleSubmit = (e) => {
+        e.preventDefault()
+        alert("Submit")
     }
 
     render() {
@@ -74,7 +79,7 @@ class Course extends Component {
 
                         <div className="col-md-3">
 
-                            <div ref="filter" className="filter-wrapper">
+                            <form ref="filter" className="filter-wrapper" onSubmit={this._handleSubmit}>
 
                                 <div className="position-relative">
                                     <input
@@ -154,10 +159,10 @@ class Course extends Component {
                                 </div>
 
                                 <div className="mt-3">
-                                    <RaisedButton label="Buscar" backgroundColor="#42648e" labelColor="#FFF" />
+                                    <RaisedButton type="submit" label="Buscar" backgroundColor="#42648e" labelColor="#FFF" />
                                 </div>
 
-                            </div>
+                            </form>
 
 
                         </div>
