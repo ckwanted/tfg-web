@@ -5,16 +5,21 @@ import { Link } from 'react-router-dom'
 const CardCourse = (props) => {
 
     const ITEM = props.item
+    const COURSE_NAME = ITEM.name
+    const AUTHOR = (ITEM.user) ? `${ITEM.user.name} ${ITEM.user.last_name}` : ''
+    const PHOTO = ITEM.photo
+    const STARS = Number(ITEM.star)
 
     return(
         <div className="card-course bg-white position-r mb-2" style={{border: '1px solid #eee'}}>
 
-            <Link to={`courses/${ITEM.name}`} className="d-block">
-                <img className="card-course__img" src={`${ITEM.photo}`} alt={ITEM.name} />
+            <Link to={`courses/${COURSE_NAME}`} className="d-block">
+                <img className="card-course__img" src={`${PHOTO}`} alt={COURSE_NAME} />
 
                 <div className="p-20px">
 
-                    <h4 className="m-b-5px f-s-18px" style={styles.a}>{ITEM.name.toUpperCase()}</h4>
+                    <h4 className="m-b-5px f-s-18px" style={styles.a}>{COURSE_NAME.toUpperCase()}</h4>
+                    <p className="color-gray f-s-12px mb-1">{AUTHOR}</p>
 
                     <div className="price-tag" style={styles.a}>
                         {ITEM.price === 0 ? 'Gratis' : `${ITEM.price} €`}
@@ -23,7 +28,7 @@ const CardCourse = (props) => {
                     <ReactStars
                         edit={false}
                         count={5}
-                        value={Number(ITEM.star)}
+                        value={STARS}
                         size={14}
                         color2={'#ffd700'}
                     />

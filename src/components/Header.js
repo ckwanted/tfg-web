@@ -45,7 +45,7 @@ class Header extends Component {
         return (
             <div className="my-menu">
 
-                <span className="my-menu__title">Incresar</span>
+                <span className="my-menu__title">Ingresar</span>
                 <div className="my-menu__submenu">
 
                     <Link to="#" className="d-block cursor-pointer" onClick={() => dispatch(actionCreators.openModal(Constant.LOGIN))}>
