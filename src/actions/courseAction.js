@@ -28,6 +28,27 @@ export const fetchAllCoursesSuccess = (payload) => {
     }
 }
 
+export const fetchCourse = (slug) => {
+    return (dispatch) => {
+
+        dispatch(courseChangeValue("loading", true))
+
+        new Api().fetchCourse(slug).then(response => {
+            const {course} = response.data
+            dispatch(fetchCourseSuccess(course))
+        }).catch(error => {
+            dispatch(fetchCourseSuccess({}))
+        })
+
+    }
+}
+
+export const fetchCourseSuccess = (payload) => {
+    return {
+        type: actionType.FETCH_COURSE,
+        payload: payload
+    }
+}
 
 export const courseChangeValue = (key, value) => {
     return {

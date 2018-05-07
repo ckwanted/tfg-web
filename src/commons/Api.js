@@ -63,6 +63,10 @@ class Api {
         return this.axios.get('/courses')
     }
 
+    fetchCourse(slug) {
+        return this.axios.get(`/courses/${slug}`)
+    }
+
 }
 
 export default Api

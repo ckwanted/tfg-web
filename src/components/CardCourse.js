@@ -6,6 +6,7 @@ const CardCourse = (props) => {
 
     const ITEM = props.item
     const COURSE_NAME = ITEM.name
+    const SLUG = ITEM.slug
     const AUTHOR = (ITEM.user) ? `${ITEM.user.name} ${ITEM.user.last_name}` : ''
     const PHOTO = ITEM.photo
     const STARS = Number(ITEM.star)
@@ -13,7 +14,7 @@ const CardCourse = (props) => {
     return(
         <div className="card-course bg-white position-r mb-2" style={{border: '1px solid #eee'}}>
 
-            <Link to={`courses/${COURSE_NAME}`} className="d-block">
+            <Link to={`courses/${SLUG}`} className="d-block">
                 <img className="card-course__img" src={`${PHOTO}`} alt={COURSE_NAME} />
 
                 <div className="p-20px">

@@ -6,6 +6,8 @@ const INITIAL_STATE = {
     total: 0,
     data: [],
     loading: false,
+
+    course: {},
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -19,6 +21,12 @@ export default (state = INITIAL_STATE, action) => {
                 last_page,
                 total,
                 data,
+                loading: false
+            }
+        case actionType.FETCH_COURSE:
+            return {
+                ...state,
+                course: action.payload,
                 loading: false
             }
         case actionType.COURSE_CHANGE_VALUE:
