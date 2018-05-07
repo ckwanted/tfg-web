@@ -18,7 +18,8 @@ import Checkbox from 'material-ui/Checkbox'
 class Course extends Component {
 
     componentWillMount() {
-        this.props.fetchAllCourses()
+        this.props.dispatch( actionCreators.fetchAllCourses() )
+        this.body = document.querySelector("body")
     }
 
     componentDidMount() {
@@ -33,11 +34,15 @@ class Course extends Component {
         const FILTER = this.refs.filter
         const SCROLL_Y = window.scrollY
         const WIDTH = window.innerWidth
+        const HEIGHT = this.body.scrollHeight
+
+        const COURSES = this.props.courses
 
         if(SCROLL_Y > 500 && WIDTH < Constant.Breakpoints.sm) FILTER.style.opacity = 0
         else FILTER.style.opacity = 1
 
-        FILTER.style.transform = `translateY(${SCROLL_Y}px)`
+        if(COURSES.data.length && SCROLL_Y < (HEIGHT - 1000) ) FILTER.style.transform = `translateY(${SCROLL_Y}px)`
+
     }
 
     _renderCourses = () => {
@@ -191,4 +196,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, actionCreators)(Course)
+export default connect(mapStateToProps)(Course)
