@@ -104,24 +104,17 @@ class CourseDetail extends Component {
 
             let resources = section.resources.map(resource => {
 
-                let ICON = null
-                let MODAL = null
-
-                if(resource.uri) {
-                    ICON = <LivetvIcon />
-                    MODAL = Constant.VIDEO
-                }
-                else if(resource.quiz) {
-                    ICON = DescriptionIcon
-                    MODAL = Constant.VIDEO
-                }
+                let modalData = resource.uri ? resource.uri : resource.quiz
 
                 return(
                     <ListItem
                         key={resource.id}
                         primaryText={resource.title}
-                        leftIcon={<LivetvIcon />}
-                        onClick={() => this.props.dispatch(actionCreators.openModal(Constant.VIDEO))}
+                        leftIcon={resource.uri ? <LivetvIcon /> : <DescriptionIcon />}
+                        onClick={() => {
+                            this.props.dispatch(actionCreators.courseChangeValue("modalData", modalData))
+                            this.props.dispatch(actionCreators.openModal(Constant.VIDEO))
+                        }}
                     />
                 )
             })
