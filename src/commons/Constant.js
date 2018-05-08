@@ -19,6 +19,7 @@ const Constant = {
 
     LOGIN: 'login',
     REGISTER: 'register',
+    VIDEO: 'video',
 }
 
 export default Constant

@@ -5,7 +5,8 @@ import {
     Navigation,
     Footer,
     Login,
-    Register
+    Register,
+    Video
 } from '../components/index'
 
 import Modal from 'react-responsive-modal'
@@ -24,6 +25,8 @@ class MasterTemplate extends Component {
                 return this._renderLoginModal()
             case Constant.REGISTER:
                 return this._renderRegisterModal()
+            case Constant.VIDEO:
+                return this._renderVideoModal()
             default:
                 break
         }
@@ -60,6 +63,20 @@ class MasterTemplate extends Component {
                     <img className="logo" src="/images/ulpgc-course-white-1x.png" alt="logo" />
                 </div>
                 <Register />
+            </Modal>
+        )
+    }
+
+    _renderVideoModal = () => {
+        return (
+            <Modal
+                open={true}
+                showCloseIcon={true}
+                onClose={() => this.props.closeModal()}
+                center
+                classNames={{ overlay: 'custom-overlay', modal: 'modal-wrapper--video' }}
+            >
+                <Video />
             </Modal>
         )
     }

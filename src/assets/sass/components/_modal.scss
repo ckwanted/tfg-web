@@ -4,6 +4,11 @@
   width: 100%;
 }
 
+.modal-wrapper--video {
+  @extend .modal-wrapper;
+  max-width: 1000px !important;
+}
+
 .custom-overlay {
   background: linear-gradient(to bottom, #002e67 0%, #42648e 100%) !important;
 }

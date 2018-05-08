@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 
 import MasterTemplate from './MasterTemplate'
+import {Constant} from '../commons'
 import Spinner from 'react-spinkit'
 
 import {connect} from 'react-redux'
 import * as actionCreators from '../actions'
 
 import {List, ListItem} from 'material-ui/List'
-import ActionGrade from 'material-ui/svg-icons/action/grade'
-import ContentInbox from 'material-ui/svg-icons/content/inbox'
+import DescriptionIcon from 'material-ui/svg-icons/action/description'
+import SchoolIcon from 'material-ui/svg-icons/social/school'
+import LivetvIcon from 'material-ui/svg-icons/notification/live-tv'
 
 import ReactStars from 'react-stars'
-
 
 class CourseDetail extends Component {
 
@@ -35,15 +36,16 @@ class CourseDetail extends Component {
     _renderContent = () => {
         const COURSES = this.props.courses
         const COURSE = COURSES.course
-        const SECTIONS = COURSE.sections
 
-        if(Object.keys(COURSE).length === 0) {
+        if(!COURSE || Object.keys(COURSE).length === 0) {
             return(
-                <div>
-                    no hay resultados
+                <div className="d-flex justify-content-center align-items-center" style={{height: '400px'}}>
+                    No existe este curso
                 </div>
             )
         }
+
+        const SECTIONS = COURSE.sections
 
         return(
             <div>
@@ -101,11 +103,25 @@ class CourseDetail extends Component {
         let data = SECTIONS.map(section => {
 
             let resources = section.resources.map(resource => {
+
+                let ICON = null
+                let MODAL = null
+
+                if(resource.uri) {
+                    ICON = <LivetvIcon />
+                    MODAL = Constant.VIDEO
+                }
+                else if(resource.quiz) {
+                    ICON = DescriptionIcon
+                    MODAL = Constant.VIDEO
+                }
+
                 return(
                     <ListItem
                         key={resource.id}
                         primaryText={resource.title}
-                        leftIcon={<ActionGrade />}
+                        leftIcon={<LivetvIcon />}
+                        onClick={() => this.props.dispatch(actionCreators.openModal(Constant.VIDEO))}
                     />
                 )
             })
@@ -114,7 +130,7 @@ class CourseDetail extends Component {
                 <ListItem
                     key={section.id}
                     primaryText={section.title}
-                    leftIcon={<ContentInbox />}
+                    leftIcon={<SchoolIcon />}
                     initiallyOpen={false}
                     primaryTogglesNestedList={true}
                     nestedItems={resources}

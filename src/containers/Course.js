@@ -73,7 +73,7 @@ class Course extends Component {
         }
 
         const CHECKBOX_STYLE_LABEL = {
-            fontSize: '15px'
+            fontSize: '14px'
         }
 
         return (
