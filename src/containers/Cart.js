@@ -28,6 +28,7 @@ class Cart extends Component {
                         <CloseIcon
                             className="ml-3 bg-blue-light border-radius-50"
                             color="#fff"
+                            style={{cursor: 'pointer'}}
                             onClick={(e) => this.props.dispatch(actionCreators.removeFromTheCart(course.id))}
                         />
                     </div>

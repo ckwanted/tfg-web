@@ -22,9 +22,12 @@ const cartReducerConfig = {
     storage,
 }
 
+const persistedAuthReducer = persistReducer(authReducerConfig, authReducer)
+const persistedCartReducer = persistReducer(cartReducerConfig, cartReducer)
+
 export default combineReducers({
     routerReducer,
-    authReducer: persistReducer(authReducerConfig, authReducer),
+    authReducer: persistedAuthReducer,
     courseReducer,
-    cartReducer: persistReducer(cartReducerConfig, cartReducer)
+    cartReducer: persistedCartReducer
 })
