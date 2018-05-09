@@ -13,11 +13,11 @@ const Video = (props) => {
         props.dispatch(actionCreators.closeModal())
         return <div />;
     }
-    
+
     return (
         <div className="modal-content">
 
-            <Player src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4">
+            <Player src={MODAL_DATA}>
                 <BigPlayButton position="center" />
             </Player>
 
