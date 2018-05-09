@@ -3,6 +3,7 @@ import {routerReducer} from 'react-router-redux'
 
 import authReducer from './authReducer'
 import courseReducer from './courseReducer'
+import cartReducer from './cartReducer'
 
 /*
  * REDUX PERSIST
@@ -16,8 +17,14 @@ const authReducerConfig = {
     blacklist: ['email', 'password', 'register_name', 'register_last_name', 'register_email', 'register_password', 'register_re_password']
 }
 
+const cartReducerConfig = {
+    key: 'cart',
+    storage,
+}
+
 export default combineReducers({
     routerReducer,
     authReducer: persistReducer(authReducerConfig, authReducer),
     courseReducer,
+    cartReducer: persistReducer(cartReducerConfig, cartReducer)
 })

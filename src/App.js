@@ -31,7 +31,8 @@ import {
     Home,
     Course,
     CourseDetail,
-    AboutUs
+    AboutUs,
+    Cart
 } from './containers'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
@@ -57,6 +58,8 @@ class App extends Component {
 
                                 <Route exact path="/courses" component={Course} />
                                 <Route path="/courses/:slug" component={CourseDetail} />
+
+                                <Route path="/cart" component={Cart} />
 
                                 <Route path="/about" component={AboutUs} />
 

@@ -64,11 +64,12 @@ class Header extends Component {
 
     _renderCart = () => {
         const {dispatch} = this.props
+        const CART = this.props.cart
 
         return (
-            <Link to="#" className="text-white" onClick={() => alert("cart")}>
+            <Link to="/cart" className="text-white">
                 <FontAwesomeIcon icon={cartIcon} />
-                <span> (0)</span>
+                <span> ({Object.keys(CART.courses).length})</span>
             </Link>
         )
     }
@@ -165,7 +166,8 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        auth: state.authReducer
+        auth: state.authReducer,
+        cart: state.cartReducer,
     }
 }
 

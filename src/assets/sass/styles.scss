@@ -65,6 +65,14 @@ $padding: 10px 20px;
     background-color: darken(color(blue-dark), 10%);
   }
 
+  &--rounded {
+    border-radius: 20px;
+  }
+
+  &--small {
+    padding: 5px 10px;
+  }
+
 }
 
 .basic-shadow {
