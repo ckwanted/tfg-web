@@ -98,7 +98,7 @@ class Quiz extends Component {
 
                     <button
                         className={!VALUE_LENGTH ? 'button mt-3 w-100 bg-gray' : 'button mt-3 w-100'}
-                        onClick={this._handleClick}
+                        onClick={(e) => this._handleClick(e, DATA, TYPE)}
                         disabled={!VALUE_LENGTH}
                     >
                         {IS_LAST_ANSWER ? 'Finalizar' : 'Siguiente'}
@@ -109,19 +109,36 @@ class Quiz extends Component {
 
     }
 
-    _handleClick = (e) => {
+    _handleClick = (e, DATA, TYPE) => {
         e.preventDefault()
 
-        const {step} = this.state
-        const DATA = this.props.courses.modalData[step]
+        if(TYPE === Constant.SIMPLE){
+            this.setState((prevState, props) => {
+                return {
+                    step: prevState.step + 1,
+                    points: prevState.value.has(DATA.result) ? prevState.points + 1 : prevState.points,
+                    value: new Set(),
+                }
+            })
+        }
+        else {
+            let points = 0
 
-        this.setState((prevState, props) => {
-            return {
-                step: prevState.step + 1,
-                points: prevState.value.has(DATA.result) ? prevState.points + 1 : prevState.points,
-                value: new Set(),
+            for(let i = 0; DATA.result.length; i++) {
+                if(this.state.value.has(DATA.result[i])) points++
             }
-        })
+
+            points = (points) / DATA.result.length
+
+            this.setState((prevState, props) => {
+                return {
+                    step: prevState.step + 1,
+                    points: points,
+                    value: new Set(),
+                }
+            })
+        }
+
     }
 
     render() {
