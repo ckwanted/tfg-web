@@ -105,6 +105,7 @@ class CourseDetail extends Component {
             let resources = section.resources.map(resource => {
 
                 let modalData = resource.uri ? resource.uri : resource.quiz
+                let modalType = resource.uri ? Constant.VIDEO : Constant.QUIZ
 
                 return(
                     <ListItem
@@ -113,7 +114,7 @@ class CourseDetail extends Component {
                         leftIcon={resource.uri ? <LivetvIcon /> : <DescriptionIcon />}
                         onClick={() => {
                             this.props.dispatch(actionCreators.courseChangeValue("modalData", modalData))
-                            this.props.dispatch(actionCreators.openModal(Constant.VIDEO))
+                            this.props.dispatch(actionCreators.openModal(modalType))
                         }}
                     />
                 )

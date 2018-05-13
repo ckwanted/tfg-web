@@ -117,12 +117,12 @@ class Header extends Component {
                                 <ul className="p-0 header-contact">
                                     <li>
                                         <a href="tel:34928451000" className="text-white">
-                                            <i className="fas fa-phone-volume text-white" /> (+34) 928 451 000
+                                            <i className="fas fa-phone-volume text-white" /> (+34) 928 123 456
                                         </a>
                                     </li>
                                     <li>
                                         <a href="mailto:universidad@ulpgc.es" className="text-white">
-                                            <i className="fas fa-envelope text-white" /> universidad@ulpgc.es
+                                            <i className="fas fa-envelope text-white" /> universidad@ulpgccourse.es
                                         </a>
                                     </li>
                                 </ul>

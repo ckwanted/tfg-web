@@ -6,7 +6,8 @@ import {
     Footer,
     Login,
     Register,
-    Video
+    Video,
+    Quiz
 } from '../components/index'
 
 import Modal from 'react-responsive-modal'
@@ -27,6 +28,8 @@ class MasterTemplate extends Component {
                 return this._renderRegisterModal()
             case Constant.VIDEO:
                 return this._renderVideoModal()
+            case Constant.QUIZ:
+                return this._renderQuizModal()
             default:
                 break
         }
@@ -77,6 +80,20 @@ class MasterTemplate extends Component {
                 classNames={{ overlay: 'custom-overlay', modal: 'modal-wrapper--video' }}
             >
                 <Video />
+            </Modal>
+        )
+    }
+
+    _renderQuizModal = () => {
+        return (
+            <Modal
+                open={true}
+                showCloseIcon={true}
+                onClose={() => this.props.closeModal()}
+                center
+                classNames={{ overlay: 'custom-overlay', modal: 'modal-wrapper' }}
+            >
+                <Quiz />
             </Modal>
         )
     }

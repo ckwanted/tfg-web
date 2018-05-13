@@ -10,6 +10,7 @@ import CardCourse from './CardCourse'
 import Login from './modal/Login'
 import Register from './modal/Register'
 import Video from './modal/Video'
+import Quiz from './modal/Quiz'
 
 export {Header}
 export {Navigation}
@@ -23,3 +24,4 @@ export {CardCourse}
 export {Login}
 export {Register}
 export {Video}
+export {Quiz}

@@ -20,6 +20,10 @@ const Constant = {
     LOGIN: 'login',
     REGISTER: 'register',
     VIDEO: 'video',
+    QUIZ: 'quiz',
+
+    SIMPLE: 'simple',
+    MULTIPLE: 'multiple',
 }
 
 export default Constant

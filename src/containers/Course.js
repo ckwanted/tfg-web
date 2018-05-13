@@ -5,6 +5,7 @@ import MasterTemplate from './MasterTemplate'
 import {connect} from 'react-redux'
 import * as actionCreators from '../actions'
 
+import InfiniteScroll from 'react-infinite-scroller'
 import Spinner from 'react-spinkit'
 import {Constant} from '../commons'
 
@@ -18,7 +19,12 @@ import Checkbox from 'material-ui/Checkbox'
 class Course extends Component {
 
     componentWillMount() {
-        this.props.dispatch( actionCreators.fetchAllCourses() )
+        const COURSES = this.props.courses
+
+        if(!COURSES.data.length) {
+            this.props.dispatch( actionCreators.fetchAllCourses() )
+        }
+
         this.body = document.querySelector("body")
     }
 
@@ -164,7 +170,9 @@ class Course extends Component {
                                 </div>
 
                                 <div className="mt-3">
-                                    <RaisedButton type="submit" label="Buscar" backgroundColor="#42648e" labelColor="#FFF" />
+                                    <button type="submit" className="button">
+                                        Buscar
+                                    </button>
                                 </div>
 
                             </form>
@@ -174,9 +182,18 @@ class Course extends Component {
 
                         <div className="col-md-9">
 
-                            <div className="row justify-content-center card-course-wrapper">
-                                {this._renderCourses()}
-                            </div>
+                            <InfiniteScroll
+                                pageStart={1}
+                                loadMore={() => console.warn("next page")}
+                                hasMore={false}
+                                loader={<div className="loader" key={0}>Loading ...</div>}
+                            >
+
+                                <div className="row justify-content-center card-course-wrapper">
+                                    {this._renderCourses()}
+                                </div>
+
+                            </InfiniteScroll>
 
                         </div>
 

@@ -21,17 +21,17 @@ class Footer extends Component {
                                 <ul className="p-0">
                                     <li>
                                         <a href="tel:34928451000">
-                                            <i className="fas fa-phone-volume"></i> (+34) 928 451 000
+                                            <i className="fas fa-phone-volume"></i> (+34) 928 123 456
                                         </a>
                                     </li>
                                     <li>
                                         <a href="fax:+34928451022">
-                                            <i className="fas fa-fax"></i> (+34) 928 451 022
+                                            <i className="fas fa-fax"></i> (+34) 928 654 321
                                         </a>
                                     </li>
                                     <li>
                                         <a href="mailto:universidad@ulpgc.es">
-                                            <i className="fas fa-envelope"></i> universidad@ulpgc.es
+                                            <i className="fas fa-envelope"></i> universidad@ulpgccourse.es
                                         </a>
                                     </li>
                                 </ul>

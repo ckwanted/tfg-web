@@ -17,17 +17,19 @@ const authReducerConfig = {
     blacklist: ['email', 'password', 'register_name', 'register_last_name', 'register_email', 'register_password', 'register_re_password']
 }
 
-const cartReducerConfig = {
-    key: 'cart',
-    storage,
-}
-
 const persistedAuthReducer = persistReducer(authReducerConfig, authReducer)
-const persistedCartReducer = persistReducer(cartReducerConfig, cartReducer)
 
-export default combineReducers({
+const rootReducer =  combineReducers({
     routerReducer,
     authReducer: persistedAuthReducer,
     courseReducer,
-    cartReducer: persistedCartReducer
+    cartReducer
 })
+
+const rootPersistConfig = {
+    key: 'root',
+    storage: storage,
+    blacklist: ['routerReducer', 'authReducer', 'courseReducer']
+}
+
+export default persistReducer(rootPersistConfig, rootReducer)

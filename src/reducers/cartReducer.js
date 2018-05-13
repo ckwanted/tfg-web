@@ -24,7 +24,9 @@ export default (state = INITIAL_STATE, action) => {
                 ...newState,
             }
         case actionType.CLEAR_CART:
-            return {}
+            return {
+                courses: {}
+            }
         default:
             return state
     }
