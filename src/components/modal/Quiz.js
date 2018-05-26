@@ -4,8 +4,12 @@ import {Constant} from '../../commons'
 import {connect} from 'react-redux'
 import * as actionCreators from '../../actions'
 
-import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton'
-import Checkbox from 'material-ui/Checkbox'
+import Radio from '@material-ui/core/Radio'
+import RadioGroup from '@material-ui/core/RadioGroup'
+
+import FormGroup from '@material-ui/core/FormGroup'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Checkbox from '@material-ui/core/Checkbox'
 
 class Quiz extends Component {
 
@@ -40,7 +44,7 @@ class Quiz extends Component {
 
     _valueSelected = () => {
         for(let item of this.state.value.values()) {
-            return item
+            return `${item}`
         }
     }
 
@@ -55,36 +59,32 @@ class Quiz extends Component {
             if(TYPE === Constant.SIMPLE) {
                 const ITEMS = DATA.answers.map( (answer, i) => {
                     return(
-                        <RadioButton
-                            key={i}
-                            value={i}
-                            label={answer}
-                            labelStyle={{fontSize: '14px'}}
-                            iconStyle={{fill: '#42648e'}}
-                        />
+                        <FormControlLabel key={i} value={`${i}`} control={<Radio />} label={answer} />
                     )
                 })
                 answers = (
-                    <RadioButtonGroup
+                    <RadioGroup
                         name="answer"
                         onChange={this._onChange}
-                        valueSelected={this._valueSelected()}
+                        value={this._valueSelected()}
                     >
                         {ITEMS}
-                    </RadioButtonGroup>
+                    </RadioGroup>
                 )
             }
             else {
                 answers = DATA.answers.map( (answer, i) => {
                     return(
-                        <Checkbox
-                            name={`${i}`}
+                        <FormControlLabel
                             key={i}
+                            control={
+                                <Checkbox
+                                    name={`${i}`}
+                                    onChange={this._onCheck}
+                                    checked={this.state.value.has(i)}
+                                />
+                            }
                             label={answer}
-                            iconStyle={{marginRight: '5px', fill: '#42648e'}}
-                            labelStyle={{fontSize: '14px'}}
-                            onCheck={this._onCheck}
-                            checked={this.state.value.has(i)}
                         />
                     )
                 })
@@ -94,7 +94,9 @@ class Quiz extends Component {
 
             return(
                 <div className="mt-4">
-                    {answers}
+                    <FormGroup>
+                        {answers}
+                    </FormGroup>
 
                     <button
                         className={!VALUE_LENGTH ? 'button mt-3 w-100 bg-gray' : 'button mt-3 w-100'}

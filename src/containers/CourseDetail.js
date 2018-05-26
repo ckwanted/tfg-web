@@ -7,10 +7,18 @@ import Spinner from 'react-spinkit'
 import {connect} from 'react-redux'
 import * as actionCreators from '../actions'
 
-import {List, ListItem} from 'material-ui/List'
-import DescriptionIcon from 'material-ui/svg-icons/action/description'
-import SchoolIcon from 'material-ui/svg-icons/social/school'
-import LivetvIcon from 'material-ui/svg-icons/notification/live-tv'
+import ExpansionPanel from '@material-ui/core/ExpansionPanel'
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
+import Typography from '@material-ui/core/Typography'
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+
+import DescriptionIcon from '@material-ui/icons/Description'
+import LivetvIcon from '@material-ui/icons/LiveTv'
 
 import ReactStars from 'react-stars'
 
@@ -100,44 +108,54 @@ class CourseDetail extends Component {
 
     _renderSection = (SECTIONS) => {
 
-        let data = SECTIONS.map(section => {
+        let sections = SECTIONS.map(section => {
 
             let resources = section.resources.map(resource => {
 
                 let modalData = resource.uri ? resource.uri : resource.quiz
                 let modalType = resource.uri ? Constant.VIDEO : Constant.QUIZ
 
-                return(
+                return (
                     <ListItem
                         key={resource.id}
-                        primaryText={resource.title}
-                        leftIcon={resource.uri ? <LivetvIcon /> : <DescriptionIcon />}
+                        button
                         onClick={() => {
                             this.props.dispatch(actionCreators.courseChangeValue("modalData", modalData))
                             this.props.dispatch(actionCreators.openModal(modalType))
                         }}
-                    />
+                    >
+                        <ListItemIcon>
+                            {resource.uri ? <LivetvIcon /> : <DescriptionIcon />}
+                        </ListItemIcon>
+                        <ListItemText primary={resource.title} />
+                    </ListItem>
                 )
+
             })
 
             return(
-                <ListItem
-                    key={section.id}
-                    primaryText={section.title}
-                    leftIcon={<SchoolIcon />}
-                    initiallyOpen={false}
-                    primaryTogglesNestedList={true}
-                    nestedItems={resources}
-                />
+                <ExpansionPanel key={section.id}>
+
+                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography>{section.title}</Typography>
+                    </ExpansionPanelSummary>
+
+                    <ExpansionPanelDetails className="d-block">
+                        {resources}
+                    </ExpansionPanelDetails>
+
+                </ExpansionPanel>
             )
 
         })
 
         return(
-            <List>
-                {data}
-            </List>
+            <div>
+                <h5 className="mb-5">Contenido del curso</h5>
+                {sections}
+            </div>
         )
+
     }
 
     render() {

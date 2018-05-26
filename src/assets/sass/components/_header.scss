@@ -45,8 +45,16 @@
   display: flex;
   justify-content: space-between;
 
+  a {
+    font-size: 13px;
+  }
+
   @media screen and(min-width: breakpoint(sm)) {
     justify-content: flex-start;
+
+    a {
+      font-size: inherit;
+    }
 
     li:last-child {
       padding-left: 25px;

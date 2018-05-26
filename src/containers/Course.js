@@ -13,7 +13,9 @@ import {
     CardCourse
 } from '../components'
 
-import Checkbox from 'material-ui/Checkbox'
+import FormGroup from '@material-ui/core/FormGroup'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Checkbox from '@material-ui/core/Checkbox'
 
 class Course extends Component {
 
@@ -68,21 +70,12 @@ class Course extends Component {
     _handleSubmit = (e, q) => {
         e.preventDefault()
 
-        this.props.dispatch(actionCreators.searchCourse(q))
+        this.props.dispatch(actionCreators.searchCourse())
     }
 
     render() {
 
-        const {q} = this.props.courses
-
-        const CHECKBOX_STYLE_ICON = {
-            marginRight: '5px',
-            fill: '#42648e',
-        }
-
-        const CHECKBOX_STYLE_LABEL = {
-            fontSize: '14px'
-        }
+        const {q, ckFrontEnd, ckBackEnd, ckFullStack, ckDevOps, ckAndroid, ckIos, ckBeginner, ckIntermediate, ckAdvanced} = this.props.courses
 
         return (
             <MasterTemplate>
@@ -109,41 +102,82 @@ class Course extends Component {
                                     <h5>Categoría</h5>
                                     <div className="mt-3">
 
-                                        <Checkbox
-                                            label="Front End"
-                                            iconStyle={CHECKBOX_STYLE_ICON}
-                                            labelStyle={CHECKBOX_STYLE_LABEL}
-                                        />
+                                        <FormGroup>
 
-                                        <Checkbox
-                                            label="Back End"
-                                            iconStyle={CHECKBOX_STYLE_ICON}
-                                            labelStyle={CHECKBOX_STYLE_LABEL}
-                                        />
+                                            <FormControlLabel
+                                                style={{marginBottom: 0}}
+                                                control={
+                                                    <Checkbox
+                                                        checked={ckFrontEnd}
+                                                        onChange={(e) => this.props.dispatch(actionCreators.courseChangeValue("ckFrontEnd", e.target.checked))}
+                                                        value={`${ckFrontEnd}`}
+                                                    />
+                                                }
+                                                label="Front End"
+                                            />
 
-                                        <Checkbox
-                                            label="Full Stack"
-                                            iconStyle={CHECKBOX_STYLE_ICON}
-                                            labelStyle={CHECKBOX_STYLE_LABEL}
-                                        />
+                                            <FormControlLabel
+                                                style={{marginBottom: 0}}
+                                                control={
+                                                    <Checkbox
+                                                        checked={ckBackEnd}
+                                                        onChange={(e) => this.props.dispatch(actionCreators.courseChangeValue("ckBackEnd", e.target.checked))}
+                                                        value={`${ckBackEnd}`}
+                                                    />
+                                                }
+                                                label="Back End"
+                                            />
 
-                                        <Checkbox
-                                            label="Dev Ops"
-                                            iconStyle={CHECKBOX_STYLE_ICON}
-                                            labelStyle={CHECKBOX_STYLE_LABEL}
-                                        />
+                                            <FormControlLabel
+                                                style={{marginBottom: 0}}
+                                                control={
+                                                    <Checkbox
+                                                        checked={ckFullStack}
+                                                        onChange={(e) => this.props.dispatch(actionCreators.courseChangeValue("ckFullStack", e.target.checked))}
+                                                        value={`${ckFullStack}`}
+                                                    />
+                                                }
+                                                label="Full Stack"
+                                            />
 
-                                        <Checkbox
-                                            label="Android"
-                                            iconStyle={CHECKBOX_STYLE_ICON}
-                                            labelStyle={CHECKBOX_STYLE_LABEL}
-                                        />
+                                            <FormControlLabel
+                                                style={{marginBottom: 0}}
+                                                control={
+                                                    <Checkbox
+                                                        checked={ckDevOps}
+                                                        onChange={(e) => this.props.dispatch(actionCreators.courseChangeValue("ckDevOps", e.target.checked))}
+                                                        value={`${ckDevOps}`}
+                                                    />
+                                                }
+                                                label="Dev Ops"
+                                            />
 
-                                        <Checkbox
-                                            label="IOS"
-                                            iconStyle={CHECKBOX_STYLE_ICON}
-                                            labelStyle={CHECKBOX_STYLE_LABEL}
-                                        />
+
+                                            <FormControlLabel
+                                                style={{marginBottom: 0}}
+                                                control={
+                                                    <Checkbox
+                                                        checked={ckAndroid}
+                                                        onChange={(e) => this.props.dispatch(actionCreators.courseChangeValue("ckAndroid", e.target.checked))}
+                                                        value={`${ckAndroid}`}
+                                                    />
+                                                }
+                                                label="Android"
+                                            />
+
+                                            <FormControlLabel
+                                                style={{marginBottom: 0}}
+                                                control={
+                                                    <Checkbox
+                                                        checked={ckIos}
+                                                        onChange={(e) => this.props.dispatch(actionCreators.courseChangeValue("ckIos", e.target.checked))}
+                                                        value={`${ckIos}`}
+                                                    />
+                                                }
+                                                label="IOS"
+                                            />
+
+                                        </FormGroup>
 
                                     </div>
                                 </div>
@@ -152,23 +186,45 @@ class Course extends Component {
                                     <h5>Dificultad</h5>
                                     <div className="mt-3">
 
-                                        <Checkbox
-                                            label="Principiante"
-                                            iconStyle={CHECKBOX_STYLE_ICON}
-                                            labelStyle={CHECKBOX_STYLE_LABEL}
-                                        />
+                                        <FormGroup>
 
-                                        <Checkbox
-                                            label="Intermedio"
-                                            iconStyle={CHECKBOX_STYLE_ICON}
-                                            labelStyle={CHECKBOX_STYLE_LABEL}
-                                        />
+                                            <FormControlLabel
+                                                style={{marginBottom: 0}}
+                                                control={
+                                                    <Checkbox
+                                                        checked={ckBeginner}
+                                                        onChange={(e) => this.props.dispatch(actionCreators.courseChangeValue("ckBeginner", e.target.checked))}
+                                                        value={`${ckBeginner}`}
+                                                    />
+                                                }
+                                                label="Principiante"
+                                            />
 
-                                        <Checkbox
-                                            label="Avanzado"
-                                            iconStyle={CHECKBOX_STYLE_ICON}
-                                            labelStyle={CHECKBOX_STYLE_LABEL}
-                                        />
+                                            <FormControlLabel
+                                                style={{marginBottom: 0}}
+                                                control={
+                                                    <Checkbox
+                                                        checked={ckIntermediate}
+                                                        onChange={(e) => this.props.dispatch(actionCreators.courseChangeValue("ckIntermediate", e.target.checked))}
+                                                        value={`${ckIntermediate}`}
+                                                    />
+                                                }
+                                                label="Intermedio"
+                                            />
+
+                                            <FormControlLabel
+                                                style={{marginBottom: 0}}
+                                                control={
+                                                    <Checkbox
+                                                        checked={ckAdvanced}
+                                                        onChange={(e) => this.props.dispatch(actionCreators.courseChangeValue("ckAdvanced", e.target.checked))}
+                                                        value={`${ckAdvanced}`}
+                                                    />
+                                                }
+                                                label="Avanzado"
+                                            />
+
+                                        </FormGroup>
 
                                     </div>
                                 </div>

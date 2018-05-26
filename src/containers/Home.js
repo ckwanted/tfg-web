@@ -20,7 +20,9 @@ class Home extends Component {
     _handleSubmit = (e) => {
         e.preventDefault()
 
-        this.props.dispatch(actionCreators.searchCourse(this.state.q))
+        this.props.dispatch(actionCreators.courseChangeValue("q", this.state.q))
+        this.props.dispatch(actionCreators.searchCourse())
+        this.props.history.push('/courses')
     }
 
     render() {

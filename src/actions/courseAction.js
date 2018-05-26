@@ -50,10 +50,10 @@ export const fetchCourseSuccess = (payload) => {
     }
 }
 
-export const searchCourse = (q) => {
+export const searchCourse = () => {
     return (dispatch, getState) => {
 
-        //const { courseReducer: {q} } = getState();
+        const { courseReducer: {q} } = getState();
 
         dispatch(courseChangeValue("loading", true))
 

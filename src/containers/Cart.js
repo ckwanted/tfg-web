@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 
 import MasterTemplate from './MasterTemplate'
-import CloseIcon from 'material-ui/svg-icons/navigation/close'
+
+import CloseIcon from '@material-ui/icons/Close'
 
 import {connect} from 'react-redux'
 import * as actionCreators from '../actions'

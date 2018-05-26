@@ -11,6 +11,16 @@ const INITIAL_STATE = {
     modalData: null,
 
     q: '',
+    ckFrontEnd: false,
+    ckBackEnd: false,
+    ckFullStack: false,
+    ckDevOps: false,
+    ckAndroid: false,
+    ckIos: false,
+
+    ckBeginner: false,
+    ckIntermediate: false,
+    ckAdvanced: false,
 }
 
 export default (state = INITIAL_STATE, action) => {
