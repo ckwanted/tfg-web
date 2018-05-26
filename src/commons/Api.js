@@ -67,6 +67,12 @@ class Api {
         return this.axios.get(`/courses/${slug}`)
     }
 
+    searchCourse(q) {
+        return this.axios.post(`/search/course`, {
+            q
+        })
+    }
+
 }
 
 export default Api

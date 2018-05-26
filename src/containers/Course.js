@@ -13,7 +13,6 @@ import {
     CardCourse
 } from '../components'
 
-import RaisedButton from 'material-ui/RaisedButton'
 import Checkbox from 'material-ui/Checkbox'
 
 class Course extends Component {
@@ -66,12 +65,15 @@ class Course extends Component {
 
     }
 
-    _handleSubmit = (e) => {
+    _handleSubmit = (e, q) => {
         e.preventDefault()
-        alert("Submit")
+
+        this.props.dispatch(actionCreators.searchCourse(q))
     }
 
     render() {
+
+        const {q} = this.props.courses
 
         const CHECKBOX_STYLE_ICON = {
             marginRight: '5px',
@@ -90,13 +92,15 @@ class Course extends Component {
 
                         <div className="col-md-3">
 
-                            <form ref="filter" className="filter-wrapper" onSubmit={this._handleSubmit}>
+                            <form ref="filter" className="filter-wrapper" onSubmit={(e) => this._handleSubmit(e, q)}>
 
                                 <div className="position-relative">
                                     <input
                                         className="input m-0 p-l-30px w-100 bg-white basic-shadow"
                                         type="text"
                                         placeholder="Busca tu curso"
+                                        value={q}
+                                        onChange={(e) => this.props.dispatch(actionCreators.courseChangeValue("q", e.target.value))}
                                     />
                                     <i className="fa fa-search input-icon" aria-hidden="true" />
                                 </div>

@@ -50,6 +50,23 @@ export const fetchCourseSuccess = (payload) => {
     }
 }
 
+export const searchCourse = (q) => {
+    return (dispatch, getState) => {
+
+        //const { courseReducer: {q} } = getState();
+
+        dispatch(courseChangeValue("loading", true))
+
+        new Api().searchCourse(q).then(response => {
+            const {courses} = response.data
+            dispatch(fetchAllCoursesSuccess(courses))
+        }).catch(error => {
+            dispatch(courseChangeValue("loading", false))
+        })
+
+    }
+}
+
 export const courseChangeValue = (key, value) => {
     return {
         type: actionType.COURSE_CHANGE_VALUE,

@@ -9,6 +9,8 @@ const INITIAL_STATE = {
 
     course: {},
     modalData: null,
+
+    q: '',
 }
 
 export default (state = INITIAL_STATE, action) => {

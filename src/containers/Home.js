@@ -2,14 +2,25 @@ import React, { Component } from 'react'
 
 import MasterTemplate from './MasterTemplate'
 
-import {
+import {connect} from 'react-redux'
+import * as actionCreators from '../actions'
 
-} from '../components'
+import { push } from 'react-router-redux'
 
 class Home extends Component {
 
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            q: ''
+        }
+    }
+
     _handleSubmit = (e) => {
         e.preventDefault()
+
+        this.props.dispatch(actionCreators.searchCourse(this.state.q))
     }
 
     render() {
@@ -30,6 +41,8 @@ class Home extends Component {
                                     className="input m-0 p-l-30px w-100 bg-white basic-shadow"
                                     type="text"
                                     placeholder="Busca tu curso"
+                                    value={this.state.q}
+                                    onChange={(e) => this.setState({q: e.target.value})}
                                 />
                                 <i className="fa fa-search input-icon" aria-hidden="true" />
                             </div>
@@ -47,4 +60,10 @@ class Home extends Component {
 
 }
 
-export default Home
+const mapStateToProps = (state) => {
+    return {
+        courses: state.courseReducer
+    }
+}
+
+export default connect(mapStateToProps)(Home)
