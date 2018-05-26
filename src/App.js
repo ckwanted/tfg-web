@@ -35,6 +35,32 @@ import {
     Cart
 } from './containers'
 
+/*
+ * Material UI
+ */
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+
+const theme = createMuiTheme({
+    palette: {
+        primary: { main: '#002e67' },
+        secondary: { main: '#42648e' },
+    },
+    overrides: {
+        MuiButton: {
+            root: {
+                background: 'linear-gradient(45deg, #002e67 30%, #42648e 90%)',
+                borderRadius: 3,
+                border: 0,
+                color: 'white',
+                height: 40,
+                padding: '10px 20px',
+                boxShadow: '0 3px 5px 2px rgba(0, 0, 0, .1)',
+            },
+        },
+    },
+})
+//---------------------------------------------------------------------------------
+
 fontawesome.library.add(brands, faCheckSquare, faCoffee)
 
 // Create a history of your choosing (we're using a browser history in this case)
@@ -49,18 +75,20 @@ class App extends Component {
                 <PersistGate loading={null} persistor={persistor}>
                     { /* ConnectedRouter will use the store from Provider automatically */ }
                     <ConnectedRouter history={history}>
-                        <div>
+                        <MuiThemeProvider theme={theme}>
+                            <div>
 
-                            <Route exact path="/" component={Home} />
+                                <Route exact path="/" component={Home} />
 
-                            <Route exact path="/courses" component={Course} />
-                            <Route path="/courses/:slug" component={CourseDetail} />
+                                <Route exact path="/courses" component={Course} />
+                                <Route path="/courses/:slug" component={CourseDetail} />
 
-                            <Route path="/cart" component={Cart} />
+                                <Route path="/cart" component={Cart} />
 
-                            <Route path="/about" component={AboutUs} />
+                                <Route path="/about" component={AboutUs} />
 
-                        </div>
+                            </div>
+                        </MuiThemeProvider>
                     </ConnectedRouter>
                 </PersistGate>
             </Provider>
