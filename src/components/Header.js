@@ -63,7 +63,6 @@ class Header extends Component {
     }
 
     _renderCart = () => {
-        const {dispatch} = this.props
         const CART = this.props.cart
 
         return (

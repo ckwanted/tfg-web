@@ -52,6 +52,7 @@ class Cart extends Component {
 
         array.map(course => {
             getPrice += Number(course.price)
+            return getPrice
         })
 
         return getPrice * 100

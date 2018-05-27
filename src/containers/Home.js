@@ -5,8 +5,6 @@ import MasterTemplate from './MasterTemplate'
 import {connect} from 'react-redux'
 import * as actionCreators from '../actions'
 
-import { push } from 'react-router-redux'
-
 class Home extends Component {
 
     constructor(props) {
