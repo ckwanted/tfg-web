@@ -10,9 +10,9 @@ export const authLogin = () => {
         dispatch(authChangeValue("loading", true))
 
         new Api().login(email, password).then(response => {
-            const {access_token, user} = response.data
+            const {access_token, user, rol} = response.data
 
-            dispatch(authLoginSuccess(access_token, user))
+            dispatch(authLoginSuccess(access_token, user, rol))
             dispatch(authChangeValue("loading", false))
         }).catch(error => {
             iziToast.error({
@@ -25,13 +25,14 @@ export const authLogin = () => {
     }
 }
 
-export const authLoginSuccess = (access_token, user) => {
+export const authLoginSuccess = (access_token, user, rol) => {
 
     return {
         type: actionType.AUTH_LOGIN_SUCCESS,
         payload: {
             access_token,
-            user
+            user,
+            rol
         }
     }
 }

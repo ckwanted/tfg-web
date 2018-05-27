@@ -24,6 +24,10 @@ const Constant = {
 
     SIMPLE: 'simple',
     MULTIPLE: 'multiple',
+
+    ADMIN: 'admin',
+    TEACHER: 'teacher',
+    STUDENT: 'student'
 }
 
 export default Constant

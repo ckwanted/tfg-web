@@ -3,6 +3,7 @@ import * as actionType from '../actions/types'
 const INITIAL_STATE = {
     access_token: null,
     user: null,
+    rol: null,
     loading: false,
     modal: false,
     email: '',
@@ -19,11 +20,12 @@ export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
 
         case actionType.AUTH_LOGIN_SUCCESS:
-            const {access_token, user} = action.payload
+            const {access_token, user, rol} = action.payload
             return {
                 ...state,
                 access_token: access_token,
                 user: user,
+                rol: rol,
                 modal: false,
                 loading: false,
             }

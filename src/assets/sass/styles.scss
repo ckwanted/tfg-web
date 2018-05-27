@@ -117,3 +117,7 @@ $padding: 10px 20px;
   }
 
 }
+
+.visibility-child * {
+  visibility: visible !important;
+}

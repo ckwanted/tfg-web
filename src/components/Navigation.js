@@ -88,7 +88,7 @@ class Navigation extends Component {
                     </nav>
 
                     <div className="drawer-wrapper">
-                        <Drawer className="drawer" anchor="right" open={this.state.open} onClose={this._onClose}>
+                        <Drawer className="visibility-child" anchor="right" open={this.state.open} onClose={this._onClose}>
                             <div
                                 tabIndex={0}
                                 role="button"
