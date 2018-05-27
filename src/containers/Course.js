@@ -102,7 +102,7 @@ class Course extends Component {
                                     <h5>Categoría</h5>
                                     <div className="mt-3">
 
-                                        <FormGroup>
+                                        <FormGroup className="checkbox-filter">
 
                                             <FormControlLabel
                                                 style={{marginBottom: 0}}
@@ -186,7 +186,7 @@ class Course extends Component {
                                     <h5>Dificultad</h5>
                                     <div className="mt-3">
 
-                                        <FormGroup>
+                                        <FormGroup className="checkbox-filter">
 
                                             <FormControlLabel
                                                 style={{marginBottom: 0}}
