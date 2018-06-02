@@ -12,6 +12,9 @@ import Register from './modal/Register'
 import Video from './modal/Video'
 import Quiz from './modal/Quiz'
 
+import EditCourse from './courses/EditCourse'
+import NewSection from './courses/NewSection'
+
 export {Header}
 export {Navigation}
 export {MySlider}
@@ -25,3 +28,5 @@ export {Login}
 export {Register}
 export {Video}
 export {Quiz}
+export {EditCourse}
+export {NewSection}

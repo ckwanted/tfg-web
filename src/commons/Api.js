@@ -67,6 +67,16 @@ class Api {
         return this.axios.get(`/courses/${slug}`)
     }
 
+    updateCourse(id, name, last_name, category, skill_level, price) {
+        return this.axios.post(`/courses/${id}`, {
+            name,
+            last_name,
+            category,
+            skill_level,
+            price
+        })
+    }
+
     searchCourse(q) {
         return this.axios.post(`/search/course`, {
             q

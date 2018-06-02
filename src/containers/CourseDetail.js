@@ -7,6 +7,11 @@ import Spinner from 'react-spinkit'
 import {connect} from 'react-redux'
 import * as actionCreators from '../actions'
 
+import {
+    EditCourse,
+    NewSection,
+} from '../components'
+
 import ExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import Typography from '@material-ui/core/Typography'
@@ -26,28 +31,7 @@ import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 import EditIcon from '@material-ui/icons/Edit'
 
-import TextField from '@material-ui/core/TextField'
-import Dialog from '@material-ui/core/Dialog'
-import DialogActions from '@material-ui/core/DialogActions'
-import DialogContent from '@material-ui/core/DialogContent'
-import DialogContentText from '@material-ui/core/DialogContentText'
-import DialogTitle from '@material-ui/core/DialogTitle'
-
 class CourseDetail extends Component {
-
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            openEditCourse: false,
-            openNewSection: false,
-
-            name: null,
-            description: null,
-            newSection: '',
-
-        }
-    }
 
     componentWillMount() {
         const {slug} = this.props.match.params
@@ -64,11 +48,6 @@ class CourseDetail extends Component {
                 </div>
             )
         }
-    }
-
-    _handleClose = (stateName) => {
-        document.body.removeAttribute("style")
-        this.setState({[stateName]: false})
     }
 
     _renderHeader = (COURSE) => {
@@ -98,66 +77,12 @@ class CourseDetail extends Component {
                             <p className="mt-1 f-s-12px">Creado por {(COURSE.user) ? COURSE.user.name : ''}</p>
 
                             <div>
-                                <Button variant="fab" mini color="secondary" aria-label="add" onClick={() => this.setState({openEditCourse: true})}>
+
+                                <Button variant="fab" mini color="secondary" aria-label="add" onClick={() => this.props.dispatch(actionCreators.courseChangeValue("dialogEditCourse", true))}>
                                     <EditIcon style={{ fontSize: 14 }} />
                                 </Button>
-                                <Dialog
-                                    className="visibility-child"
-                                    open={this.state.openEditCourse}
-                                    onClose={(e) => this._handleClose('openEditCourse')}
-                                    aria-labelledby="form-dialog-title"
-                                >
-                                    <DialogTitle id="form-dialog-title">Editar Curso</DialogTitle>
-                                    <DialogContent>
-                                        <DialogContentText className="mb-3">
 
-                                        </DialogContentText>
-                                        <form action="#" onSubmit={(e) => {
-                                            //TODO: submit
-                                            e.preventDefault()
-                                            this._handleClose('openEditCourse')
-                                        }}
-                                        >
-
-                                            <TextField
-                                                margin="dense"
-                                                label="Nombre"
-                                                fullWidth
-                                                value={(this.state.name) ? this.state.name : COURSE.name}
-                                                onChange={(e) => this.setState({name: e.target.value})}
-                                                required
-                                            />
-
-                                            <TextField
-                                                multiline
-                                                margin="dense"
-                                                label="Descripción"
-                                                fullWidth
-                                                value={(this.state.description) ? this.state.description : COURSE.description}
-                                                onChange={(e) => this.setState({description: e.target.value})}
-                                                required
-                                            />
-
-                                        </form>
-                                    </DialogContent>
-                                    <DialogActions>
-                                        <Button
-                                            size="small"
-                                            onClick={(e) => {
-                                                this.setState({
-                                                    name: null,
-                                                    description: null
-                                                })
-                                                this._handleClose('openEditCourse')
-                                            }}
-                                        >
-                                            Cerrar
-                                        </Button>
-                                        <Button size="small" type="submit">
-                                            Actualizar
-                                        </Button>
-                                    </DialogActions>
-                                </Dialog>
+                                <EditCourse course={COURSE} />
                             </div>
 
                         </div>
@@ -196,58 +121,16 @@ class CourseDetail extends Component {
                     <div className="d-flex align-items-center">
                         <h5>Contenido del curso</h5>
                         <div className="ml-auto">
-                            <Button variant="fab" mini color="secondary" aria-label="add" onClick={(e) => this.setState({openNewSection: true})}>
+                            <Button variant="fab" mini color="secondary" aria-label="add" onClick={(e) => this.props.dispatch(actionCreators.courseChangeValue("dialogNewSection", true))}>
                                 <AddIcon />
                             </Button>
-                            <Dialog
-                                className="visibility-child"
-                                open={this.state.openNewSection}
-                                onClose={this._handleClose}
-                                aria-labelledby="form-dialog-title"
-                            >
-                                <DialogTitle id="form-dialog-title">Crear nueva sección</DialogTitle>
-                                <DialogContent>
 
-                                    <form
-                                        onSubmit={(e) => {
-                                            //TODO: submit
-                                            e.preventDefault()
-                                            this.setState({newSection: ''})
-                                            this._handleClose()
-                                        }}
-                                    >
-
-                                        <DialogContentText className="mb-3">
-                                            Las secciones pueden ser usadas para dividir los temas por capítulos
-                                        </DialogContentText>
-                                        <TextField
-                                            autoFocus
-                                            margin="dense"
-                                            label="Nombre"
-                                            type="text"
-                                            fullWidth
-                                            value={this.state.newSection}
-                                            onChange={(e) => this.setState({newSection: e.target.value})}
-                                        />
-
-                                        
-
-                                    </form>
-                                </DialogContent>
-                                <DialogActions>
-                                    <Button onClick={(e) => this._handleClose('openNewSection')} size="small">
-                                        Cerrar
-                                    </Button>
-                                    <Button type="submit" size="small">
-                                        Crear
-                                    </Button>
-                                </DialogActions>
-                            </Dialog>
+                            <NewSection course={COURSE} />
                         </div>
                     </div>
 
                     <div className="mt-3">
-                        {this._renderOwnSection()}
+                        {this._renderOwnSection(COURSES, COURSE)}
                     </div>
                 </div>
 
@@ -256,7 +139,13 @@ class CourseDetail extends Component {
     }
 
     _renderOwnSection = (COURSES, COURSE) => {
-        return null
+        console.warn("COURSE", COURSE)
+
+        return(
+            <div>
+                1
+            </div>
+        )
     }
 
     _renderUserContent = (COURSES, COURSE) => {

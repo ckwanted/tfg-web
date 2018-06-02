@@ -21,6 +21,9 @@ const INITIAL_STATE = {
     ckBeginner: false,
     ckIntermediate: false,
     ckAdvanced: false,
+
+    dialogEditCourse: false,
+    dialogNewSection: false,
 }
 
 export default (state = INITIAL_STATE, action) => {
