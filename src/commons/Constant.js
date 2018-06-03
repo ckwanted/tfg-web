@@ -17,6 +17,9 @@ const Constant = {
     Breakpoints,
     SLIDER,
 
+    CREATE: 'create',
+    EDIT: 'edit',
+
     LOGIN: 'login',
     REGISTER: 'register',
     VIDEO: 'video',

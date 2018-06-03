@@ -10,48 +10,54 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import TextField from '@material-ui/core/TextField'
 
+import {Constant} from '../../commons'
+
 class NewSection extends Component {
 
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            newSection: ''
-        }
-    }
-
-    _handleClose = () => {
+    _handleClose = (TYPE) => {
         document.body.removeAttribute("style")
-        this.props.dispatch(actionCreators.courseChangeValue("dialogNewSection", false))
+
+        if(TYPE === Constant.CREATE) this.props.dispatch(actionCreators.courseChangeValue("dialogNewSection", false))
+        else this.props.dispatch(actionCreators.courseChangeValue("dialogEditSection", false))
+
+        this.props.dispatch(actionCreators.courseChangeValue("sectionSelectedTitle", ''))
     }
 
     render() {
 
-        const COURSE = this.props.course
-        let {dialogNewSection} = this.props.courses
+        let {dialogNewSection, dialogEditSection, sectionSelectedTitle} = this.props.courses
 
-        if(!COURSE) return null
+
+        const TYPE = dialogEditSection ? Constant.EDIT : Constant.CREATE
 
         return(
             <div>
                 <Dialog
                     className="visibility-child"
-                    open={dialogNewSection}
-                    onClose={this._handleClose}
+                    open={dialogNewSection || dialogEditSection}
+                    onClose={() => this._handleClose(TYPE)}
                     aria-labelledby="form-dialog-title"
                 >
                     <form
                         method="POST"
                         onSubmit={(e) => {
                             e.preventDefault()
-                            this.props.dispatch(actionCreators.addNewSection(this.state.newSection))
-                            this.setState({newSection: ''})
-                            this._handleClose()
+
+                            if(TYPE === Constant.CREATE) {
+                                this.props.dispatch(actionCreators.addNewSection(sectionSelectedTitle))
+                            }
+                            else {
+
+                            }
+
+                            this._handleClose(TYPE)
                         }}
                     >
 
 
-                        <DialogTitle id="form-dialog-title">Crear nueva sección</DialogTitle>
+                        <DialogTitle id="form-dialog-title">
+                            {TYPE === Constant.CREATE ? 'Crear nueva sección' : 'Editar Sección'}
+                        </DialogTitle>
                         <DialogContent>
 
 
@@ -64,19 +70,19 @@ class NewSection extends Component {
                                 label="Nombre"
                                 type="text"
                                 fullWidth
-                                value={this.state.newSection}
-                                onChange={(e) => this.setState({newSection: e.target.value})}
+                                value={sectionSelectedTitle}
+                                onChange={(e) => this.props.dispatch(actionCreators.courseChangeValue("sectionSelectedTitle", e.target.value))}
                                 required
                             />
 
 
                         </DialogContent>
                         <DialogActions>
-                            <button type="button" onClick={(e) => this._handleClose()} className="button">
+                            <button type="button" onClick={(e) => this._handleClose(TYPE)} className="button">
                                 Cerrar
                             </button>
                             <button className="button" type="submit">
-                                Crear
+                                {TYPE === Constant.CREATE ? 'Crear' : 'Editar'}
                             </button>
                         </DialogActions>
 

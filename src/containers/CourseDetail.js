@@ -134,7 +134,7 @@ class CourseDetail extends Component {
                             <AddIcon />
                         </Button>
 
-                        <NewSection course={COURSE} />
+                        <NewSection />
 
                     </div>
 

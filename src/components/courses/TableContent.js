@@ -11,6 +11,7 @@ import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 
 import Typography from '@material-ui/core/Typography'
+import EditIcon from '@material-ui/icons/Edit'
 
 class TableContent extends Component {
 
@@ -27,7 +28,17 @@ class TableContent extends Component {
         let items = SECTIONS.map(section => {
             return (
                 <article key={section.id} className="mt-4">
-                    <Typography className="mb-2" variant="title">{section.title}</Typography>
+                    <div className="d-flex">
+                        <Typography className="mb-2" variant="title">{section.title}</Typography>
+                        <EditIcon
+                            className="position-relative ml-1 cursor-pointer"
+                            style={{ fontSize: 14, top: '5px' }}
+                            onClick={() => {
+                                this.props.dispatch(actionCreators.courseChangeValue("sectionSelectedTitle", section.title))
+                                this.props.dispatch(actionCreators.courseChangeValue("dialogEditSection", true))
+                            }}
+                        />
+                    </div>
                     <Paper>
                         {this._renderTable(section)}
                     </Paper>
@@ -52,7 +63,7 @@ class TableContent extends Component {
                     <TableRow>
                         <TableCell>Nombre</TableCell>
                         <TableCell>Tipo</TableCell>
-                        <TableCell></TableCell>
+                        <TableCell>&nbsp;</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -64,7 +75,15 @@ class TableContent extends Component {
                             <TableRow key={resource.id}>
                                 <TableCell component="th" scope="row">{resource.title}</TableCell>
                                 <TableCell>{TYPE}</TableCell>
-                                <TableCell></TableCell>
+                                <TableCell className="p-0px">
+                                    <EditIcon
+                                        className="position-relative cursor-pointer"
+                                        style={{ fontSize: 14 }}
+                                        onClick={() => {
+                                            alert("click")
+                                        }}
+                                    />
+                                </TableCell>
                             </TableRow>
                         )
                     })}

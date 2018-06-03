@@ -9,6 +9,7 @@ const INITIAL_STATE = {
 
     course: {},
     modalData: null,
+    sectionSelectedTitle: '',
 
     q: '',
     ckFrontEnd: false,
@@ -24,6 +25,7 @@ const INITIAL_STATE = {
 
     dialogEditCourse: false,
     dialogNewSection: false,
+    dialogEditSection: false,
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -60,9 +62,19 @@ export default (state = INITIAL_STATE, action) => {
             updateCourse.skill_level = action.payload.skill_level
             updateCourse.price = action.payload.price
 
+            let dataUpdate = state.data
+
+            for(let i = 0; i < dataUpdate.length; i++) {
+                if(dataUpdate[i].id === updateCourse.id) {
+                    dataUpdate[i] = updateCourse
+                    break
+                }
+            }
+
             return {
                 ...state,
-                course: updateCourse
+                course: updateCourse,
+                data: dataUpdate
             }
 
         case actionType.ADD_NEW_SECTION:
