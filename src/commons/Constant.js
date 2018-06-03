@@ -27,7 +27,24 @@ const Constant = {
 
     ADMIN: 'admin',
     TEACHER: 'teacher',
-    STUDENT: 'student'
+    STUDENT: 'student',
+
+    CATEGORIES: [
+        {name: 'Front End', value: 'front-end'},
+        {name: 'Back End', value: 'back-end'},
+        {name: 'Full Stack', value: 'full-stack'},
+        {name: 'Dev Ops', value: 'dev-ops'},
+        {name: 'Android', value: 'android'},
+        {name: 'Ios', value: 'ios'},
+        {name: 'Otros', value: 'other'},
+    ],
+
+    SKILL_LEVEL: [
+        {name: 'Principiante', value: 'beginner'},
+        {name: 'Intermedio', value: 'intermediate'},
+        {name: 'Avanzado', value: 'advanced'},
+    ]
+
 }
 
 export default Constant

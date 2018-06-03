@@ -51,6 +51,27 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 [key]: value
             }
+
+        case actionType.UPDATE_COURSE:
+            let updateCourse = state.course
+            updateCourse.name = action.payload.name
+            updateCourse.description = action.payload.description
+            updateCourse.category = action.payload.category
+            updateCourse.skill_level = action.payload.skill_level
+            updateCourse.price = action.payload.price
+
+            return {
+                ...state,
+                course: updateCourse
+            }
+
+        case actionType.ADD_NEW_SECTION:
+            let course = state.course
+            course.sections = course.sections.concat(action.payload)
+            return {
+                ...state,
+                course: course
+            }
         default:
             return state
     }

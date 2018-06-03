@@ -10,6 +10,7 @@ import * as actionCreators from '../actions'
 import {
     EditCourse,
     NewSection,
+    TableContent
 } from '../components'
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel'
@@ -50,6 +51,15 @@ class CourseDetail extends Component {
         }
     }
 
+    _isOwnerOfTheCourse = () => {
+        const AUTH = this.props.auth
+
+        //TODO: redirect if dont by this course
+        //TODO: teacher own of this course
+        return AUTH.rol === Constant.ADMIN || (AUTH.rol === Constant.TEACHER);
+
+    }
+
     _renderHeader = (COURSE) => {
         return(
             <div style={{boxShadow: '0 10px 20px rgba(0,0,0,0.1)'}}>
@@ -76,14 +86,16 @@ class CourseDetail extends Component {
 
                             <p className="mt-1 f-s-12px">Creado por {(COURSE.user) ? COURSE.user.name : ''}</p>
 
-                            <div>
+                            {(this._isOwnerOfTheCourse()) ? (
+                                <div>
 
-                                <Button variant="fab" mini color="secondary" aria-label="add" onClick={() => this.props.dispatch(actionCreators.courseChangeValue("dialogEditCourse", true))}>
-                                    <EditIcon style={{ fontSize: 14 }} />
-                                </Button>
+                                    <Button variant="fab" mini color="secondary" aria-label="add" onClick={() => this.props.dispatch(actionCreators.courseChangeValue("dialogEditCourse", true))}>
+                                        <EditIcon style={{ fontSize: 14 }} />
+                                    </Button>
 
-                                <EditCourse course={COURSE} />
-                            </div>
+                                    <EditCourse course={COURSE} />
+                                </div>
+                            ) : null}
 
                         </div>
 
@@ -99,14 +111,11 @@ class CourseDetail extends Component {
 
     _renderContent = () => {
 
-        const AUTH = this.props.auth
-
         const COURSES = this.props.courses
         const COURSE = COURSES.course
 
-        //TODO: redirect if dont by this course
-        //TODO: teacher own of this course
-        if(AUTH.rol === Constant.ADMIN || (AUTH.rol === Constant.TEACHER) ) return this._renderOwnContent(COURSES, COURSE)
+
+        if(this._isOwnerOfTheCourse()) return this._renderOwnContent(COURSES, COURSE)
 
         return this._renderUserContent(COURSES, COURSE)
     }
@@ -119,18 +128,18 @@ class CourseDetail extends Component {
 
                 <div className="container course-wrapper">
                     <div className="d-flex align-items-center">
-                        <h5>Contenido del curso</h5>
-                        <div className="ml-auto">
-                            <Button variant="fab" mini color="secondary" aria-label="add" onClick={(e) => this.props.dispatch(actionCreators.courseChangeValue("dialogNewSection", true))}>
-                                <AddIcon />
-                            </Button>
+                        <h5 className="mr-3">Añadir Nueva Sección</h5>
 
-                            <NewSection course={COURSE} />
-                        </div>
+                        <Button variant="fab" mini color="secondary" aria-label="add" onClick={(e) => this.props.dispatch(actionCreators.courseChangeValue("dialogNewSection", true))}>
+                            <AddIcon />
+                        </Button>
+
+                        <NewSection course={COURSE} />
+
                     </div>
 
                     <div className="mt-3">
-                        {this._renderOwnSection(COURSES, COURSE)}
+                        {this._renderOwnSection()}
                     </div>
                 </div>
 
@@ -138,13 +147,9 @@ class CourseDetail extends Component {
         )
     }
 
-    _renderOwnSection = (COURSES, COURSE) => {
-        console.warn("COURSE", COURSE)
-
+    _renderOwnSection = () => {
         return(
-            <div>
-                1
-            </div>
+            <TableContent />
         )
     }
 

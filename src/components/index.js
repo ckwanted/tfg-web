@@ -14,6 +14,7 @@ import Quiz from './modal/Quiz'
 
 import EditCourse from './courses/EditCourse'
 import NewSection from './courses/NewSection'
+import TableContent from './courses/TableContent'
 
 export {Header}
 export {Navigation}
@@ -30,3 +31,4 @@ export {Video}
 export {Quiz}
 export {EditCourse}
 export {NewSection}
+export {TableContent}

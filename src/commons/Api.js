@@ -2,6 +2,9 @@ import axios from 'axios'
 import $ from 'jquery'
 import iziToast from 'izitoast'
 
+import * as actionCreators from '../actions'
+import {store} from '../store'
+
 const API = process.env.REACT_APP_API
 
 class Api {
@@ -19,7 +22,8 @@ class Api {
         this.axios.interceptors.response.use((response) => response, (error) => {
             switch(error.response.status) {
                 case 401:
-                    //TODO: invalidate session
+                    //TODO: Remove comment
+                    //store.dispatch(actionCreators.logOut())
                     break
                 case 404:
                     iziToast.error({
@@ -67,10 +71,11 @@ class Api {
         return this.axios.get(`/courses/${slug}`)
     }
 
-    updateCourse(id, name, last_name, category, skill_level, price) {
-        return this.axios.post(`/courses/${id}`, {
+    //TODO: check
+    updateCourse(id, name, description, category, skill_level, price) {
+        return this.axios.put(`/courses/${id}`, {
             name,
-            last_name,
+            description,
             category,
             skill_level,
             price

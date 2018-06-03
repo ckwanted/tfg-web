@@ -96,7 +96,6 @@ class Cart extends Component {
     }
 
     onToken = (obj) => {
-        console.warn("TOKEN", obj)
         this.props.dispatch(actionCreators.clearCart())
     }
 

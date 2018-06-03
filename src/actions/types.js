@@ -18,6 +18,9 @@ export const FETCH_COURSE = 'FETCH_COURSE'
 export const COURSE_CHANGE_VALUE = 'COURSE_CHANGE_VALUE'
 export const SEARCH_COURSE = 'SEARCH_COURSE'
 
+export const UPDATE_COURSE = 'UPDATE_COURSE'
+export const ADD_NEW_SECTION = 'ADD_NEW_SECTION'
+
 /*
  * CART
  */

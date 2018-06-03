@@ -8,7 +8,6 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 
 class NewSection extends Component {
@@ -41,17 +40,20 @@ class NewSection extends Component {
                     onClose={this._handleClose}
                     aria-labelledby="form-dialog-title"
                 >
-                    <DialogTitle id="form-dialog-title">Crear nueva sección</DialogTitle>
-                    <DialogContent>
+                    <form
+                        method="POST"
+                        onSubmit={(e) => {
+                            e.preventDefault()
+                            this.props.dispatch(actionCreators.addNewSection(this.state.newSection))
+                            this.setState({newSection: ''})
+                            this._handleClose()
+                        }}
+                    >
 
-                        <form
-                            onSubmit={(e) => {
-                                //TODO: submit
-                                e.preventDefault()
-                                this.setState({newSection: ''})
-                                this._handleClose()
-                            }}
-                        >
+
+                        <DialogTitle id="form-dialog-title">Crear nueva sección</DialogTitle>
+                        <DialogContent>
+
 
                             <DialogContentText className="mb-3">
                                 Las secciones pueden ser usadas para dividir los temas por capítulos
@@ -64,20 +66,21 @@ class NewSection extends Component {
                                 fullWidth
                                 value={this.state.newSection}
                                 onChange={(e) => this.setState({newSection: e.target.value})}
+                                required
                             />
 
 
+                        </DialogContent>
+                        <DialogActions>
+                            <button type="button" onClick={(e) => this._handleClose()} className="button">
+                                Cerrar
+                            </button>
+                            <button className="button" type="submit">
+                                Crear
+                            </button>
+                        </DialogActions>
 
-                        </form>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={(e) => this._handleClose()} size="small">
-                            Cerrar
-                        </Button>
-                        <Button type="submit" size="small">
-                            Crear
-                        </Button>
-                    </DialogActions>
+                    </form>
                 </Dialog>
             </div>
         )

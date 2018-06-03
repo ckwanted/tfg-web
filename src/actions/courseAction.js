@@ -77,3 +77,46 @@ export const courseChangeValue = (key, value) => {
     }
 }
 
+export const updateCourse = (id, name, description, category, skill_level, price) => {
+    return (dispatch, getState) => {
+
+        const { authReducer: {access_token} } = getState();
+
+        new Api(access_token).updateCourse(id, name, description, category, skill_level, price).then(response => {
+            dispatch(updateCourseSuccess(response.data.course))
+        }).catch(error => {
+
+        })
+
+
+    }
+}
+
+export const updateCourseSuccess = (course) => {
+    return {
+        type: actionType.UPDATE_COURSE,
+        payload: course
+    }
+}
+
+export const addNewSection = (name) => {
+    return (dispatch) => {
+
+        //TODO: check
+        /*new Api().fetchCourse(slug).then(response => {
+
+        }).catch(error => {
+
+        })*/
+        dispatch(addNewSectionSuccess({id: 111, title: name, course_id: 9, resources: []}))
+
+    }
+}
+
+export const addNewSectionSuccess = (section) => {
+    return {
+        type: actionType.ADD_NEW_SECTION,
+        payload: section
+    }
+}
+
