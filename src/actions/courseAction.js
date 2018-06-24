@@ -34,11 +34,13 @@ export const fetchAllCoursesSuccess = (courses, userPayments = []) => {
 }
 
 export const fetchCourse = (slug) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+
+        const { authReducer: {access_token} } = getState();
 
         dispatch(courseChangeValue("loading", true))
 
-        new Api().fetchCourse(slug).then(response => {
+        new Api(access_token).fetchCourse(slug).then(response => {
             const {course} = response.data
             dispatch(fetchCourseSuccess(course))
         }).catch(error => {
@@ -58,6 +60,7 @@ export const fetchCourseSuccess = (payload) => {
 export const searchCourse = (clear = false) => {
     return (dispatch, getState) => {
 
+        const { authReducer: {access_token} } = getState();
         const { courseReducer: { q }} = getState();
 
         dispatch(courseChangeValue("loading", true))
@@ -66,7 +69,7 @@ export const searchCourse = (clear = false) => {
         let categories = getCategory(getState)
         let skill_level = getSkillLevel(getState)
 
-        new Api().searchCourse(q, categories, skill_level).then(response => {
+        new Api(access_token).searchCourse(q, categories, skill_level).then(response => {
             const {courses, userPayments} = response.data
             dispatch(fetchAllCoursesSuccess(courses, userPayments))
         }).catch(error => {
@@ -109,10 +112,12 @@ export const updateCourseSuccess = (course) => {
 }
 
 export const addNewSection = (name) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+
+        const { authReducer: {access_token} } = getState();
 
         //TODO: check
-        /*new Api().fetchCourse(slug).then(response => {
+        /*new Api(access_token).fetchCourse(slug).then(response => {
 
         }).catch(error => {
 

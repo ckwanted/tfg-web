@@ -37,10 +37,12 @@ class CardCourse extends Component {
         const PHOTO = ITEM.photo
         const STARS = Number(ITEM.star)
 
+        let isPay = this._isPay(ITEM)
+
         return (
             <div className="card-course bg-white position-r mb-2" style={{border: '1px solid #eee'}}>
 
-                <Link to={(this._isPay(ITEM)) ? `courses/${SLUG}` : '#'} className="d-block">
+                <Link to={(isPay) ? `courses/${SLUG}` : '#'} className="d-block">
                     <img className="card-course__img" src={`${PHOTO}`} alt={COURSE_NAME}/>
 
                     <div className="p-20px">
