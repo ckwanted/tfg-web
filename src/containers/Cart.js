@@ -19,6 +19,14 @@ class Cart extends Component {
             array.push(COURSES[key])
         })
 
+        if(array.length === 0) {
+            return(
+                <div style={{height: '300px'}}>
+                    <p>El carrito esta vacío</p>
+                </div>
+            )
+        }
+
         return array.map(course => {
             return(
                 <div key={course.id} className="d-flex align-items-center">
@@ -30,7 +38,7 @@ class Cart extends Component {
                         <p className="f-s-20px m-0">{course.price}€</p>
                         <CloseIcon
                             className="ml-3 bg-blue-light border-radius-50"
-                            style={{cursor: 'pointer'}}
+                            style={{cursor: 'pointer', color: 'white'}}
                             onClick={(e) => this.props.dispatch(actionCreators.removeFromTheCart(course.id))}
                         />
                     </div>
@@ -114,7 +122,7 @@ class Cart extends Component {
                             </div>
                             <hr/>
 
-                            <div>
+                            <div style={{minHeight: '300px'}}>
                                 {this._renderCart()}
                             </div>
 
