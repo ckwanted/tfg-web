@@ -23,7 +23,7 @@ export const fetchAllCourses = () => {
     }
 }
 
-export const fetchAllCoursesSuccess = (courses, userPayments) => {
+export const fetchAllCoursesSuccess = (courses, userPayments = []) => {
     return {
         type: actionType.FETCH_ALL_COURSES,
         payload: {
@@ -55,16 +55,20 @@ export const fetchCourseSuccess = (payload) => {
     }
 }
 
-export const searchCourse = () => {
+export const searchCourse = (clear = false) => {
     return (dispatch, getState) => {
 
-        const { courseReducer: {q} } = getState();
+        const { courseReducer: { q }} = getState();
 
         dispatch(courseChangeValue("loading", true))
+        if(clear) dispatch(clearCourseFilter())
 
-        new Api().searchCourse(q).then(response => {
-            const {courses} = response.data
-            dispatch(fetchAllCoursesSuccess(courses))
+        let categories = getCategory(getState)
+        let skill_level = getSkillLevel(getState)
+
+        new Api().searchCourse(q, categories, skill_level).then(response => {
+            const {courses, userPayments} = response.data
+            dispatch(fetchAllCoursesSuccess(courses, userPayments))
         }).catch(error => {
             dispatch(courseChangeValue("loading", false))
         })
@@ -125,3 +129,43 @@ export const addNewSectionSuccess = (section) => {
     }
 }
 
+export const clearCourseFilter = () => {
+    return {
+        type: actionType.CLEAR_COURSE_FILTER,
+    }
+}
+
+const getCategory = (getState) => {
+    const { courseReducer: { ckFrontEnd, ckBackEnd, ckFullStack, ckDevOps, ckAndroid, ckIos }} = getState();
+
+    let categories = '';
+
+    if(ckFrontEnd) categories += 'front-end,'
+    if(ckBackEnd) categories += 'back-end,'
+    if(ckFullStack) categories += 'full-stack,'
+    if(ckDevOps) categories += 'dev-ops,'
+    if(ckAndroid) categories += 'android,'
+    if(ckIos) categories += 'ios,'
+
+    if(categories[categories.length - 1] === ',') {
+        categories = categories.slice(0, -1)
+    }
+
+    return categories
+}
+
+const getSkillLevel = (getState) => {
+    const { courseReducer: { ckBeginner, ckIntermediate, ckAdvanced }} = getState();
+
+    let skill = '';
+
+    if(ckBeginner) skill += 'beginner,'
+    if(ckIntermediate) skill += 'intermediate,'
+    if(ckAdvanced) skill += 'advanced,'
+
+    if(skill[skill.length - 1] === ',') {
+        skill = skill.slice(0, -1)
+    }
+
+    return skill
+}

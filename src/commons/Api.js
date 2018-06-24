@@ -82,10 +82,10 @@ class Api {
         })
     }
 
-    searchCourse(q) {
-        return this.axios.post(`/search/course`, {
-            q
-        })
+    searchCourse(q, categories = '', skill_level = '') {
+        let qCategories = categories.length ? `&categories=${categories}` : ''
+        let qSkill = skill_level.length ? `&skill_level=${skill_level}` : ''
+        return this.axios.get(`/courses?q=${q}${qCategories}${qSkill}`)
     }
 
     payCart(courseIds) {

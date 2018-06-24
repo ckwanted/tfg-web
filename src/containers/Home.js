@@ -19,7 +19,7 @@ class Home extends Component {
         e.preventDefault()
 
         this.props.dispatch(actionCreators.courseChangeValue("q", this.state.q))
-        this.props.dispatch(actionCreators.searchCourse())
+        this.props.dispatch(actionCreators.searchCourse(true))
         this.props.history.push('/courses')
     }
 

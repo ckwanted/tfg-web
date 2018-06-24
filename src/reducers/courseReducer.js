@@ -90,6 +90,23 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 course: course
             }
+
+        case actionType.CLEAR_COURSE_FILTER:
+
+            return {
+                ...state,
+                ckFrontEnd: false,
+                ckBackEnd: false,
+                ckFullStack: false,
+                ckDevOps: false,
+                ckAndroid: false,
+                ckIos: false,
+
+                ckBeginner: false,
+                ckIntermediate: false,
+                ckAdvanced: false,
+            }
+
         default:
             return state
     }

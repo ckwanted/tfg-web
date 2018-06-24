@@ -21,6 +21,9 @@ export const SEARCH_COURSE = 'SEARCH_COURSE'
 export const UPDATE_COURSE = 'UPDATE_COURSE'
 export const ADD_NEW_SECTION = 'ADD_NEW_SECTION'
 
+export const CLEAR_COURSE_FILTER = 'CLEAR_COURSE_FILTER'
+
+
 /*
  * CART
  */

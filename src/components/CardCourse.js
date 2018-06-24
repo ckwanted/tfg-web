@@ -7,13 +7,20 @@ import * as actionCreators from '../actions'
 
 class CardCourse extends Component {
 
-    _renderStatus = (ITEM) => {
-        const CART = this.props.cart
+    _isPay = (ITEM) => {
         const {userPayments} = this.props.courses
 
         for(let i = 0; i < userPayments.length; i++) {
-            if(userPayments[i] === ITEM.id) return null
+            if(userPayments[i] === ITEM.id) return true
         }
+
+        return false
+    }
+
+    _renderStatus = (ITEM) => {
+        const CART = this.props.cart
+
+        if(this._isPay(ITEM)) return null;
 
         if(CART.courses[ITEM.id] === undefined) {
             return <i className="cart p-20px fas fa-cart-arrow-down" onClick={(e) => this.props.dispatch(actionCreators.addToCart(ITEM.id, ITEM))}/>
@@ -33,7 +40,7 @@ class CardCourse extends Component {
         return (
             <div className="card-course bg-white position-r mb-2" style={{border: '1px solid #eee'}}>
 
-                <Link to={`courses/${SLUG}`} className="d-block">
+                <Link to={(this._isPay(ITEM)) ? `courses/${SLUG}` : '#'} className="d-block">
                     <img className="card-course__img" src={`${PHOTO}`} alt={COURSE_NAME}/>
 
                     <div className="p-20px">
