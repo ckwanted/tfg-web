@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import * as actionCreators from '../../actions'
 
+import NewResource from './NewResource'
+
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -12,6 +14,8 @@ import Paper from '@material-ui/core/Paper'
 
 import Typography from '@material-ui/core/Typography'
 import EditIcon from '@material-ui/icons/Edit'
+import CreateIcon from '@material-ui/icons/Create'
+import {courseChangeValue} from "../../actions/courseAction";
 
 class TableContent extends Component {
 
@@ -58,37 +62,51 @@ class TableContent extends Component {
         const RESOURCES = section.resources
 
         return(
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Nombre</TableCell>
-                        <TableCell>Tipo</TableCell>
-                        <TableCell>&nbsp;</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {RESOURCES.map(resource => {
+            <div>
 
-                        const TYPE = (resource.uri) ? 'Video' : 'Questionario'
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Nombre</TableCell>
+                            <TableCell>Tipo</TableCell>
+                            <TableCell className="p-0px">
+                                <CreateIcon
+                                    className="position-relative cursor-pointer"
+                                    style={{ fontSize: 14 }}
+                                    onClick={() => {
+                                        this.props.dispatch(courseChangeValue("dialogEditResource", true))
+                                    }}
+                                />
+                            </TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {RESOURCES.map(resource => {
 
-                        return (
-                            <TableRow key={resource.id}>
-                                <TableCell component="th" scope="row">{resource.title}</TableCell>
-                                <TableCell>{TYPE}</TableCell>
-                                <TableCell className="p-0px">
-                                    <EditIcon
-                                        className="position-relative cursor-pointer"
-                                        style={{ fontSize: 14 }}
-                                        onClick={() => {
-                                            alert("click")
-                                        }}
-                                    />
-                                </TableCell>
-                            </TableRow>
-                        )
-                    })}
-                </TableBody>
-            </Table>
+                            const TYPE = (resource.uri) ? 'Video' : 'Questionario'
+
+                            return (
+                                <TableRow key={resource.id}>
+                                    <TableCell component="th" scope="row">{resource.title}</TableCell>
+                                    <TableCell>{TYPE}</TableCell>
+                                    <TableCell className="p-0px">
+                                        <EditIcon
+                                            className="position-relative cursor-pointer"
+                                            style={{ fontSize: 14 }}
+                                            onClick={() => {
+                                                this.props.dispatch(courseChangeValue("dialogEditResource", true))
+                                            }}
+                                        />
+                                    </TableCell>
+                                </TableRow>
+                            )
+                        })}
+                    </TableBody>
+                </Table>
+
+                <NewResource />
+
+            </div>
         )
     }
 

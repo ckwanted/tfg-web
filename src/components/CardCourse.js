@@ -9,8 +9,12 @@ class CardCourse extends Component {
 
     _renderStatus = (ITEM) => {
         const CART = this.props.cart
+        const {userPayments} = this.props.courses
 
-        // TODO: item is not in the cart reducer and buy course
+        for(let i = 0; i < userPayments.length; i++) {
+            if(userPayments[i] === ITEM.id) return null
+        }
+
         if(CART.courses[ITEM.id] === undefined) {
             return <i className="cart p-20px fas fa-cart-arrow-down" onClick={(e) => this.props.dispatch(actionCreators.addToCart(ITEM.id, ITEM))}/>
         }
@@ -71,6 +75,7 @@ const styles = {
 const mapStateToProps = (state) => {
     return {
         cart: state.cartReducer,
+        courses: state.courseReducer
     }
 }
 

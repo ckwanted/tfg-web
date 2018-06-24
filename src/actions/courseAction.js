@@ -3,13 +3,15 @@ import {Api} from '../commons'
 import iziToast from 'izitoast'
 
 export const fetchAllCourses = () => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+
+        const { authReducer: {access_token} } = getState();
 
         dispatch(courseChangeValue("loading", true))
 
-        new Api().allCourses().then(response => {
-            const {courses} = response.data
-            dispatch(fetchAllCoursesSuccess(courses))
+        new Api(access_token).allCourses().then(response => {
+            const {courses, userPayments} = response.data
+            dispatch(fetchAllCoursesSuccess(courses, userPayments))
         }).catch(error => {
             iziToast.error({
                 title: '',
@@ -21,10 +23,13 @@ export const fetchAllCourses = () => {
     }
 }
 
-export const fetchAllCoursesSuccess = (payload) => {
+export const fetchAllCoursesSuccess = (courses, userPayments) => {
     return {
         type: actionType.FETCH_ALL_COURSES,
-        payload: payload
+        payload: {
+            courses,
+            userPayments
+        }
     }
 }
 

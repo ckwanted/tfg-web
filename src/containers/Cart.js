@@ -30,7 +30,6 @@ class Cart extends Component {
                         <p className="f-s-20px m-0">{course.price}€</p>
                         <CloseIcon
                             className="ml-3 bg-blue-light border-radius-50"
-                            color="#fff"
                             style={{cursor: 'pointer'}}
                             onClick={(e) => this.props.dispatch(actionCreators.removeFromTheCart(course.id))}
                         />
@@ -95,12 +94,11 @@ class Cart extends Component {
         }
     }
 
-    onToken = (obj) => {
-        this.props.dispatch(actionCreators.clearCart())
+    onToken = (cart) => {
+        this.props.dispatch(actionCreators.payCart(cart))
     }
 
     render() {
-
         return (
             <MasterTemplate>
 

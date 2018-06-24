@@ -88,6 +88,12 @@ class Api {
         })
     }
 
+    payCart(courseIds) {
+        return this.axios.post(`/cart`, {
+            courses: courseIds
+        })
+    }
+
 }
 
 export default Api

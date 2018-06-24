@@ -14,6 +14,7 @@ import Quiz from './modal/Quiz'
 
 import EditCourse from './courses/EditCourse'
 import NewSection from './courses/NewSection'
+import NewResource from './courses/NewResource'
 import TableContent from './courses/TableContent'
 
 export {Header}

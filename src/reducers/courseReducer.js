@@ -6,6 +6,7 @@ const INITIAL_STATE = {
     total: 0,
     data: [],
     loading: false,
+    userPayments: [],
 
     course: {},
     modalData: null,
@@ -24,22 +25,27 @@ const INITIAL_STATE = {
     ckAdvanced: false,
 
     dialogEditCourse: false,
+
     dialogNewSection: false,
     dialogEditSection: false,
+
+    dialogNewResource: false,
+    dialogEditResource: false,
 }
 
 export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
 
         case actionType.FETCH_ALL_COURSES:
-            const {current_page, last_page, total, data} = action.payload
+            const {current_page, last_page, total, data} = action.payload.courses
             return {
                 ...state,
                 current_page,
                 last_page,
                 total,
                 data,
-                loading: false
+                loading: false,
+                userPayments: action.payload.userPayments
             }
         case actionType.FETCH_COURSE:
             return {
