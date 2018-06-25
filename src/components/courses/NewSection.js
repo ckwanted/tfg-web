@@ -25,7 +25,7 @@ class NewSection extends Component {
 
     render() {
 
-        let {dialogNewSection, dialogEditSection, sectionSelectedTitle} = this.props.courses
+        let {course, dialogNewSection, dialogEditSection, sectionSelectedTitle} = this.props.courses
 
 
         const TYPE = dialogEditSection ? Constant.EDIT : Constant.CREATE
@@ -44,7 +44,7 @@ class NewSection extends Component {
                             e.preventDefault()
 
                             if(TYPE === Constant.CREATE) {
-                                this.props.dispatch(actionCreators.addNewSection(sectionSelectedTitle))
+                                this.props.dispatch(actionCreators.addNewSection(course.id, sectionSelectedTitle))
                             }
                             else {
 

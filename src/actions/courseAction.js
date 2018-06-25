@@ -115,18 +115,17 @@ export const updateCourseSuccess = (course) => {
     }
 }
 
-export const addNewSection = (name) => {
+export const addNewSection = (course_id, title) => {
     return (dispatch, getState) => {
 
-        //const { authReducer: {access_token} } = getState();
+        const { authReducer: {access_token} } = getState();
 
-        //TODO: check
-        /*new Api(access_token).fetchCourse(slug).then(response => {
-
+        new Api(access_token).createSection(course_id, title).then(response => {
+            const {course_section} = response.data
+            dispatch(addNewSectionSuccess(course_section))
         }).catch(error => {
 
-        })*/
-        dispatch(addNewSectionSuccess({id: 111, title: name, course_id: 9, resources: []}))
+        })
 
     }
 }

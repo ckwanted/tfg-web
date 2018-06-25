@@ -112,6 +112,13 @@ class Api {
         return this.axios.post(`/courses/photo/${course_id}`, formData)
     }
 
+    createSection(course_id, title) {
+        return this.axios.post(`/courses/section`, {
+            course_id,
+            title
+        })
+    }
+
 }
 
 export default Api
