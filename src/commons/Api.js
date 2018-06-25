@@ -1,6 +1,7 @@
 import axios from 'axios'
 import $ from 'jquery'
 import iziToast from 'izitoast'
+import {Constant} from './index'
 
 import * as actionCreators from '../actions'
 import {store} from '../store'
@@ -9,12 +10,19 @@ const API = process.env.REACT_APP_API
 
 class Api {
 
-    constructor(token) {
-        this.axios = axios.create({
+    constructor(token, type = '') {
+
+        let options = {
             baseURL: API,
             timeout: 30000,
             headers: {'Authorization': 'Bearer ' + token}
-        })
+        }
+
+        if(type === Constant.MULTIPART_FORM_DATA) {
+            options.config = { headers: {'Content-Type': Constant.MULTIPART_FORM_DATA }}
+        }
+
+        this.axios = axios.create(options)
 
         /*
          * Error Handling
@@ -98,6 +106,10 @@ class Api {
         return this.axios.put(`/courses/${course_id}/vote`, {
             vote
         })
+    }
+
+    changePhoto(course_id, formData) {
+        return this.axios.post(`/courses/photo/${course_id}`, formData)
     }
 
 }

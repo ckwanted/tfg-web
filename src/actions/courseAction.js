@@ -1,6 +1,7 @@
 import * as actionType from './types'
-import {Api} from '../commons'
+import {Api, Constant} from '../commons'
 import iziToast from 'izitoast'
+import ImageCompressor from 'image-compressor.js'
 
 export const fetchAllCourses = () => {
     return (dispatch, getState) => {
@@ -117,7 +118,7 @@ export const updateCourseSuccess = (course) => {
 export const addNewSection = (name) => {
     return (dispatch, getState) => {
 
-        const { authReducer: {access_token} } = getState();
+        //const { authReducer: {access_token} } = getState();
 
         //TODO: check
         /*new Api(access_token).fetchCourse(slug).then(response => {
@@ -156,6 +157,46 @@ export const voteCourse = (course_id, vote, slug) => {
 
     }
 }
+
+export const changeCoursePhoto = (course_id, file) => {
+    return (dispatch, getState) => {
+
+        const {authReducer: {access_token}} = getState()
+
+        new ImageCompressor(file, {
+            quality: .6,
+            success(result) {
+
+                const formData = new FormData()
+
+                formData.append('photo', result)
+
+                new Api(access_token, Constant.MULTIPART_FORM_DATA).changePhoto(course_id, formData).then(response => {
+                    const {course} = response.data
+                    dispatch(changeCoursePhotoSuccess(course))
+                }).catch(error => {
+
+                })
+
+            },
+            error(e) {
+                console.error(e.message)
+            },
+        })
+
+    }
+}
+
+export const changeCoursePhotoSuccess = (course) => {
+    return {
+        type: actionType.CHANGE_COURSE_PHOTO,
+        payload: course
+    }
+}
+
+/*
+ * GETERS
+ */
 
 const getCategory = (getState) => {
     const { courseReducer: { ckFrontEnd, ckBackEnd, ckFullStack, ckDevOps, ckAndroid, ckIos }} = getState();

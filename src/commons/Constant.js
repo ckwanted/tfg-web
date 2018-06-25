@@ -46,7 +46,9 @@ const Constant = {
         {name: 'Principiante', value: 'beginner'},
         {name: 'Intermedio', value: 'intermediate'},
         {name: 'Avanzado', value: 'advanced'},
-    ]
+    ],
+
+    MULTIPART_FORM_DATA: "multipart/form-data"
 
 }
 

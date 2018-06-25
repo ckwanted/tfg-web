@@ -104,7 +104,31 @@ class CourseDetail extends Component {
                         </div>
 
                         <div className="col-md-5">
-                            <img src={`${COURSE.photo}`} alt={COURSE.name}/>
+                            <img
+                                className={this._isOwnerOfTheCourse(COURSE) ? 'cursor-pointer' : ''}
+                                src={`${COURSE.photo}`}
+                                alt={COURSE.name}
+                                onClick={(e) => {
+                                    if(this._isOwnerOfTheCourse(COURSE)) {
+                                        this.refs.photo.click()
+                                    }
+                                }}
+                            />
+                            <input
+                                ref="photo"
+                                type="file"
+                                accept="image/*"
+                                className="d-none"
+                                onChange={(e) => {
+                                    if(this._isOwnerOfTheCourse(COURSE)) {
+                                        const file = e.target.files[0]
+
+                                        if(file) this.props.dispatch(actionCreators.changeCoursePhoto(COURSE.id, file))
+
+                                    }
+
+                                }}
+                            />
                         </div>
 
                     </div>

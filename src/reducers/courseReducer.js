@@ -109,6 +109,22 @@ export default (state = INITIAL_STATE, action) => {
                 ckAdvanced: false,
             }
 
+        case actionType.CHANGE_COURSE_PHOTO:
+
+            let copyData = state.data
+
+            for(let i = 0; i < copyData.length; i++) {
+                if(copyData[i].id === action.payload.id) {
+                    copyData[i] = action.payload
+                    break
+                }
+            }
+
+            return {
+                ...state,
+                course: action.payload
+            }
+
         default:
             return state
     }
