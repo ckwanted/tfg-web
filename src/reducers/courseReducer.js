@@ -7,6 +7,7 @@ const INITIAL_STATE = {
     data: [],
     loading: false,
     userPayments: [],
+    my_vote: null,
 
     course: {},
     modalData: null,
@@ -50,7 +51,8 @@ export default (state = INITIAL_STATE, action) => {
         case actionType.FETCH_COURSE:
             return {
                 ...state,
-                course: action.payload,
+                course: action.payload.course,
+                my_vote: action.payload.my_vote,
                 loading: false
             }
         case actionType.COURSE_CHANGE_VALUE:

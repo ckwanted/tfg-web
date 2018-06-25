@@ -35,6 +35,7 @@ import EditIcon from '@material-ui/icons/Edit'
 class CourseDetail extends Component {
 
     componentWillMount() {
+        //TODO: redirect if dont by this course
         const {slug} = this.props.match.params
         this.props.dispatch(actionCreators.fetchCourse(slug))
     }
@@ -51,16 +52,17 @@ class CourseDetail extends Component {
         }
     }
 
-    _isOwnerOfTheCourse = () => {
+    _isOwnerOfTheCourse = (COURSE) => {
         const AUTH = this.props.auth
 
-        //TODO: redirect if dont by this course
-        //TODO: teacher own of this course
-        return AUTH.rol === Constant.ADMIN || (AUTH.rol === Constant.TEACHER);
+        return AUTH.rol === Constant.ADMIN || (AUTH.user.id === COURSE.id);
 
     }
 
     _renderHeader = (COURSE) => {
+        const {slug} = this.props.match.params
+        const {my_vote} = this.props.courses
+
         return(
             <div style={{boxShadow: '0 10px 20px rgba(0,0,0,0.1)'}}>
                 <div className="container course-wrapper">
@@ -73,11 +75,13 @@ class CourseDetail extends Component {
                             <div className="d-flex">
 
                                 <ReactStars
-                                    edit={false}
                                     count={5}
-                                    value={Number(COURSE.star)}
+                                    value={Number(my_vote) || Number(COURSE.star)}
                                     size={12}
                                     color2={'#ffd700'}
+                                    half={false}
+                                    edit={!(this._isOwnerOfTheCourse(COURSE))}
+                                    onChange={(vote) => this.props.dispatch(actionCreators.voteCourse(COURSE.id, vote, slug))}
                                 />
 
                                 <span className="ml-1 f-s-12px">{COURSE.star} ({COURSE.votes} valoraciones)</span>
@@ -86,7 +90,7 @@ class CourseDetail extends Component {
 
                             <p className="mt-1 f-s-12px">Creado por {(COURSE.user) ? COURSE.user.name : ''}</p>
 
-                            {(this._isOwnerOfTheCourse()) ? (
+                            {(this._isOwnerOfTheCourse(COURSE)) ? (
                                 <div>
 
                                     <Button variant="fab" mini color="secondary" aria-label="add" onClick={() => this.props.dispatch(actionCreators.courseChangeValue("dialogEditCourse", true))}>
@@ -115,7 +119,7 @@ class CourseDetail extends Component {
         const COURSE = COURSES.course
 
 
-        if(this._isOwnerOfTheCourse()) return this._renderOwnContent(COURSES, COURSE)
+        if(this._isOwnerOfTheCourse(COURSE)) return this._renderOwnContent(COURSES, COURSE)
 
         return this._renderUserContent(COURSES, COURSE)
     }

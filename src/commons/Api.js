@@ -94,6 +94,12 @@ class Api {
         })
     }
 
+    vote(course_id, vote) {
+        return this.axios.put(`/courses/${course_id}/vote`, {
+            vote
+        })
+    }
+
 }
 
 export default Api

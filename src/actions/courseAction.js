@@ -41,8 +41,8 @@ export const fetchCourse = (slug) => {
         dispatch(courseChangeValue("loading", true))
 
         new Api(access_token).fetchCourse(slug).then(response => {
-            const {course} = response.data
-            dispatch(fetchCourseSuccess(course))
+            const {course, my_vote} = response.data
+            dispatch(fetchCourseSuccess(course, my_vote))
         }).catch(error => {
             dispatch(fetchCourseSuccess({}))
         })
@@ -50,10 +50,13 @@ export const fetchCourse = (slug) => {
     }
 }
 
-export const fetchCourseSuccess = (payload) => {
+export const fetchCourseSuccess = (course, my_vote) => {
     return {
         type: actionType.FETCH_COURSE,
-        payload: payload
+        payload: {
+            course,
+            my_vote
+        }
     }
 }
 
@@ -137,6 +140,20 @@ export const addNewSectionSuccess = (section) => {
 export const clearCourseFilter = () => {
     return {
         type: actionType.CLEAR_COURSE_FILTER,
+    }
+}
+
+export const voteCourse = (course_id, vote, slug) => {
+    return (dispatch, getState) => {
+
+        const {authReducer: {access_token}} = getState()
+
+        new Api(access_token).vote(course_id, vote).then(response => {
+            dispatch(fetchCourse(slug))
+        }).catch(error => {
+
+        })
+
     }
 }
 
