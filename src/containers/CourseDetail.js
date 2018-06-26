@@ -61,7 +61,7 @@ class CourseDetail extends Component {
 
     _renderHeader = (COURSE) => {
         const {slug} = this.props.match.params
-        const {my_vote} = this.props.courses
+        const {my_vote, loadingPhoto} = this.props.courses
 
         return(
             <div style={{boxShadow: '0 10px 20px rgba(0,0,0,0.1)'}}>
@@ -109,16 +109,23 @@ class CourseDetail extends Component {
                         </div>
 
                         <div className="col-md-5">
-                            <img
-                                className={this._isOwnerOfTheCourse(COURSE) ? 'cursor-pointer' : ''}
-                                src={`${COURSE.photo}`}
-                                alt={COURSE.name}
-                                onClick={(e) => {
-                                    if(this._isOwnerOfTheCourse(COURSE)) {
-                                        this.refs.photo.click()
-                                    }
-                                }}
-                            />
+
+                            {(loadingPhoto) ? <div className="d-flex justify-content-center">
+                                    <Spinner name="circle" color="#42648e"/>
+                                </div> :
+                                <img
+                                    className={this._isOwnerOfTheCourse(COURSE) ? 'cursor-pointer' : ''}
+                                    src={`${COURSE.photo}`}
+                                    alt={COURSE.name}
+                                    onClick={(e) => {
+                                        if(this._isOwnerOfTheCourse(COURSE)) {
+                                            this.refs.photo.click()
+                                        }
+                                    }}
+                                />
+                            }
+
+
                             <input
                                 ref="photo"
                                 type="file"

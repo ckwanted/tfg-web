@@ -221,12 +221,13 @@ export const changeCoursePhoto = (course_id, file) => {
                     const {course} = response.data
                     dispatch(changeCoursePhotoSuccess(course))
                 }).catch(error => {
-
+                    dispatch(courseChangeValue("loadingPhoto", false))
                 })
 
             },
             error(e) {
                 console.error(e.message)
+                dispatch(courseChangeValue("loadingPhoto", false))
             },
         })
 
@@ -236,7 +237,9 @@ export const changeCoursePhoto = (course_id, file) => {
 export const changeCoursePhotoSuccess = (course) => {
     return {
         type: actionType.CHANGE_COURSE_PHOTO,
-        payload: course
+        payload: {
+            course
+        }
     }
 }
 

@@ -121,3 +121,13 @@ $padding: 10px 20px;
 .visibility-child * {
   visibility: visible !important;
 }
+
+/*
+ * React-spinkit
+ */
+.sk-fade-in {
+  animation: sk-fade-in .3s !important;
+}
+/*
+ * END React-spinkit
+ */

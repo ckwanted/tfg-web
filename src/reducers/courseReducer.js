@@ -6,6 +6,7 @@ const INITIAL_STATE = {
     total: 0,
     data: [],
     loading: false,
+    loadingPhoto: false,
     userPayments: [],
     my_vote: null,
 
@@ -157,17 +158,23 @@ export default (state = INITIAL_STATE, action) => {
         case actionType.CHANGE_COURSE_PHOTO:
 
             let copyData = state.data
+            let copyCourse = state.course
 
             for(let i = 0; i < copyData.length; i++) {
-                if(copyData[i].id === action.payload.id) {
-                    copyData[i] = action.payload
+
+                if(copyData[i].id === action.payload.course.id) {
+                    copyData[i].photo = action.payload.course.photo
                     break
                 }
             }
 
+            copyCourse.photo = action.payload.course.photo
+
             return {
                 ...state,
-                course: action.payload
+                data: copyData,
+                course: copyCourse,
+                loadingPhoto: false,
             }
 
         default:

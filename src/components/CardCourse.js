@@ -43,7 +43,17 @@ class CardCourse extends Component {
             <div className="card-course bg-white position-r mb-2" style={{border: '1px solid #eee'}}>
 
                 <Link to={(isPay) ? `courses/${SLUG}` : '#'} className="d-block">
-                    <img className="card-course__img" src={`${PHOTO}`} alt={COURSE_NAME}/>
+
+                    <div className="card-course__img" style={{
+                            backgroundImage: `url("${PHOTO}")`,
+                            backgroundSize: 'cover',
+                            backgroundRepeat: 'no-repeat',
+                            display: 'block',
+                            width: '100%',
+                            height: '166px',
+                            clear: 'both',
+                        }}
+                    />
 
                     <div className="p-20px">
 
