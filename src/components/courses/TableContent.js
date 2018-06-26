@@ -40,6 +40,7 @@ class TableContent extends Component {
                             onClick={() => {
                                 this.props.dispatch(actionCreators.courseChangeValue("id", section.id, 'sectionSelected'))
                                 this.props.dispatch(actionCreators.courseChangeValue("title", section.title, 'sectionSelected'))
+                                this.props.dispatch(actionCreators.courseChangeValue("resourcesLength", section.resources.length, 'sectionSelected'))
                                 this.props.dispatch(actionCreators.courseChangeValue("dialogEditSection", true))
                             }}
                         />

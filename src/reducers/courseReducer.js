@@ -14,7 +14,8 @@ const INITIAL_STATE = {
     sectionSelectedTitle: '',
     sectionSelected: {
         title: '',
-        id: null
+        id: null,
+        resourcesLength: 0,
     },
 
     q: '',
@@ -122,6 +123,19 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 course: updateCourseSection
+            }
+
+        case actionType.REMOVE_SECTION:
+
+            let removeCourseSection = state.course
+            let removeSection = removeCourseSection.sections
+
+            removeSection = removeSection.filter(section => section.id !== action.payload)
+            removeCourseSection.sections = removeSection
+
+            return {
+                ...state,
+                course: removeCourseSection
             }
 
         case actionType.CLEAR_COURSE_FILTER:

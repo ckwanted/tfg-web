@@ -125,6 +125,10 @@ class Api {
         })
     }
 
+    removeSection(section_id) {
+        return this.axios.delete(`/courses/section/${section_id}`)
+    }
+
 }
 
 export default Api

@@ -138,7 +138,6 @@ export const addNewSectionSuccess = (section) => {
     }
 }
 
-//TODO: CHECK
 export const editSection = (section_id, title) => {
     return (dispatch, getState) => {
 
@@ -158,6 +157,30 @@ export const editSectionSuccess = (section) => {
     return {
         type: actionType.EDIT_SECTION,
         payload: section
+    }
+}
+
+export const removeSection = (section_id) => {
+    return (dispatch, getState) => {
+
+        const { authReducer: {access_token} } = getState();
+
+        new Api(access_token).removeSection(section_id).then(response => {
+            dispatch(removeSectionSuccess(section_id))
+            dispatch(courseChangeValue("dialogEditSection", false))
+            document.body.removeAttribute("style")
+        }).catch(error => {
+            dispatch(courseChangeValue("dialogEditSection", false))
+            document.body.removeAttribute("style")
+        })
+
+    }
+}
+
+export const removeSectionSuccess = (section_id) => {
+    return {
+        type: actionType.REMOVE_SECTION,
+        payload: section_id
     }
 }
 

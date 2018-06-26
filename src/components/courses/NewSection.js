@@ -9,6 +9,7 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import TextField from '@material-ui/core/TextField'
+import DeleteIcon from '@material-ui/icons/Delete'
 
 import {Constant} from '../../commons'
 
@@ -55,7 +56,16 @@ class NewSection extends Component {
 
 
                         <DialogTitle id="form-dialog-title">
+                            <div className="d-flex">
                             {TYPE === Constant.CREATE ? 'Crear nueva sección' : 'Editar Sección'}
+                            {TYPE === Constant.EDIT && sectionSelected.resourcesLength === 0 ?
+                                <div className="ml-auto cursor-pointer">
+                                    <DeleteIcon
+                                        onClick={(e) => this.props.dispatch(actionCreators.removeSection(sectionSelected.id))}
+                                    />
+                                </div>
+                                : null}
+                            </div>
                         </DialogTitle>
                         <DialogContent>
 
