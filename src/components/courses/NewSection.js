@@ -20,13 +20,12 @@ class NewSection extends Component {
         if(TYPE === Constant.CREATE) this.props.dispatch(actionCreators.courseChangeValue("dialogNewSection", false))
         else this.props.dispatch(actionCreators.courseChangeValue("dialogEditSection", false))
 
-        this.props.dispatch(actionCreators.courseChangeValue("sectionSelectedTitle", ''))
+        this.props.dispatch(actionCreators.courseChangeValue("title", '', "sectionSelected"))
     }
 
     render() {
 
-        let {course, dialogNewSection, dialogEditSection, sectionSelectedTitle} = this.props.courses
-
+        let {course, dialogNewSection, dialogEditSection, sectionSelected} = this.props.courses
 
         const TYPE = dialogEditSection ? Constant.EDIT : Constant.CREATE
 
@@ -44,10 +43,10 @@ class NewSection extends Component {
                             e.preventDefault()
 
                             if(TYPE === Constant.CREATE) {
-                                this.props.dispatch(actionCreators.addNewSection(course.id, sectionSelectedTitle))
+                                this.props.dispatch(actionCreators.addNewSection(course.id, sectionSelected.title))
                             }
                             else {
-
+                                this.props.dispatch(actionCreators.editSection(sectionSelected.id, sectionSelected.title))
                             }
 
                             this._handleClose(TYPE)
@@ -70,8 +69,8 @@ class NewSection extends Component {
                                 label="Nombre"
                                 type="text"
                                 fullWidth
-                                value={sectionSelectedTitle}
-                                onChange={(e) => this.props.dispatch(actionCreators.courseChangeValue("sectionSelectedTitle", e.target.value))}
+                                value={sectionSelected.title}
+                                onChange={(e) => this.props.dispatch(actionCreators.courseChangeValue("title", e.target.value, "sectionSelected"))}
                                 required
                             />
 

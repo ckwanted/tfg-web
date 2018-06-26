@@ -119,6 +119,12 @@ class Api {
         })
     }
 
+    editSection(section_id, title) {
+        return this.axios.put(`/courses/section/${section_id}`, {
+            title
+        })
+    }
+
 }
 
 export default Api

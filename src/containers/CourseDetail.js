@@ -93,7 +93,12 @@ class CourseDetail extends Component {
                             {(this._isOwnerOfTheCourse(COURSE)) ? (
                                 <div>
 
-                                    <Button variant="fab" mini color="secondary" aria-label="add" onClick={() => this.props.dispatch(actionCreators.courseChangeValue("dialogEditCourse", true))}>
+                                    <Button
+                                        variant="fab"
+                                        mini
+                                        color="secondary"
+                                        aria-label="add"
+                                        onClick={() => this.props.dispatch(actionCreators.courseChangeValue("dialogEditCourse", true))}>
                                         <EditIcon style={{ fontSize: 14 }} />
                                     </Button>
 
@@ -158,7 +163,13 @@ class CourseDetail extends Component {
                     <div className="d-flex align-items-center">
                         <h5 className="mr-3">Añadir Nueva Sección</h5>
 
-                        <Button variant="fab" mini color="secondary" aria-label="add" onClick={(e) => this.props.dispatch(actionCreators.courseChangeValue("dialogNewSection", true))}>
+                        <Button
+                            variant="fab"
+                            mini
+                            color="secondary"
+                            aria-label="add"
+                            onClick={(e) => this.props.dispatch(actionCreators.courseChangeValue("dialogNewSection", true))}
+                        >
                             <AddIcon />
                         </Button>
 

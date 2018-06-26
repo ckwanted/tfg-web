@@ -83,12 +83,13 @@ export const searchCourse = (clear = false) => {
     }
 }
 
-export const courseChangeValue = (key, value) => {
+export const courseChangeValue = (key, value, jsonKey = null) => {
     return {
         type: actionType.COURSE_CHANGE_VALUE,
         payload: {
             key,
-            value
+            value,
+            jsonKey
         }
     }
 }
@@ -133,6 +134,29 @@ export const addNewSection = (course_id, title) => {
 export const addNewSectionSuccess = (section) => {
     return {
         type: actionType.ADD_NEW_SECTION,
+        payload: section
+    }
+}
+
+//TODO: CHECK
+export const editSection = (section_id, title) => {
+    return (dispatch, getState) => {
+
+        const { authReducer: {access_token} } = getState();
+
+        new Api(access_token).editSection(section_id, title).then(response => {
+            const {course_section} = response.data
+            dispatch(editSectionSuccess(course_section))
+        }).catch(error => {
+
+        })
+
+    }
+}
+
+export const editSectionSuccess = (section) => {
+    return {
+        type: actionType.EDIT_SECTION,
         payload: section
     }
 }

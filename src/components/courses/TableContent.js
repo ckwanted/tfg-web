@@ -38,7 +38,8 @@ class TableContent extends Component {
                             className="position-relative ml-1 cursor-pointer"
                             style={{ fontSize: 14, top: '5px' }}
                             onClick={() => {
-                                this.props.dispatch(actionCreators.courseChangeValue("sectionSelectedTitle", section.title))
+                                this.props.dispatch(actionCreators.courseChangeValue("id", section.id, 'sectionSelected'))
+                                this.props.dispatch(actionCreators.courseChangeValue("title", section.title, 'sectionSelected'))
                                 this.props.dispatch(actionCreators.courseChangeValue("dialogEditSection", true))
                             }}
                         />

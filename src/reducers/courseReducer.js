@@ -12,6 +12,10 @@ const INITIAL_STATE = {
     course: {},
     modalData: null,
     sectionSelectedTitle: '',
+    sectionSelected: {
+        title: '',
+        id: null
+    },
 
     q: '',
     ckFrontEnd: false,
@@ -56,7 +60,19 @@ export default (state = INITIAL_STATE, action) => {
                 loading: false
             }
         case actionType.COURSE_CHANGE_VALUE:
-            const {key, value} = action.payload
+            const {key, value, jsonKey} = action.payload
+
+            if(jsonKey) {
+                let json = state[jsonKey]
+                return {
+                    ...state,
+                    [jsonKey]: {
+                        ...json,
+                        [key]: value
+                    }
+                }
+            }
+
             return {
                 ...state,
                 [key]: value
@@ -91,6 +107,21 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 course: course
+            }
+
+        case actionType.EDIT_SECTION:
+            let updateCourseSection = state.course
+            let updateSection = updateCourseSection.sections
+
+            for(let i = 0; i < updateSection.length; i++) {
+                if(updateSection[i].id === action.payload.id) {
+                    updateSection[i] = action.payload
+                    break
+                }
+            }
+            return {
+                ...state,
+                course: updateCourseSection
             }
 
         case actionType.CLEAR_COURSE_FILTER:
