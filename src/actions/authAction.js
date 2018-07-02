@@ -2,6 +2,8 @@ import * as actionType from './types'
 import {Api} from '../commons'
 import iziToast from 'izitoast'
 
+import { history } from '../store'
+
 export const authLogin = () => {
     return (dispatch, getState) => {
 
@@ -47,7 +49,6 @@ export const authRegister = () => {
         new Api().register(register_name, register_last_name, register_email, register_password).then(response => {
             dispatch(authRegisterSuccess())
             dispatch(authChangeValue("loading", false))
-            //TODO: check error
             iziToast.success({
                 title: '',
                 message: 'Usuario creado correctamente ...',
@@ -72,6 +73,13 @@ export const authRegisterSuccess = () => {
 }
 
 export const logOut = () => {
+    return (dispatch) => {
+        history.replace('/')
+        dispatch(kickOut())
+    }
+}
+
+export const kickOut = () => {
     return {
         type: actionType.LOG_OUT
     }

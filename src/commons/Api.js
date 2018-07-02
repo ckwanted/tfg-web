@@ -79,7 +79,6 @@ class Api {
         return this.axios.get(`/courses/${slug}`)
     }
 
-    //TODO: check
     updateCourse(id, name, description, category, skill_level, price) {
         return this.axios.put(`/courses/${id}`, {
             name,

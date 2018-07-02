@@ -35,9 +35,14 @@ import EditIcon from '@material-ui/icons/Edit'
 class CourseDetail extends Component {
 
     componentWillMount() {
-        //TODO: redirect if dont by this course
-        const {slug} = this.props.match.params
-        this.props.dispatch(actionCreators.fetchCourse(slug))
+        const AUTH = this.props.auth
+
+        if(!AUTH.access_token) this.props.history.push('/courses')
+        else {
+            const {slug} = this.props.match.params
+            this.props.dispatch(actionCreators.fetchCourse(slug))
+        }
+
     }
 
     _renderLoading = () => {
@@ -55,7 +60,7 @@ class CourseDetail extends Component {
     _isOwnerOfTheCourse = (COURSE) => {
         const AUTH = this.props.auth
 
-        return AUTH.rol === Constant.ADMIN || (AUTH.user.id === COURSE.id);
+        return AUTH.rol === Constant.ADMIN || ( (AUTH.user) ? AUTH.user.id : -1 === COURSE.id);
 
     }
 

@@ -17,10 +17,9 @@ import faCoffee from '@fortawesome/fontawesome-free-solid/faCoffee'
 /*
  * REDUX
  */
-import { store, persistor } from './store'
+import { store, persistor, history } from './store'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
-import createHistory from 'history/createBrowserHistory'
 
 import { PersistGate } from 'redux-persist/integration/react'
 
@@ -62,9 +61,6 @@ const theme = createMuiTheme({
 //---------------------------------------------------------------------------------
 
 fontawesome.library.add(brands, faCheckSquare, faCoffee)
-
-// Create a history of your choosing (we're using a browser history in this case)
-const history = createHistory()
 
 class App extends Component {
 
