@@ -2,6 +2,7 @@ import * as actionType from './types'
 import {Api} from '../commons'
 import iziToast from 'izitoast'
 
+import {fetchAllCourses} from './index'
 import { history } from '../store'
 
 export const authLogin = () => {
@@ -16,6 +17,7 @@ export const authLogin = () => {
 
             dispatch(authLoginSuccess(access_token, user, rol))
             dispatch(authChangeValue("loading", false))
+            dispatch(fetchAllCourses())
         }).catch(error => {
             iziToast.error({
                 title: '',
@@ -76,6 +78,7 @@ export const logOut = () => {
     return (dispatch) => {
         history.replace('/')
         dispatch(kickOut())
+        dispatch(fetchAllCourses())
     }
 }
 
