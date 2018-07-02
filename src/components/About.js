@@ -24,9 +24,8 @@ class About extends Component {
 
                             <div className="separator" />
 
-                            <p className="color-gray f-s-14px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas voluptatem maiores eaque similique non distinctio voluptates perspiciatis omnis, repellendus ipsa aperiam, laudantium voluptatum nulla?.</p>
-                            <p className="color-gray f-s-14px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas voluptatem maiores eaque similique non distinctio voluptates perspiciatis omnis, repellendus ipsa aperiam, laudantium voluptatum nulla?.</p>
-                            <p className="color-gray f-s-14px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas voluptatem maiores eaque similique non distinctio voluptates perspiciatis omnis, repellendus ipsa aperiam, laudantium voluptatum nulla?.</p>
+                            <p className="color-gray f-s-14px">En la actualidad, los cursos online suponen una de las herramientas más útiles tanto para aprender como para enseñar, su uso está extendido en todos los ámbitos, desde el profesional hasta el universitario o el ocio.</p>
+                            <p className="color-gray f-s-14px">ULPGC COURSE es una plataforma de enseñanza online asociada a la universidad de las Palmas de Gran Canaria. Esta plataforma ofrece cursos online para aquellas personas que quieran adquirir nuevos conocimientos o mejorar los conocimientos existentes.</p>
 
                         </div>
 

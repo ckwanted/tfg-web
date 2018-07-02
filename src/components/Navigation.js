@@ -79,7 +79,7 @@ class Navigation extends Component {
                                 <Link to="/courses" className={location.pathname.indexOf('/courses') !== -1 ? 'active' : ''}>Cursos</Link>
                             </li>
                             <li className="p-l-10px p-r-10px">
-                                <Link to="/" className={location.pathname === '/teachers' ? 'active' : ''}>Profesores</Link>
+                                <Link to="teachers" className={location.pathname === '/teachers' ? 'active' : ''}>Profesores</Link>
                             </li>
                             <li>
                                 <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>Sobre Nosotros</Link>
