@@ -69,18 +69,19 @@ class Footer extends Component {
 
                                 <div className="row">
 
-                                    <div className="col-sm-6">
-                                        <a href="http://pct.ulpgc.es">
-                                            <span className="fpct" />
+                                    <div className="col-sm-12">
+                                        <a href="https://www.linkedin.com/in/mario-pe%C3%B1ate-fari%C3%B1as-0a577a4a/">
+                                            <div
+                                                style={{
+                                                    width: '150px',
+                                                    height: '150px',
+                                                    backgroundImage: `url(/images/logo-mario.png)`,
+                                                    backgroundSize: 'cover',
+                                                    backgroundRepeat: 'no-repeat',
+                                                }}
+                                            />
                                         </a>
                                     </div>
-
-                                    <div className="col-sm-6">
-                                        <a href="http://www.universia.es/index.htm">
-                                            <span className="universia" />
-                                        </a>
-                                    </div>
-
 
                                 </div>
                             </div>
