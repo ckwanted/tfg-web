@@ -31,7 +31,9 @@ import {
     Course,
     CourseDetail,
     AboutUs,
-    Cart
+    Cart,
+    SendResetPassword,
+    ResetPassword
 } from './containers'
 
 /*
@@ -83,6 +85,9 @@ class App extends Component {
                                 <Route path="/cart" component={Cart} />
 
                                 <Route path="/about" component={AboutUs} />
+
+                                <Route path="/password/email" component={SendResetPassword} />
+                                <Route path="/password/reset/:token/:email" component={ResetPassword} />
 
                             </div>
                         </MuiThemeProvider>

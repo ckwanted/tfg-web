@@ -110,3 +110,35 @@ export const authChangeValue = (key, value) => {
         }
     }
 }
+
+export const sendPasswordEmail = (email) => {
+    return (dispatch) => {
+
+        new Api().sendPasswordEmail(email).then(response => {
+            history.replace('/')
+            iziToast.success({
+                title: '',
+                message: 'Revisa tu email ...',
+                position: 'topRight'
+            })
+        }).catch(error => {
+
+        })
+    }
+}
+
+export const passwordReset = (token, email, password, password_confirmation) => {
+    return (dispatch) => {
+
+        new Api().passwordReset(token, email, password, password_confirmation).then(response => {
+            history.replace('/')
+            iziToast.success({
+                title: '',
+                message: 'Contraseña cambiada',
+                position: 'topRight'
+            })
+        }).catch(error => {
+
+        })
+    }
+}

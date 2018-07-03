@@ -28,7 +28,7 @@ class Header extends Component {
                             Mis Cursos
                         </Link>
 
-                        <Link to="#" className="d-block cursor-pointer" onClick={() => alert("Mi perfil")}>
+                        <Link to="/password/email" className="d-block cursor-pointer">
                             Cambiar Contraseña
                         </Link>
 

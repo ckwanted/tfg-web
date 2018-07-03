@@ -2,13 +2,30 @@ import React, { Component } from 'react'
 
 import {connect} from 'react-redux'
 import * as actionCreators from '../../actions'
+import iziToast from 'izitoast'
 
 class Register extends Component {
 
     _handleSubmit = (e) =>  {
         e.preventDefault()
 
-        this.props.dispatch(actionCreators.authRegister())
+        const AUTH = this.props.auth
+
+        if(AUTH.password !== AUTH.password_confirmation) {
+            iziToast.error({
+                title: '',
+                message: 'Las contraseñas no coinciden',
+                position: 'topRight'
+            })
+        }
+        else if(AUTH.password < 6) {
+            iziToast.error({
+                title: '',
+                message: 'Las contraseñas debe tener como mínimo 6 caracteres',
+                position: 'topRight'
+            })
+        }
+        else this.props.dispatch(actionCreators.authRegister())
     }
 
     render() {

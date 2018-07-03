@@ -128,6 +128,21 @@ class Api {
         return this.axios.delete(`/courses/section/${section_id}`)
     }
 
+    sendPasswordEmail(email) {
+        return this.axios.post(`/password/email`, {
+            email
+        })
+    }
+
+    passwordReset(token, email, password, password_confirmation) {
+        return this.axios.post(`/password/reset`, {
+            token,
+            email,
+            password,
+            password_confirmation
+        })
+    }
+
 }
 
 export default Api
