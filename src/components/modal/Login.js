@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import * as actionCreators from '../../actions'
 
+import { Link } from 'react-router-dom'
+
 class Login extends Component {
 
     _handleSubmit = (e) =>  {
@@ -43,14 +45,21 @@ class Login extends Component {
                         Contraseña
                         <input
                             type="password"
-                            className="input w-100"
+                            className="input w-100 m-0px"
                             value={AUTH.password}
                             onChange={(e) => authChangeValue("password", e.target.value)}
                             required
                         />
                     </label>
 
-                    <button type="submit" className="button w-100" disabled={AUTH.loading}>
+                    <Link
+                        to="/password/email" className="d-block cursor-pointer f-s-12px"
+                        onClick={(e) => this.props.closeModal() }
+                    >
+                        ¿Has olvidado los datos de la cuenta?
+                    </Link>
+
+                    <button type="submit" className="button w-100 mt-3" disabled={AUTH.loading}>
                         {(!AUTH.loading) ? 'Iniciar sesión' : <i className="fas fa-circle-notch fa-spin" aria-hidden="true" />}
                     </button>
 
