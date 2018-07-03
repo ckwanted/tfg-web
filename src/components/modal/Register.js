@@ -11,21 +11,21 @@ class Register extends Component {
 
         const AUTH = this.props.auth
 
-        if(AUTH.password !== AUTH.password_confirmation) {
+        if(AUTH.register_password !== AUTH.register_re_password) {
             iziToast.error({
                 title: '',
                 message: 'Las contraseñas no coinciden',
                 position: 'topRight'
             })
         }
-        else if(AUTH.password < 6) {
+        else if(AUTH.register_password.length < 6) {
             iziToast.error({
                 title: '',
                 message: 'Las contraseñas debe tener como mínimo 6 caracteres',
                 position: 'topRight'
             })
         }
-        else this.props.dispatch(actionCreators.authRegister())
+        else this.props.authRegister()
     }
 
     render() {
