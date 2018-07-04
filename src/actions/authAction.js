@@ -48,7 +48,7 @@ export const authRegister = () => {
 
         dispatch(authChangeValue("loading", true))
 
-        new Api().register(register_name, register_last_name, register_email, register_password).then(response => {
+        new Api().register(register_name, register_last_name, register_email, register_password).then(({data}) => {
             dispatch(authRegisterSuccess())
             dispatch(authChangeValue("loading", false))
             iziToast.success({
