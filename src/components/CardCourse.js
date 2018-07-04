@@ -5,6 +5,8 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import * as actionCreators from '../actions'
 
+import {Functions} from '../commons'
+
 class CardCourse extends Component {
 
     _isPay = (ITEM) => {
@@ -72,7 +74,7 @@ class CardCourse extends Component {
                             color2={'#ffd700'}
                         />
 
-                        <p className="color-gray f-s-14px m-t-20px">{ITEM.description}</p>
+                        <p className="color-gray f-s-14px m-t-20px">{Functions.shortText(ITEM.description)}</p>
                     </div>
                 </Link>
 
