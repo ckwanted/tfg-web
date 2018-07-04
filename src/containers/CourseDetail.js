@@ -295,7 +295,7 @@ class CourseDetail extends Component {
         return (
             <MasterTemplate>
 
-                <section>
+                <section style={{minHeight: '70vh'}}>
 
                     {this._renderLoading()}
                     {(!COURSES.loading) ? this._renderContent() : null}

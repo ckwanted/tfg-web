@@ -143,6 +143,10 @@ class Api {
         })
     }
 
+    getTeachers() {
+        return this.axios.get('/teachers')
+    }
+
 }
 
 export default Api

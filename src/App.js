@@ -33,7 +33,8 @@ import {
     AboutUs,
     Cart,
     SendResetPassword,
-    ResetPassword
+    ResetPassword,
+    Teacher
 } from './containers'
 
 /*
@@ -80,7 +81,7 @@ class App extends Component {
 
                                 <Route exact path="/courses" component={Course} />
                                 <Route path="/courses/:slug" component={CourseDetail} />
-                                <Route path="/teachers" component={Home} />
+                                <Route path="/teachers" component={Teacher} />
 
                                 <Route path="/cart" component={Cart} />
 
