@@ -24,9 +24,15 @@ class Header extends Component {
                     <span className="my-menu__title">Mi perfil</span>
                     <div className="my-menu__submenu">
 
-                        <Link to="#" className="d-block cursor-pointer" onClick={() => alert("Mi perfil")}>
-                            Mis Cursos
-                        </Link>
+                        {Constant.ADMIN ?
+                            <Link to="/users" className="d-block cursor-pointer">
+                                Usuarios
+                            </Link>
+                            :
+                            <Link to="/my/course" className="d-block cursor-pointer">
+                                Mis Cursos
+                            </Link>
+                        }
 
                         <Link to="/password/email" className="d-block cursor-pointer">
                             Cambiar Contraseña

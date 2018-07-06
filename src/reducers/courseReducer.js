@@ -10,6 +10,7 @@ const INITIAL_STATE = {
     userPayments: [],
     my_vote: null,
 
+    myCourses: {},
     course: {},
     modalData: null,
     sectionSelectedTitle: '',
@@ -153,6 +154,13 @@ export default (state = INITIAL_STATE, action) => {
                 ckBeginner: false,
                 ckIntermediate: false,
                 ckAdvanced: false,
+            }
+
+        case actionType.MY_COURSE:
+
+            return {
+                ...state,
+                myCourses: action.payload
             }
 
         case actionType.CHANGE_COURSE_PHOTO:

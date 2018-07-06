@@ -10,6 +10,10 @@ import {Functions} from '../commons'
 class CardCourse extends Component {
 
     _isPay = (ITEM) => {
+
+        // Own of this course
+        if(ITEM.id === this.props.auth.user.id) return true
+
         const {userPayments} = this.props.courses
 
         for(let i = 0; i < userPayments.length; i++) {
@@ -23,12 +27,24 @@ class CardCourse extends Component {
         const CART = this.props.cart
 
         if(this._isPay(ITEM)) return null;
+        let data
 
         if(CART.courses[ITEM.id] === undefined) {
-            return <i className="cart p-20px fas fa-cart-arrow-down" onClick={(e) => this.props.dispatch(actionCreators.addToCart(ITEM.id, ITEM))}/>
+            data =  <i className="cart p-20px fas fa-cart-arrow-down" onClick={(e) => this.props.dispatch(actionCreators.addToCart(ITEM.id, ITEM))}/>
+        }
+        else {
+            data = <span className="p-20px d-inline-block color-blue-dark f-s-12px">en el carrito</span>
         }
 
-        return <span className="p-20px d-inline-block color-blue-dark f-s-12px">en el carrito</span>
+        const SHOW_CART = (this.props.showCart !== undefined) ? this.props.showCart : true
+
+        if(!SHOW_CART) return null
+
+        return(
+            <div className="text-right">
+                {data}
+            </div>
+        )
     }
 
     render() {
@@ -39,12 +55,14 @@ class CardCourse extends Component {
         const PHOTO = ITEM.photo
         const STARS = Number(ITEM.star)
 
-        let isPay = this._isPay(ITEM)
+        let isPay = this.props.isPay || this._isPay(ITEM)
+
+        let isStar = (this.props.isStar !== undefined) ? this.props.isStar : true
 
         return (
             <div className="card-course bg-white position-r mb-2" style={{border: '1px solid #eee'}}>
 
-                <Link to={(isPay) ? `courses/${SLUG}` : '#'} className="d-block">
+                <Link to={(isPay) ? `/courses/${SLUG}` : '#'} className="d-block">
 
                     <div className="card-course__img" style={{
                             backgroundImage: `url("${PHOTO}")`,
@@ -66,21 +84,22 @@ class CardCourse extends Component {
                             {ITEM.price === 0 ? 'Gratis' : `${ITEM.price} €`}
                         </div>
 
-                        <ReactStars
-                            edit={false}
-                            count={5}
-                            value={STARS}
-                            size={14}
-                            color2={'#ffd700'}
-                        />
+                        {isStar ?
+                            <ReactStars
+                                edit={false}
+                                count={5}
+                                value={STARS}
+                                size={14}
+                                color2={'#ffd700'}
+                            />
+                            : null
+                        }
 
                         <p className="color-gray f-s-14px m-t-20px">{Functions.shortText(ITEM.description)}</p>
                     </div>
                 </Link>
 
-                <div className="text-right">
-                    {this._renderStatus(ITEM)}
-                </div>
+                {this._renderStatus(ITEM)}
 
             </div>
         )
@@ -96,7 +115,8 @@ const styles = {
 const mapStateToProps = (state) => {
     return {
         cart: state.cartReducer,
-        courses: state.courseReducer
+        courses: state.courseReducer,
+        auth: state.authReducer,
     }
 }
 

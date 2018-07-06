@@ -226,11 +226,34 @@ export const changeCoursePhoto = (course_id, file) => {
 
             },
             error(e) {
-                console.error(e.message)
                 dispatch(courseChangeValue("loadingPhoto", false))
             },
         })
 
+    }
+}
+
+export const myCourse = () => {
+    return (dispatch, getState) => {
+
+        const {authReducer: {access_token}} = getState()
+        dispatch(courseChangeValue("loading", true))
+
+        new Api(access_token).myCourse().then(({data}) => {
+            dispatch(myCourseSuccess(data))
+            dispatch(courseChangeValue("loading", false))
+        }).catch(error => {
+            dispatch(myCourseSuccess({}))
+            dispatch(courseChangeValue("loading", false))
+        })
+
+    }
+}
+
+export const myCourseSuccess = (data) => {
+    return {
+        type: actionType.MY_COURSE,
+        payload: data
     }
 }
 

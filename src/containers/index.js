@@ -6,6 +6,7 @@ import Cart from './Cart'
 import SendResetPassword from './SendResetPassword'
 import ResetPassword from './ResetPassword'
 import Teacher from './Teacher'
+import MyCourse from './MyCourse'
 
 export {Home}
 export {Course}
@@ -15,3 +16,4 @@ export {Cart}
 export {SendResetPassword}
 export {ResetPassword}
 export {Teacher}
+export {MyCourse}

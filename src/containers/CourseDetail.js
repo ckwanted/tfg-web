@@ -89,7 +89,7 @@ class CourseDetail extends Component {
                                     onChange={(vote) => this.props.dispatch(actionCreators.voteCourse(COURSE.id, vote, slug))}
                                 />
 
-                                <span className="ml-1 f-s-12px">{COURSE.star} ({COURSE.votes} valoraciones)</span>
+                                <span className="ml-1 f-s-12px">{COURSE.star} ({COURSE.votes ? COURSE.votes : 0} valoraciones)</span>
 
                             </div>
 
