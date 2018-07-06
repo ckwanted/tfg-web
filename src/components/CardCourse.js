@@ -5,16 +5,17 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import * as actionCreators from '../actions'
 
-import {Functions} from '../commons'
+import {Functions, Constant} from '../commons'
 
 class CardCourse extends Component {
 
     _isPay = (ITEM) => {
 
         const userId = this.props.auth.user ? this.props.auth.user.id : null
+        const rol = this.props.auth.rol
 
         // Own of this course
-        if(ITEM.id === userId) return true
+        if(ITEM.id === userId || rol === Constant.ADMIN) return true
 
         const {userPayments} = this.props.courses
 

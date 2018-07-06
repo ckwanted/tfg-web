@@ -37,7 +37,7 @@ class MyCourse extends Component {
         let teacherWrapper
         let teacherItem
 
-        if(MY_COURSES) { //&& AUTH.rol === Constant.TEACHER
+        if(MY_COURSES && AUTH.rol === Constant.TEACHER) {
             teacherItem = MY_COURSES.map(course => {
                 return(
                     <div key={course.id} className="col-md-3">
