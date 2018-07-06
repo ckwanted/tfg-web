@@ -109,6 +109,7 @@ class Header extends Component {
     }
 
     render() {
+        const AUTH = this.props.auth
 
         return (
             <header className="header">
@@ -144,13 +145,21 @@ class Header extends Component {
                                         {this._renderMyProfile()}
                                     </li>
 
-                                    <li className="p-l-5px p-r-5px">
-                                        /
-                                    </li>
+                                    {AUTH.rol !== Constant.ADMIN ?
+                                        <li className="p-l-5px p-r-5px">
+                                            /
+                                        </li>
+                                        :
+                                        null
+                                    }
 
-                                    <li className="p-l-5px p-r-5px">
-                                        {this._renderCart()}
-                                    </li>
+                                    {AUTH.rol !== Constant.ADMIN ?
+                                        <li className="p-l-5px p-r-5px">
+                                            {this._renderCart()}
+                                        </li>
+                                        :
+                                        null
+                                    }
 
                                 </ul>
 
