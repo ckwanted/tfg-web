@@ -38,13 +38,16 @@ class MyCourse extends Component {
         let teacherItem
 
         if(MY_COURSES && AUTH.rol === Constant.TEACHER) {
-            teacherItem = MY_COURSES.map(course => {
-                return(
-                    <div key={course.id} className="col-md-3">
-                        <CardCourse item={course} showCart={false} isStar={false} />
-                    </div>
-                )
-            })
+            if(MY_COURSES.length === 0) teacherItem = <p className="col-md-12">No tienes cursos</p>
+            else {
+                teacherItem = MY_COURSES.map(course => {
+                    return(
+                        <div key={course.id} className="col-md-3">
+                            <CardCourse item={course} showCart={false} isStar={false} />
+                        </div>
+                    )
+                })
+            }
 
             teacherWrapper = <div className="row pt-5"><h4 className="col-md-12 mb-3">Mis Cursos:</h4>{teacherItem}</div>
         }
@@ -55,11 +58,14 @@ class MyCourse extends Component {
         let alumnItem
 
         if(PAY_COURSES) {
-            alumnItem = PAY_COURSES.map(course => (
-                <div key={course.id} className="col-md-3">
-                    <CardCourse item={course} showCart={false} isPay={true} isStar={false} />
-                </div>
-            ))
+            if(PAY_COURSES.length === 0) alumnItem = <p className="col-md-12">No tienes cursos</p>
+            else {
+                alumnItem = PAY_COURSES.map(course => (
+                    <div key={course.id} className="col-md-3">
+                        <CardCourse item={course} showCart={false} isPay={true} isStar={false} />
+                    </div>
+                ))
+            }
 
             alumnWrapper = <div className="row py-5"><h4 className="col-md-12 mb-3">Cursos Comprados:</h4>{alumnItem}</div>
         }

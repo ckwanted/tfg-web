@@ -24,7 +24,7 @@ class Header extends Component {
                     <span className="my-menu__title">Mi perfil</span>
                     <div className="my-menu__submenu">
 
-                        {Constant.ADMIN ?
+                        {AUTH.rol === Constant.ADMIN ?
                             <Link to="/users" className="d-block cursor-pointer">
                                 Usuarios
                             </Link>
