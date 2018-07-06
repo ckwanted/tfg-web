@@ -8,6 +8,7 @@ import ResetPassword from './ResetPassword'
 import Teacher from './Teacher'
 import MyCourse from './MyCourse'
 import Users from './Users'
+import NotFound from './NotFound'
 
 export {Home}
 export {Course}
@@ -19,3 +20,4 @@ export {ResetPassword}
 export {Teacher}
 export {MyCourse}
 export {Users}
+export {NotFound}

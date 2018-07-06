@@ -36,7 +36,8 @@ import {
     ResetPassword,
     Teacher,
     MyCourse,
-    Users
+    Users,
+    NotFound
 } from './containers'
 
 /*
@@ -93,6 +94,8 @@ class App extends Component {
 
                                 <Route path="/password/email" component={SendResetPassword} />
                                 <Route path="/password/reset/:token/:email" component={ResetPassword} />
+
+                                <Route path="*" component={NotFound}/>
 
                             </div>
                         </MuiThemeProvider>

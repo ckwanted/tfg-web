@@ -117,7 +117,7 @@ class Header extends Component {
                 <div className="container">
                     <div className="row">
 
-                        <div className="col-md-6">
+                        <div className="col-md-7">
                             <div className="widget">
 
                                 <ul className="p-0 header-contact">
@@ -136,7 +136,7 @@ class Header extends Component {
                             </div>
                         </div>
 
-                        <div className="col-md-6">
+                        <div className="col-md-5">
                             <div className="widget–auth">
 
                                 <ul className="p-0 m-0 header-auth">
