@@ -35,7 +35,8 @@ import {
     SendResetPassword,
     ResetPassword,
     Teacher,
-    MyCourse
+    MyCourse,
+    Users
 } from './containers'
 
 /*
@@ -88,7 +89,7 @@ class App extends Component {
 
                                 <Route path="/about" component={AboutUs} />
                                 <Route path="/my/course" component={MyCourse} />
-                                <Route path="/users" component={AboutUs} />
+                                <Route path="/users" component={Users} />
 
                                 <Route path="/password/email" component={SendResetPassword} />
                                 <Route path="/password/reset/:token/:email" component={ResetPassword} />
