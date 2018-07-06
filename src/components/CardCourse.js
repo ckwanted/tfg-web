@@ -11,8 +11,10 @@ class CardCourse extends Component {
 
     _isPay = (ITEM) => {
 
+        const userId = this.props.auth.user ? this.props.auth.user.id : null
+
         // Own of this course
-        if(ITEM.id === this.props.auth.user.id) return true
+        if(ITEM.id === userId) return true
 
         const {userPayments} = this.props.courses
 
