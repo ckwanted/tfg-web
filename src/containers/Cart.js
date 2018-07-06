@@ -11,6 +11,32 @@ import StripeCheckout from 'react-stripe-checkout'
 
 class Cart extends Component {
 
+    componentWillMount() {
+        this._checkCart()
+    }
+
+    componentWillReceiveProps() {
+        this._checkCart()
+    }
+
+    componentDidUpdate() {
+        this._checkCart()
+    }
+
+    _checkCart = () => {
+        const COURSES = this.props.cart.courses
+        const {userPayments} = this.props.courses
+
+        if(userPayments !== undefined && userPayments.length) {
+            userPayments.map(course_id => {
+                Object.keys(COURSES).forEach((key) => {
+                    if(key == course_id) this.props.dispatch(actionCreators.removeFromTheCart(key))
+                })
+            })
+        }
+
+    }
+
     _renderCart = () => {
         const COURSES = this.props.cart.courses
         let array = []
@@ -142,6 +168,7 @@ const mapStateToProps = (state) => {
     return {
         auth: state.authReducer,
         cart: state.cartReducer,
+        courses: state.courseReducer
     }
 }
 
