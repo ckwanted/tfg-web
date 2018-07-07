@@ -2,6 +2,7 @@ import {combineReducers} from 'redux'
 import {routerReducer} from 'react-router-redux'
 
 import authReducer from './authReducer'
+import userReducer from './userReducer'
 import courseReducer from './courseReducer'
 import cartReducer from './cartReducer'
 
@@ -22,6 +23,7 @@ const persistedAuthReducer = persistReducer(authReducerConfig, authReducer)
 const rootReducer =  combineReducers({
     routerReducer,
     authReducer: persistedAuthReducer,
+    userReducer,
     courseReducer,
     cartReducer
 })

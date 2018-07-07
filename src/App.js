@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import {
     Route,
+    Switch
 } from 'react-router-dom'
 
 import 'izitoast/dist/css/iziToast.min.css'
@@ -80,22 +81,24 @@ class App extends Component {
                         <MuiThemeProvider theme={theme}>
                             <div>
 
-                                <Route exact path="/" component={Home} />
+                                <Switch>
+                                    <Route exact path="/" component={Home} />
 
-                                <Route exact path="/courses" component={Course} />
-                                <Route path="/courses/:slug" component={CourseDetail} />
-                                <Route path="/teachers" component={Teacher} />
+                                    <Route exact path="/courses" component={Course} />
+                                    <Route path="/courses/:slug" component={CourseDetail} />
+                                    <Route path="/teachers" component={Teacher} />
 
-                                <Route path="/cart" component={Cart} />
+                                    <Route path="/cart" component={Cart} />
 
-                                <Route path="/about" component={AboutUs} />
-                                <Route path="/my/course" component={MyCourse} />
-                                <Route path="/users" component={Users} />
+                                    <Route path="/about" component={AboutUs} />
+                                    <Route path="/my/course" component={MyCourse} />
+                                    <Route path="/users" component={Users} />
 
-                                <Route path="/password/email" component={SendResetPassword} />
-                                <Route path="/password/reset/:token/:email" component={ResetPassword} />
+                                    <Route path="/password/email" component={SendResetPassword} />
+                                    <Route path="/password/reset/:token/:email" component={ResetPassword} />
 
-                                <Route path="*" component={NotFound}/>
+                                    <Route path="*" component={NotFound}/>
+                                </Switch>
 
                             </div>
                         </MuiThemeProvider>

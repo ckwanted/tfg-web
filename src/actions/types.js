@@ -11,6 +11,12 @@ export const CLOSE_MODAL = 'CLOSE_MODAL'
 export const AUTH_CHANGE_VALUE = 'AUTH_CHANGE_VALUE'
 
 /*
+ * USER
+ */
+export const FETCH_USER = 'FETCH_USER'
+export const USER_CHANGE_VALUE = 'USER_CHANGE_VALUE'
+
+/*
  * COURSE
  */
 export const FETCH_ALL_COURSES = 'FETCH_ALL_COURSES'

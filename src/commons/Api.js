@@ -30,8 +30,7 @@ class Api {
         this.axios.interceptors.response.use((response) => response, (error) => {
             switch(error.response.status) {
                 case 401:
-                    //TODO: Remove comment
-                    //store.dispatch(actionCreators.logOut())
+                    store.dispatch(actionCreators.logOut())
                     break
                 case 404:
                     iziToast.error({
@@ -149,6 +148,10 @@ class Api {
 
     myCourse() {
         return this.axios.get('/courses/myCourse')
+    }
+
+    fetchUsers() {
+        return this.axios.get('/users')
     }
 
 }
