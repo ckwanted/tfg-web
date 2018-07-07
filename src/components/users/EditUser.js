@@ -78,7 +78,7 @@ class EditUser extends Component {
                             <TextField
                                 autoFocus
                                 margin="dense"
-                                label="Apellido"
+                                label="Email"
                                 type="email"
                                 fullWidth
                                 value={userSelected.email}
@@ -87,7 +87,7 @@ class EditUser extends Component {
                             />
 
                             <FormControl className="mt-3">
-                                <InputLabel htmlFor="select-skill-level">Dificultad</InputLabel>
+                                <InputLabel htmlFor="select-skill-level">Rol</InputLabel>
                                 <NativeSelect
                                     inputProps={{id: 'select-rol'}}
                                     value={userSelected.rol}

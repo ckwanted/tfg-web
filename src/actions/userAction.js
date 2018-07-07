@@ -40,12 +40,21 @@ export const userUpdate = () => {
             userReducer: {userSelected}
         } = getState()
 
-        /*new Api(access_token).updateUser(userSelected).then(({data}) => {
-
+        new Api(access_token).updateUser(userSelected).then(({data}) => {
+            const {user} = data
+            dispatch(userUpdateSuccess(user))
         }).catch(error => {
 
-        })*/
+        })
 
+    }
+}
+
+export const userUpdateSuccess = (user) => {
+
+    return {
+        type: actionType.USER_UPDATE,
+        payload: user
     }
 }
 

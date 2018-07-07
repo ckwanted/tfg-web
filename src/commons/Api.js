@@ -155,7 +155,12 @@ class Api {
     }
 
     updateUser(user) {
-        return this.axios.put(`/users/${user.id}`)
+        return this.axios.put(`/users/${user.id}`, {
+            name: user.name,
+            last_name: user.last_name,
+            email: user.email,
+            rol: user.rol
+        })
     }
 
 }

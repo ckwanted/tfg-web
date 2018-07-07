@@ -92,7 +92,19 @@ class Users extends Component {
             return USER.users.data.map(user => {
                 if(user.id !== 1) {
 
-                    const rol = user.rol === Constant.TEACHER ? 'Profesor' : 'Alumno'
+                    let rol = ''
+
+                    switch(user.rol) {
+                        case Constant.ADMIN:
+                            rol = 'Administrador'
+                            break
+                        case Constant.TEACHER:
+                            rol = 'Profesor'
+                            break
+                        case Constant.STUDENT:
+                            rol = 'Alumno'
+                            break
+                    }
 
                     return(
                         <TableRow key={user.id}>

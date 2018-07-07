@@ -39,6 +39,24 @@ export default (state = INITIAL_STATE, action) => {
                 users: usersCopy,
             }
 
+        case actionType.USER_UPDATE:
+
+            let usersUpdate = {...state.users}
+            let data = usersUpdate.data
+
+            for(let i = 0; i < data.length; i++) {
+                if(data[i].id === action.payload.id) {
+                    data[i] = action.payload
+                    break
+                }
+            }
+
+            return {
+                ...state,
+                users: usersUpdate,
+                modal: false,
+            }
+
         case actionType.USER_CHANGE_VALUE:
             const {key, value, jsonKey} = action.payload
 
