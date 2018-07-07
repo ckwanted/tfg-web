@@ -11,15 +11,25 @@ import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
-import TablePagination from '@material-ui/core/TablePagination'
 import TableRow from '@material-ui/core/TableRow'
-import TableSortLabel from '@material-ui/core/TableSortLabel'
+import TextField from '@material-ui/core/TextField'
 
+import Button from '@material-ui/core/Button'
 import EditIcon from '@material-ui/icons/Edit'
+import AddIcon from '@material-ui/icons/Add'
 
 class Users extends Component {
 
     componentWillMount() {
+        this.props.dispatch(actionCreators.fetchUser())
+    }
+
+    _handleOnChange = (e) => {
+        this.props.dispatch(actionCreators.userChangeValue("q", e.target.value))
+    }
+
+    _handleSubmit = (e) => {
+        e.preventDefault()
         this.props.dispatch(actionCreators.fetchUser())
     }
 
@@ -35,7 +45,20 @@ class Users extends Component {
         }
 
         return(
-            <div className="py-5">
+            <div className="pb-5">
+
+                <div className="my-5">
+                    <form className="d-flex" onSubmit={this._handleSubmit}>
+                        <TextField
+                            className="w-100"
+                            label="Buscar Usuario"
+                            value={USER.q}
+                            onChange={this._handleOnChange}
+                        />
+                        <button type="submit" className="button">buscar</button>
+                    </form>
+                </div>
+
                 <Paper>
                     <Table>
                         <TableHead>
@@ -52,6 +75,9 @@ class Users extends Component {
                         </TableBody>
                     </Table>
                 </Paper>
+
+                {this._renderMore(USER)}
+
             </div>
         )
 
@@ -78,12 +104,42 @@ class Users extends Component {
         }
     }
 
+    _renderMore = (USER) => {
+        const {current_page, last_page} = USER.users
+
+        if(USER.loadingNextPage) {
+            return (
+                <div className="mt-3 d-flex justify-content-center">
+                    <Spinner name="folding-cube" color="#42648e"/>
+                </div>
+            )
+        }
+
+        if(current_page < last_page) {
+            return(
+                <div className="mt-3 text-center">
+                    <Button
+                        variant="fab"
+                        mini
+                        color="secondary"
+                        aria-label="add"
+                        onClick={() => this.props.dispatch(actionCreators.userNextPage())}
+                    >
+                        <AddIcon style={{ fontSize: 16 }} />
+                    </Button>
+                </div>
+            )
+        }
+
+
+    }
+
     render() {
 
         return (
             <MasterTemplate>
 
-                <div className="container-fluid pt-3" style={{ minHeight: '70vh', width: '100%' }}>
+                <div className="container pt-3" style={{ minHeight: '70vh', width: '100%' }}>
                     {this._renderContent()}
                 </div>
 

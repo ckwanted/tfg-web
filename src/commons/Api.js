@@ -150,8 +150,8 @@ class Api {
         return this.axios.get('/courses/myCourse')
     }
 
-    fetchUsers() {
-        return this.axios.get('/users')
+    fetchUsers(q = '', current_page = 1) {
+        return this.axios.get(`/users?q=${q}&page=${current_page}`)
     }
 
 }
