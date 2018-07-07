@@ -48,6 +48,12 @@ const Constant = {
         {name: 'Avanzado', value: 'advanced'},
     ],
 
+    ROLES: [
+        {name: 'Administrador', value: 'admin'},
+        {name: 'Profesor', value: 'teacher'},
+        {name: 'Alumno', value: 'student'},
+    ],
+
     MULTIPART_FORM_DATA: "multipart/form-data"
 
 }

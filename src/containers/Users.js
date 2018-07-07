@@ -18,6 +18,8 @@ import Button from '@material-ui/core/Button'
 import EditIcon from '@material-ui/icons/Edit'
 import AddIcon from '@material-ui/icons/Add'
 
+import {EditUser} from '../components'
+
 class Users extends Component {
 
     componentWillMount() {
@@ -51,7 +53,7 @@ class Users extends Component {
                     <form className="d-flex" onSubmit={this._handleSubmit}>
                         <TextField
                             className="w-100"
-                            label="Buscar Usuario"
+                            label="Buscar Usuario por nombre, apellido o email"
                             value={USER.q}
                             onChange={this._handleOnChange}
                         />
@@ -78,6 +80,8 @@ class Users extends Component {
 
                 {this._renderMore(USER)}
 
+                <EditUser />
+
             </div>
         )
 
@@ -86,20 +90,29 @@ class Users extends Component {
     _tableBody = (USER) => {
         if(USER.users.data) {
             return USER.users.data.map(user => {
-                return(
-                    <TableRow key={user.id}>
-                        <TableCell>{user.name}</TableCell>
-                        <TableCell className="d-none d-md-table-cell">{user.last_name}</TableCell>
-                        <TableCell className="d-none d-lg-table-cell">{user.email}</TableCell>
-                        <TableCell className="d-none d-lg-table-cell">{user.rol}</TableCell>
-                        <TableCell>
-                            <EditIcon
-                                className="cursor-pointer"
-                                style={{ fontSize: 14 }}
-                            />
-                        </TableCell>
-                    </TableRow>
-                )
+                if(user.id !== 1) {
+
+                    const rol = user.rol === Constant.TEACHER ? 'Profesor' : 'Alumno'
+
+                    return(
+                        <TableRow key={user.id}>
+                            <TableCell>{user.name}</TableCell>
+                            <TableCell className="d-none d-md-table-cell">{user.last_name}</TableCell>
+                            <TableCell className="d-none d-lg-table-cell">{user.email}</TableCell>
+                            <TableCell className="d-none d-lg-table-cell">{rol}</TableCell>
+                            <TableCell>
+                                <EditIcon
+                                    className="cursor-pointer"
+                                    style={{ fontSize: 14 }}
+                                    onClick={(e) => {
+                                        this.props.dispatch(actionCreators.userChangeValue("userSelected", user))
+                                        this.props.dispatch(actionCreators.userChangeValue("modal", true))
+                                    }}
+                                />
+                            </TableCell>
+                        </TableRow>
+                    )
+                }
             })
         }
     }

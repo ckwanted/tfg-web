@@ -32,6 +32,23 @@ export const fetchUserSuccess = (users) => {
     }
 }
 
+export const userUpdate = () => {
+    return (dispatch, getState) => {
+
+        const {
+            authReducer: {access_token},
+            userReducer: {userSelected}
+        } = getState()
+
+        /*new Api(access_token).updateUser(userSelected).then(({data}) => {
+
+        }).catch(error => {
+
+        })*/
+
+    }
+}
+
 export const userNextPage = () => {
     return (dispatch, getState) => {
 
@@ -63,12 +80,13 @@ export const userNextPageSuccess = (users) => {
     }
 }
 
-export const userChangeValue = (key, value) => {
+export const userChangeValue = (key, value, jsonKey = null) => {
     return {
         type: actionType.USER_CHANGE_VALUE,
         payload: {
             key,
-            value
+            value,
+            jsonKey
         }
     }
 }

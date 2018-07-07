@@ -5,7 +5,8 @@ const INITIAL_STATE = {
     userSelected: {},
     loading: false,
     loadingNextPage: false,
-    q: ''
+    q: '',
+    modal: false
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -39,7 +40,19 @@ export default (state = INITIAL_STATE, action) => {
             }
 
         case actionType.USER_CHANGE_VALUE:
-            const {key, value} = action.payload
+            const {key, value, jsonKey} = action.payload
+
+            if(jsonKey) {
+                let json = state[jsonKey]
+                return {
+                    ...state,
+                    [jsonKey]: {
+                        ...json,
+                        [key]: value
+                    }
+                }
+            }
+
             return {
                 ...state,
                 [key]: value

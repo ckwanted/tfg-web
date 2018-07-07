@@ -15,6 +15,7 @@ export const AUTH_CHANGE_VALUE = 'AUTH_CHANGE_VALUE'
  */
 export const FETCH_USER = 'FETCH_USER'
 export const USER_CHANGE_VALUE = 'USER_CHANGE_VALUE'
+export const USER_UPDATE = 'USER_UPDATE'
 export const USER_NEXT_PAGE = 'USER_NEXT_PAGE'
 
 /*

@@ -17,6 +17,8 @@ import NewSection from './courses/NewSection'
 import NewResource from './courses/NewResource'
 import TableContent from './courses/TableContent'
 
+import EditUser from './users/EditUser'
+
 export {Header}
 export {Navigation}
 export {MySlider}
@@ -33,3 +35,4 @@ export {Quiz}
 export {EditCourse}
 export {NewSection}
 export {TableContent}
+export {EditUser}

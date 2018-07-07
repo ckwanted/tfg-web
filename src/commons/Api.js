@@ -154,6 +154,10 @@ class Api {
         return this.axios.get(`/users?q=${q}&page=${current_page}`)
     }
 
+    updateUser(user) {
+        return this.axios.put(`/users/${user.id}`)
+    }
+
 }
 
 export default Api
