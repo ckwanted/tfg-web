@@ -19,6 +19,14 @@ const INITIAL_STATE = {
         id: null,
         resourcesLength: 0,
     },
+    resourceSelected: {
+        type: null,
+        title: '',
+        id: null,
+        section_id: null,
+        uri: '',
+        quiz: null
+    },
 
     q: '',
     ckFrontEnd: false,

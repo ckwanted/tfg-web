@@ -163,6 +163,20 @@ class Api {
         })
     }
 
+    newResource(type = null, formData) {
+        const defaultResource = Constant.RESOURCE[0] ? Constant.RESOURCE[0].value : ''
+
+        if(type === defaultResource || type === null || type === undefined) {
+            return this.axios.post(`/courses/section/resource`, formData, {
+                onUploadProgress: progressEvent => {
+                    console.log(`Upload Progress: ${Math.round(progressEvent.loaded / progressEvent.total * 100) + '%'}`)
+                }
+            })
+        }
+
+        return this.axios.post(`/courses/section/resource`, formData)
+    }
+
 }
 
 export default Api

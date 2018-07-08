@@ -54,6 +54,11 @@ const Constant = {
         {name: 'Alumno', value: 'student'},
     ],
 
+    RESOURCE: [
+        {name: 'Video', value: 'uri'},
+        {name: 'Questionario', value: 'quiz'},
+    ],
+
     MULTIPART_FORM_DATA: "multipart/form-data"
 
 }

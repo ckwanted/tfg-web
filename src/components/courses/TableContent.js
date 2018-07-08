@@ -14,8 +14,9 @@ import Paper from '@material-ui/core/Paper'
 
 import Typography from '@material-ui/core/Typography'
 import EditIcon from '@material-ui/icons/Edit'
-import CreateIcon from '@material-ui/icons/Create'
+import CreateIcon from '@material-ui/icons/Add'
 import {courseChangeValue} from "../../actions/courseAction";
+import Constant from "../../commons/Constant";
 
 class TableContent extends Component {
 
@@ -76,7 +77,8 @@ class TableContent extends Component {
                                     className="position-relative cursor-pointer"
                                     style={{ fontSize: 14 }}
                                     onClick={() => {
-                                        this.props.dispatch(courseChangeValue("dialogEditResource", true))
+                                        this.props.dispatch(courseChangeValue("section_id", section.id, "resourceSelected"))
+                                        this.props.dispatch(courseChangeValue("dialogNewResource", true))
                                     }}
                                 />
                             </TableCell>

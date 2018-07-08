@@ -44,7 +44,11 @@ export const userUpdate = () => {
             const {user} = data
             dispatch(userUpdateSuccess(user))
         }).catch(error => {
-
+            iziToast.error({
+                title: 'Error',
+                message: 'El email ya existe',
+                position: 'topRight'
+            })
         })
 
     }

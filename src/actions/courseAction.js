@@ -266,6 +266,29 @@ export const changeCoursePhotoSuccess = (course) => {
     }
 }
 
+export const addNewResource = (file = null) => {
+    return (dispatch, getState) => {
+
+        const {
+            authReducer: {access_token},
+            courseReducer: {resourceSelected},
+        } = getState()
+
+        let formData = new FormData()
+
+        formData.append('section_id', resourceSelected.section_id)
+        formData.append('title', resourceSelected.title)
+        formData.append('uri', file)
+
+        new Api(access_token, Constant.MULTIPART_FORM_DATA).newResource(resourceSelected.type, formData).then(({data}) => {
+
+        }).catch(error => {
+
+        })
+
+    }
+}
+
 /*
  * GETERS
  */

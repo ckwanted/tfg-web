@@ -10,9 +10,28 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import TextField from '@material-ui/core/TextField'
 
+import InputLabel from '@material-ui/core/InputLabel'
+import FormControl from '@material-ui/core/FormControl'
+import NativeSelect from '@material-ui/core/NativeSelect'
+
+import Button from '@material-ui/core/Button'
+import CloudUploadIcon from '@material-ui/icons/CloudUpload'
+
 import {Constant} from '../../commons'
 
 class NewResource extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            selectedFile: null
+        }
+    }
+
+    fileSelectedHandle = (event) => {
+        this.setState({selectedFile: event.target.files[0]})
+    }
 
     _handleClose = (TYPE) => {
         document.body.removeAttribute("style")
@@ -20,14 +39,76 @@ class NewResource extends Component {
         if(TYPE === Constant.CREATE) this.props.dispatch(actionCreators.courseChangeValue("dialogNewResource", false))
         else this.props.dispatch(actionCreators.courseChangeValue("dialogEditResource", false))
 
-        //this.props.dispatch(actionCreators.courseChangeValue("sectionSelectedTitle", ''))
+    }
+
+    _renderContent = (defaultResource) => {
+
+        let {resourceSelected} = this.props.courses
+
+        let content
+
+        if(resourceSelected.type === defaultResource || resourceSelected.type === null || resourceSelected.type === undefined) {
+            content = (
+                <div className="mt-3">
+                    <Button color="default" onClick={(e) => this.refs.input.click()}>
+                        Subir Video
+                        <CloudUploadIcon className="pl-2" />
+                    </Button>
+
+                    <input
+                        name="file"
+                        ref="input"
+                        type="file"
+                        accept="video/*"
+                        onChange={this.fileSelectedHandle}
+                        required
+                        style={{opacity: 0}}
+                    />
+
+                </div>
+            )
+        }
+        else {
+
+        }
+
+        return(
+            <div>
+
+                <FormControl className="mt-3">
+                    <InputLabel htmlFor="select-type-resource">Tipo</InputLabel>
+                    <NativeSelect
+                        inputProps={{id: 'select-type-resource'}}
+                        value={resourceSelected.type || defaultResource}
+                        onChange={(e) => this.props.dispatch(actionCreators.courseChangeValue("type", e.target.value, 'resourceSelected'))}
+                    >
+                        {Constant.RESOURCE.map( (resource, i) => {
+                            return <option key={i} value={resource.value}>{resource.name}</option>
+                        })}
+                    </NativeSelect>
+                </FormControl>
+
+                <TextField
+                    name="title"
+                    margin="dense"
+                    label="Título"
+                    fullWidth
+                    value={resourceSelected.title}
+                    onChange={(e) => this.props.dispatch(actionCreators.courseChangeValue("title", e.target.value, 'resourceSelected'))}
+                    required
+                />
+
+                {content}
+
+            </div>
+        )
     }
 
     render() {
 
-        let {dialogNewResource, dialogEditResource} = this.props.courses
+        let {dialogNewResource, dialogEditResource, resourceSelected} = this.props.courses
 
-
+        const defaultResource = Constant.RESOURCE[0] ? Constant.RESOURCE[0].value : false
         const TYPE = dialogEditResource ? Constant.EDIT : Constant.CREATE
 
         return(
@@ -40,11 +121,17 @@ class NewResource extends Component {
                 >
                     <form
                         method="POST"
+                        encType="multipart/form-data"
                         onSubmit={(e) => {
                             e.preventDefault()
 
                             if(TYPE === Constant.CREATE) {
-
+                                if(resourceSelected.type === defaultResource || resourceSelected.type === null || resourceSelected.type === undefined) {
+                                    this.props.dispatch(actionCreators.addNewResource(this.state.selectedFile))
+                                }
+                                else {
+                                    this.props.dispatch(actionCreators.addNewResource())
+                                }
                             }
                             else {
 
@@ -56,25 +143,15 @@ class NewResource extends Component {
 
 
                         <DialogTitle id="form-dialog-title">
-                            {TYPE === Constant.CREATE ? 'Crear nuevo item' : 'Editar item'}
+                            {TYPE === Constant.CREATE ? 'Nuevo Recurso' : 'Editar Recurso'}
                         </DialogTitle>
                         <DialogContent>
 
-
                             <DialogContentText className="mb-3">
-
+                                Los recursos añaden contenido a las secciones
                             </DialogContentText>
-                            <TextField
-                                autoFocus
-                                margin="dense"
-                                label="Nombre"
-                                type="text"
-                                fullWidth
-                                //value={sectionSelectedTitle}
-                                //onChange={(e) => this.props.dispatch(actionCreators.courseChangeValue("sectionSelectedTitle", e.target.value))}
-                                //required
-                            />
 
+                            {this._renderContent(defaultResource)}
 
                         </DialogContent>
                         <DialogActions>
