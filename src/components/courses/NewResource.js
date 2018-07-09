@@ -18,27 +18,18 @@ import Button from '@material-ui/core/Button'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 
 import {Constant} from '../../commons'
+import LinearProgress from '@material-ui/core/LinearProgress'
 
 class NewResource extends Component {
 
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            selectedFile: null
-        }
-    }
-
     fileSelectedHandle = (event) => {
-        this.setState({selectedFile: event.target.files[0]})
+        this.props.dispatch(actionCreators.courseChangeValue("selectedFile", event.target.files[0], "resourceSelected"))
     }
 
-    _handleClose = (TYPE) => {
+    _handleClose = () => {
         document.body.removeAttribute("style")
 
-        if(TYPE === Constant.CREATE) this.props.dispatch(actionCreators.courseChangeValue("dialogNewResource", false))
-        else this.props.dispatch(actionCreators.courseChangeValue("dialogEditResource", false))
-
+        this.props.dispatch(actionCreators.resetResource())
     }
 
     _renderContent = (defaultResource) => {
@@ -46,6 +37,9 @@ class NewResource extends Component {
         let {resourceSelected} = this.props.courses
 
         let content
+        let fileName = ''
+
+        if(resourceSelected.selectedFile) fileName = resourceSelected.selectedFile.name
 
         if(resourceSelected.type === defaultResource || resourceSelected.type === null || resourceSelected.type === undefined) {
             content = (
@@ -64,6 +58,22 @@ class NewResource extends Component {
                         required
                         style={{opacity: 0}}
                     />
+
+                    <p>{fileName}</p>
+
+                    {resourceSelected.progress ?
+                        <LinearProgress
+                            variant="determinate"
+                            value={resourceSelected.progress}
+                            style={{
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                right: 0
+                            }}
+                        />
+                        : null
+                    }
 
                 </div>
             )
@@ -111,12 +121,16 @@ class NewResource extends Component {
         const defaultResource = Constant.RESOURCE[0] ? Constant.RESOURCE[0].value : false
         const TYPE = dialogEditResource ? Constant.EDIT : Constant.CREATE
 
+        const progress = resourceSelected.progress ? resourceSelected.progress : null
+
         return(
             <div>
                 <Dialog
                     className="visibility-child"
                     open={dialogNewResource || dialogEditResource}
-                    onClose={() => this._handleClose(TYPE)}
+                    onClose={() => {
+                        if(!progress) this._handleClose()
+                    }}
                     aria-labelledby="form-dialog-title"
                 >
                     <form
@@ -127,7 +141,7 @@ class NewResource extends Component {
 
                             if(TYPE === Constant.CREATE) {
                                 if(resourceSelected.type === defaultResource || resourceSelected.type === null || resourceSelected.type === undefined) {
-                                    this.props.dispatch(actionCreators.addNewResource(this.state.selectedFile))
+                                    this.props.dispatch(actionCreators.addNewResource(resourceSelected.selectedFile))
                                 }
                                 else {
                                     this.props.dispatch(actionCreators.addNewResource())
@@ -137,7 +151,6 @@ class NewResource extends Component {
 
                             }
 
-                            this._handleClose(TYPE)
                         }}
                     >
 
@@ -155,7 +168,12 @@ class NewResource extends Component {
 
                         </DialogContent>
                         <DialogActions>
-                            <button type="button" onClick={(e) => this._handleClose(TYPE)} className="button">
+                            <button
+                                type="button"
+                                className="button"
+                                onClick={(e) => {
+                                    if(!progress) this._handleClose()
+                                }}>
                                 Cerrar
                             </button>
                             <button className="button" type="submit">

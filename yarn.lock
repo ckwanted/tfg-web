@@ -523,12 +523,6 @@ atob@^2.0.0:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.0.3.tgz#19c7a760473774468f20b2d2d03372ad7d4cbf5d"
 
-attr-accept@^1.0.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/attr-accept/-/attr-accept-1.1.3.tgz#48230c79f93790ef2775fcec4f0db0f5db41ca52"
-  dependencies:
-    core-js "^2.5.0"
-
 autoprefixer@7.1.6:
   version "7.1.6"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-7.1.6.tgz#fb933039f74af74a83e71225ce78d9fd58ba84d7"
@@ -561,6 +555,12 @@ autoprefixer@^8.0.0:
     num2fraction "^1.2.2"
     postcss "^6.0.19"
     postcss-value-parser "^3.2.3"
+
+aws-s3@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/aws-s3/-/aws-s3-1.5.0.tgz#a69d8fb9c3eaa56042c5e7ce202e9b797548d6db"
+  dependencies:
+    crypto-js "^3.1.9-1"
 
 aws-sign2@~0.6.0:
   version "0.6.0"
@@ -2325,6 +2325,10 @@ crypto-browserify@^3.0.0, crypto-browserify@^3.11.0:
     public-encrypt "^4.0.0"
     randombytes "^2.0.0"
     randomfill "^1.0.3"
+
+crypto-js@^3.1.9-1:
+  version "3.1.9-1"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-3.1.9-1.tgz#fda19e761fc077e01ffbfdc6e9fdfc59e8806cd8"
 
 crypto-random-string@^1.0.0:
   version "1.0.0"
@@ -7295,13 +7299,6 @@ react-dom@^16.2.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-dropzone@^4.2.13:
-  version "4.2.13"
-  resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-4.2.13.tgz#31393c079b4e5ddcc176c095cebc3545d1248b9d"
-  dependencies:
-    attr-accept "^1.0.3"
-    prop-types "^15.5.7"
-
 react-error-overlay@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-4.0.0.tgz#d198408a85b4070937a98667f500c832f86bd5d4"
@@ -7407,6 +7404,12 @@ react-router@^4.2.0:
     path-to-regexp "^1.7.0"
     prop-types "^15.5.4"
     warning "^3.0.0"
+
+react-s3@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/react-s3/-/react-s3-1.3.1.tgz#23f01d708725aa0fc6dd429e4b38da9940d33f84"
+  dependencies:
+    crypto-js "^3.1.9-1"
 
 react-scripts@1.1.1:
   version "1.1.1"

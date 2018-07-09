@@ -25,7 +25,9 @@ const INITIAL_STATE = {
         id: null,
         section_id: null,
         uri: '',
-        quiz: null
+        quiz: null,
+        progress: null,
+        selectedFile: null,
     },
 
     q: '',
@@ -191,6 +193,24 @@ export default (state = INITIAL_STATE, action) => {
                 data: copyData,
                 course: copyCourse,
                 loadingPhoto: false,
+            }
+
+        case actionType.RESET_RESOURCE:
+
+            return {
+                ...state,
+                dialogNewResource: false,
+                dialogEditResource: false,
+                resourceSelected: {
+                    type: null,
+                    title: '',
+                    id: null,
+                    section_id: null,
+                    uri: '',
+                    quiz: null,
+                    progress: null,
+                    selectedFile: null,
+                }
             }
 
         default:

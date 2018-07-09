@@ -27,6 +27,8 @@ class EditUser extends Component {
 
         let {userSelected, modal} = this.props.user
 
+        if(userSelected === undefined || userSelected === null) return null
+
         return(
             <div>
                 <Dialog

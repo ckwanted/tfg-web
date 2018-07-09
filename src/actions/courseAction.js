@@ -281,11 +281,18 @@ export const addNewResource = (file = null) => {
         formData.append('uri', file)
 
         new Api(access_token, Constant.MULTIPART_FORM_DATA).newResource(resourceSelected.type, formData).then(({data}) => {
-
+            const {course_resource} = data
+            dispatch(resetResource())
         }).catch(error => {
-
+            dispatch(resetResource())
         })
 
+    }
+}
+
+export const resetResource = () => {
+    return {
+        type: actionType.RESET_RESOURCE,
     }
 }
 

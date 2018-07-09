@@ -169,7 +169,8 @@ class Api {
         if(type === defaultResource || type === null || type === undefined) {
             return this.axios.post(`/courses/section/resource`, formData, {
                 onUploadProgress: progressEvent => {
-                    console.log(`Upload Progress: ${Math.round(progressEvent.loaded / progressEvent.total * 100) + '%'}`)
+                    const progress = Math.round(progressEvent.loaded / progressEvent.total * 100)
+                    store.dispatch(actionCreators.courseChangeValue("progress", progress, "resourceSelected"))
                 }
             })
         }
