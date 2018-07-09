@@ -278,10 +278,13 @@ export const addNewResource = (file = null) => {
 
         formData.append('section_id', resourceSelected.section_id)
         formData.append('title', resourceSelected.title)
-        formData.append('uri', file)
+
+        if(file) formData.append('uri', file)
+        else formData.append('quiz', resourceSelected.quiz)
 
         new Api(access_token, Constant.MULTIPART_FORM_DATA).newResource(resourceSelected.type, formData).then(({data}) => {
-            const {course_resource} = data
+            //const {course_resource} = data
+            window.location.reload()
             dispatch(resetResource())
         }).catch(error => {
             dispatch(resetResource())
@@ -289,6 +292,36 @@ export const addNewResource = (file = null) => {
 
     }
 }
+
+export const editResource = (file = null) => {
+    return (dispatch, getState) => {
+
+        const {
+            authReducer: {access_token},
+            courseReducer: {resourceSelected},
+        } = getState()
+
+        let formData = new FormData()
+
+        formData.append('section_id', resourceSelected.section_id)
+        formData.append('title', resourceSelected.title)
+        formData.append('_method', 'PUT')
+        console.warn("resourceSelected.title", resourceSelected.title)
+
+        if(file) formData.append('uri', file)
+        else if(resourceSelected.quiz) formData.append('quiz', resourceSelected.quiz)
+
+        new Api(access_token, Constant.MULTIPART_FORM_DATA).editResource(resourceSelected.type, formData, resourceSelected.id).then(({data}) => {
+            //const {course_resource} = data
+            window.location.reload()
+            dispatch(resetResource())
+        }).catch(error => {
+            dispatch(resetResource())
+        })
+
+    }
+}
+
 
 export const resetResource = () => {
     return {

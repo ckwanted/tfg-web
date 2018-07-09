@@ -178,6 +178,20 @@ class Api {
         return this.axios.post(`/courses/section/resource`, formData)
     }
 
+    editResource(type = null, formData, resource_id) {
+        const defaultResource = Constant.RESOURCE[0] ? Constant.RESOURCE[0].value : ''
+
+        if(type === defaultResource || type === null || type === undefined) {
+            return this.axios.post(`/courses/section/resource/${resource_id}`, formData, {
+                onUploadProgress: progressEvent => {
+                    const progress = Math.round(progressEvent.loaded / progressEvent.total * 100)
+                    store.dispatch(actionCreators.courseChangeValue("progress", progress, "resourceSelected"))
+                }
+            })
+        }
+
+    }
+
 }
 
 export default Api

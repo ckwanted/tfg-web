@@ -32,7 +32,7 @@ class NewResource extends Component {
         this.props.dispatch(actionCreators.resetResource())
     }
 
-    _renderContent = (defaultResource) => {
+    _renderContent = (defaultResource, TYPE) => {
 
         let {resourceSelected} = this.props.courses
 
@@ -55,7 +55,7 @@ class NewResource extends Component {
                         type="file"
                         accept="video/*"
                         onChange={this.fileSelectedHandle}
-                        required
+                        required={TYPE === Constant.CREATE}
                         style={{opacity: 0}}
                     />
 
@@ -143,11 +143,15 @@ class NewResource extends Component {
                                 if(resourceSelected.type === defaultResource || resourceSelected.type === null || resourceSelected.type === undefined) {
                                     this.props.dispatch(actionCreators.addNewResource(resourceSelected.selectedFile))
                                 }
-                                else {
-                                    this.props.dispatch(actionCreators.addNewResource())
-                                }
+                                else this.props.dispatch(actionCreators.addNewResource())
+
                             }
                             else {
+
+                                if(resourceSelected.type === defaultResource || resourceSelected.type === null || resourceSelected.type === undefined) {
+                                    this.props.dispatch(actionCreators.editResource(resourceSelected.selectedFile))
+                                }
+                                else this.props.dispatch(actionCreators.editResource())
 
                             }
 
@@ -164,7 +168,7 @@ class NewResource extends Component {
                                 Los recursos añaden contenido a las secciones
                             </DialogContentText>
 
-                            {this._renderContent(defaultResource)}
+                            {this._renderContent(defaultResource, TYPE)}
 
                         </DialogContent>
                         <DialogActions>

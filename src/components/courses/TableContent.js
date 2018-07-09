@@ -98,6 +98,13 @@ class TableContent extends Component {
                                             className="position-relative cursor-pointer"
                                             style={{ fontSize: 14 }}
                                             onClick={() => {
+                                                this.props.dispatch(courseChangeValue("title", resource.title, "resourceSelected"))
+                                                this.props.dispatch(courseChangeValue("id", resource.id, "resourceSelected"))
+                                                this.props.dispatch(courseChangeValue("section_id", resource.section_id, "resourceSelected"))
+                                                this.props.dispatch(courseChangeValue("quiz", resource.quiz, "resourceSelected"))
+                                                this.props.dispatch(courseChangeValue("uri", resource.uri, "resourceSelected"))
+                                                if(resource.uri) this.props.dispatch(courseChangeValue("type", "uri", "resourceSelected"))
+                                                else this.props.dispatch(courseChangeValue("type", "quiz", "resourceSelected"))
                                                 this.props.dispatch(courseChangeValue("dialogEditResource", true))
                                             }}
                                         />
