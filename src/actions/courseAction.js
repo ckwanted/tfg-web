@@ -322,6 +322,24 @@ export const editResource = (file = null) => {
     }
 }
 
+export const removeResource = () => {
+    return (dispatch, getState) => {
+
+        const {
+            authReducer: {access_token},
+            courseReducer: {resourceSelected},
+        } = getState()
+
+        new Api(access_token).removeResource(resourceSelected.id).then((response) => {
+            window.location.reload()
+            dispatch(resetResource())
+        }).catch(error => {
+            dispatch(resetResource())
+        })
+
+    }
+}
+
 
 export const resetResource = () => {
     return {

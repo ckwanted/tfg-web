@@ -16,6 +16,7 @@ import NativeSelect from '@material-ui/core/NativeSelect'
 
 import Button from '@material-ui/core/Button'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload'
+import DeleteIcon from '@material-ui/icons/Delete'
 
 import {Constant} from '../../commons'
 import LinearProgress from '@material-ui/core/LinearProgress'
@@ -160,7 +161,16 @@ class NewResource extends Component {
 
 
                         <DialogTitle id="form-dialog-title">
+                            <div className="d-flex">
                             {TYPE === Constant.CREATE ? 'Nuevo Recurso' : 'Editar Recurso'}
+                            {TYPE === Constant.EDIT ?
+                                <div className="ml-auto cursor-pointer">
+                                    <DeleteIcon
+                                        onClick={(e) => this.props.dispatch(actionCreators.removeResource())}
+                                    />
+                                </div>
+                                : null}
+                            </div>
                         </DialogTitle>
                         <DialogContent>
 
