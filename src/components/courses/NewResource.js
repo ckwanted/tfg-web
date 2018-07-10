@@ -17,11 +17,24 @@ import NativeSelect from '@material-ui/core/NativeSelect'
 import Button from '@material-ui/core/Button'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 import DeleteIcon from '@material-ui/icons/Delete'
+import AddIcon from '@material-ui/icons/Add'
 
 import {Constant} from '../../commons'
 import LinearProgress from '@material-ui/core/LinearProgress'
 
+import AppBar from '@material-ui/core/AppBar'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+
 class NewResource extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            value: 0
+        }
+    }
 
     fileSelectedHandle = (event) => {
         this.props.dispatch(actionCreators.courseChangeValue("selectedFile", event.target.files[0], "resourceSelected"))
@@ -33,6 +46,75 @@ class NewResource extends Component {
         this.props.dispatch(actionCreators.resetResource())
     }
 
+    _renderTab = (resourceSelected) => {
+        return resourceSelected.quiz.map((item, i) => {
+            return(
+                <Tab key={i} label={`Pregunta ${i + 1}`} />
+            )
+        })
+    }
+
+    _renderTabContent = (resourceSelected) => {
+        const {value} = this.state
+
+        if(resourceSelected.quiz.length) {
+            const selectedQuiz = resourceSelected.quiz[value]
+            console.warn(selectedQuiz)
+
+            return(
+                <div>
+
+                    <div>
+                        <TextField
+                            name="title"
+                            margin="dense"
+                            label="Pregunta"
+                            value={selectedQuiz.question}
+                            onChange={(e) => {}}
+                            required
+                        />
+
+                    </div>
+
+                    <div className="mt-3 d-flex">
+                        <span>Respuestas:</span>
+                        <AddIcon
+                            className="ml-1 cursor-pointer"
+                            style={styleIcon}
+                        />
+                    </div>
+
+                    <div>
+                        {selectedQuiz.answers.map((answer, i) => {
+                            return(
+                                <div key={i}>
+                                    <TextField
+                                        name="title"
+                                        margin="dense"
+                                        label={`Respuesta ${i + 1}`}
+                                        value={answer}
+                                        onChange={(e) => {}}
+                                        required
+                                    />
+                                    <DeleteIcon
+                                        className="cursor-pointer ml-3"
+                                        style={styleIcon}
+                                        onClick={(e) => {
+                                            if(window.confirm("¿Quieres eliminar este questionario?")) {
+
+                                            }
+                                        }}
+                                    />
+                                </div>
+                            )
+                        })}
+                    </div>
+
+                </div>
+            )
+        }
+    }
+
     _renderContent = (defaultResource, TYPE) => {
 
         let {resourceSelected} = this.props.courses
@@ -42,6 +124,7 @@ class NewResource extends Component {
 
         if(resourceSelected.selectedFile) fileName = resourceSelected.selectedFile.name
 
+        // VIDEO
         if(resourceSelected.type === defaultResource || resourceSelected.type === null || resourceSelected.type === undefined) {
             content = (
                 <div className="mt-3">
@@ -79,9 +162,52 @@ class NewResource extends Component {
                 </div>
             )
         }
+        // QUIZ
         else {
 
+            const {value} = this.state
+
+            content = (
+                <div className="mt-3 resource-quiz">
+
+                    <div className="d-flex justify-content-end">
+                        <AddIcon
+                            className="cursor-pointer"
+                            style={styleIcon}
+                            onClick={(e) => alert("")}
+                        />
+
+                        {resourceSelected.quiz.length ?
+                            <DeleteIcon
+                                className="cursor-pointer ml-3"
+                                style={styleIcon}
+                                onClick={(e) => {
+                                    if(window.confirm("¿Quieres eliminar este questionario?")) {
+
+                                    }
+                                }}
+                            />
+                            : null
+                        }
+                    </div>
+
+                    <AppBar position="static" style={{background: 'transparent', boxShadow: 'none', color: 'black'}}>
+                        <Tabs
+                            value={value}
+                            onChange={(e, value) => this.setState({ value })}
+                        >
+
+                            {this._renderTab(resourceSelected)}
+                        </Tabs>
+                    </AppBar>
+
+                    {this._renderTabContent(resourceSelected)}
+
+                </div>
+            )
         }
+
+
 
         return(
             <div>
@@ -100,14 +226,16 @@ class NewResource extends Component {
                 </FormControl>
 
                 <TextField
+                    className="mt-3"
                     name="title"
                     margin="dense"
-                    label="Título"
+                    label="Título del Recurso"
                     fullWidth
                     value={resourceSelected.title}
                     onChange={(e) => this.props.dispatch(actionCreators.courseChangeValue("title", e.target.value, 'resourceSelected'))}
                     required
                 />
+
 
                 {content}
 
@@ -167,7 +295,7 @@ class NewResource extends Component {
                                 <div className="ml-auto cursor-pointer">
                                     <DeleteIcon
                                         onClick={(e) => {
-                                            if(window.confirm("Press a button!")) this.props.dispatch(actionCreators.removeResource())
+                                            if(window.confirm("¿Quieres eliminar este recurso?")) this.props.dispatch(actionCreators.removeResource())
                                         }}
                                     />
                                 </div>
@@ -176,7 +304,7 @@ class NewResource extends Component {
                         </DialogTitle>
                         <DialogContent>
 
-                            <DialogContentText className="mb-3">
+                            <DialogContentText>
                                 Los recursos añaden contenido a las secciones
                             </DialogContentText>
 
@@ -203,6 +331,12 @@ class NewResource extends Component {
         )
     }
 
+}
+
+const styleIcon = {
+    background: 'rgba(0,0,0,.1)',
+    borderRadius: '50%',
+    padding: '5px'
 }
 
 const mapStateToProps = (state) => {

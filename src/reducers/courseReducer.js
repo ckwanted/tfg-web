@@ -25,7 +25,7 @@ const INITIAL_STATE = {
         id: null,
         section_id: null,
         uri: '',
-        quiz: null,
+        quiz: [],
         progress: null,
         selectedFile: null,
     },
@@ -207,7 +207,7 @@ export default (state = INITIAL_STATE, action) => {
                     id: null,
                     section_id: null,
                     uri: '',
-                    quiz: null,
+                    quiz: [],
                     progress: null,
                     selectedFile: null,
                 }

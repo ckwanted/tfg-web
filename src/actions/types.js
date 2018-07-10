@@ -40,6 +40,9 @@ export const CLEAR_COURSE_FILTER = 'CLEAR_COURSE_FILTER'
 export const CHANGE_COURSE_PHOTO = 'CHANGE_COURSE_PHOTO'
 export const MY_COURSE = 'MY_COURSE'
 
+export const ADD_QUIZ = 'ADD_QUIZ'
+export const REMOVE_QUIZ = 'REMOVE_QUIZ'
+
 /*
  * CART
  */
