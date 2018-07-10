@@ -166,7 +166,9 @@ class NewResource extends Component {
                             {TYPE === Constant.EDIT ?
                                 <div className="ml-auto cursor-pointer">
                                     <DeleteIcon
-                                        onClick={(e) => this.props.dispatch(actionCreators.removeResource())}
+                                        onClick={(e) => {
+                                            if(window.confirm("Press a button!")) this.props.dispatch(actionCreators.removeResource())
+                                        }}
                                     />
                                 </div>
                                 : null}
