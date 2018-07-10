@@ -14,6 +14,7 @@ import Paper from '@material-ui/core/Paper'
 
 import Typography from '@material-ui/core/Typography'
 import EditIcon from '@material-ui/icons/Edit'
+import SeeIcon from '@material-ui/icons/RemoveRedEye'
 import CreateIcon from '@material-ui/icons/Add'
 import {courseChangeValue} from "../../actions/courseAction";
 import Constant from "../../commons/Constant";
@@ -72,7 +73,7 @@ class TableContent extends Component {
                         <TableRow>
                             <TableCell>Nombre</TableCell>
                             <TableCell>Tipo</TableCell>
-                            <TableCell className="p-0px">
+                            <TableCell className="p-0px text-center">
                                 <CreateIcon
                                     className="position-relative cursor-pointer"
                                     style={{ fontSize: 14 }}
@@ -93,21 +94,37 @@ class TableContent extends Component {
                                 <TableRow key={resource.id}>
                                     <TableCell component="th" scope="row">{resource.title}</TableCell>
                                     <TableCell>{TYPE}</TableCell>
-                                    <TableCell className="p-0px">
-                                        <EditIcon
-                                            className="position-relative cursor-pointer"
-                                            style={{ fontSize: 14 }}
-                                            onClick={() => {
-                                                this.props.dispatch(courseChangeValue("title", resource.title, "resourceSelected"))
-                                                this.props.dispatch(courseChangeValue("id", resource.id, "resourceSelected"))
-                                                this.props.dispatch(courseChangeValue("section_id", resource.section_id, "resourceSelected"))
-                                                this.props.dispatch(courseChangeValue("quiz", resource.quiz, "resourceSelected"))
-                                                this.props.dispatch(courseChangeValue("uri", resource.uri, "resourceSelected"))
-                                                if(resource.uri) this.props.dispatch(courseChangeValue("type", "uri", "resourceSelected"))
-                                                else this.props.dispatch(courseChangeValue("type", "quiz", "resourceSelected"))
-                                                this.props.dispatch(courseChangeValue("dialogEditResource", true))
-                                            }}
-                                        />
+                                    <TableCell className="p-0px text-center">
+                                        <div style={{display: 'flex', justifyContent: 'space-around'}}>
+
+                                            <SeeIcon
+                                                className="position-relative cursor-pointer"
+                                                style={{ fontSize: 14 }}
+                                                onClick={() => {
+                                                    let modalData = resource.uri ? resource.uri : resource.quiz
+                                                    let modalType = resource.uri ? Constant.VIDEO : Constant.QUIZ
+
+                                                    this.props.dispatch(actionCreators.courseChangeValue("modalData", modalData))
+                                                    this.props.dispatch(actionCreators.openModal(modalType))
+
+                                                }}
+                                            />
+                                            <EditIcon
+                                                className="position-relative cursor-pointer"
+                                                style={{ fontSize: 14 }}
+                                                onClick={() => {
+                                                    this.props.dispatch(courseChangeValue("title", resource.title, "resourceSelected"))
+                                                    this.props.dispatch(courseChangeValue("id", resource.id, "resourceSelected"))
+                                                    this.props.dispatch(courseChangeValue("section_id", resource.section_id, "resourceSelected"))
+                                                    this.props.dispatch(courseChangeValue("quiz", resource.quiz, "resourceSelected"))
+                                                    this.props.dispatch(courseChangeValue("uri", resource.uri, "resourceSelected"))
+                                                    if(resource.uri) this.props.dispatch(courseChangeValue("type", "uri", "resourceSelected"))
+                                                    else this.props.dispatch(courseChangeValue("type", "quiz", "resourceSelected"))
+                                                    this.props.dispatch(courseChangeValue("dialogEditResource", true))
+                                                }}
+                                            />
+
+                                        </div>
                                     </TableCell>
                                 </TableRow>
                             )
