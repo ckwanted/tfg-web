@@ -347,6 +347,68 @@ export const resetResource = () => {
     }
 }
 
+export const editDialogResource = (resource) => {
+    return {
+        type: actionType.EDIT_DIALOG_RESOURCE,
+        payload: {
+            resource
+        }
+    }
+}
+
+export const addQuiz = () => {
+    return {
+        type: actionType.ADD_QUIZ
+    }
+}
+
+export const removeQuiz = (i) => {
+    return {
+        type: actionType.REMOVE_QUIZ,
+        payload: i
+    }
+}
+
+export const editQuestionQuiz = (payload) => {
+    return {
+        type: actionType.EDIT_QUESTION_QUIZ,
+        payload
+    }
+}
+
+export const editResultQuiz = (payload) => {
+    return {
+        type: actionType.EDIT_RESULT_QUIZ,
+        payload
+    }
+}
+
+export const addAnswerQuiz = () => {
+    return {
+        type: actionType.ADD_ANSWER_QUIZ,
+    }
+}
+
+export const editAnswerQuiz = (i, text) => {
+    return {
+        type: actionType.EDIT_ANSWER_QUIZ,
+        payload: {
+            i,
+            text
+        }
+    }
+}
+
+export const removeAnswerQuiz = (i) => {
+    return {
+        type: actionType.REMOVE_ANSWER_QUIZ,
+        payload: {
+            i
+        }
+    }
+}
+
+
 /*
  * GETERS
  */

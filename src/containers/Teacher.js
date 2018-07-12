@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 
 import MasterTemplate from './MasterTemplate'
 import {Api} from '../commons'
-import {Functions} from '../commons'
 import Spinner from 'react-spinkit'
 
 class Teacher extends Component {

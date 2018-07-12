@@ -28,14 +28,6 @@ import Tab from '@material-ui/core/Tab'
 
 class NewResource extends Component {
 
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            value: 0
-        }
-    }
-
     fileSelectedHandle = (event) => {
         this.props.dispatch(actionCreators.courseChangeValue("selectedFile", event.target.files[0], "resourceSelected"))
     }
@@ -55,24 +47,39 @@ class NewResource extends Component {
     }
 
     _renderTabContent = (resourceSelected) => {
-        const {value} = this.state
+        const value = resourceSelected.value
 
         if(resourceSelected.quiz.length) {
             const selectedQuiz = resourceSelected.quiz[value]
-            console.warn(selectedQuiz)
 
             return(
                 <div>
 
                     <div>
                         <TextField
+                            className="col-md-6 pr-1"
                             name="title"
                             margin="dense"
                             label="Pregunta"
                             value={selectedQuiz.question}
-                            onChange={(e) => {}}
+                            onChange={(e) => this.props.dispatch(actionCreators.editQuestionQuiz(e.target.value))}
                             required
                         />
+
+                        <FormControl className="col-md-6">
+                            <InputLabel htmlFor="select-type-resource">Respuesta Correcta</InputLabel>
+                            <NativeSelect
+                                inputProps={{id: 'select-type-result'}}
+                                value={selectedQuiz.result}
+                                onChange={(e) => {
+                                    this.props.dispatch(actionCreators.editResultQuiz(e.target.value))
+                                }}
+                            >
+                                {selectedQuiz.answers.map( (answer, i) => {
+                                    return <option key={i} value={i}>{i+1}</option>
+                                })}
+                            </NativeSelect>
+                        </FormControl>
 
                     </div>
 
@@ -81,6 +88,7 @@ class NewResource extends Component {
                         <AddIcon
                             className="ml-1 cursor-pointer"
                             style={styleIcon}
+                            onClick={(e) => this.props.dispatch(actionCreators.addAnswerQuiz())}
                         />
                     </div>
 
@@ -93,18 +101,24 @@ class NewResource extends Component {
                                         margin="dense"
                                         label={`Respuesta ${i + 1}`}
                                         value={answer}
-                                        onChange={(e) => {}}
+                                        onChange={(e) => {
+                                            this.props.dispatch(actionCreators.editAnswerQuiz(i, e.target.value))
+                                        }}
                                         required
                                     />
-                                    <DeleteIcon
-                                        className="cursor-pointer ml-3"
-                                        style={styleIcon}
-                                        onClick={(e) => {
-                                            if(window.confirm("¿Quieres eliminar este questionario?")) {
-
-                                            }
-                                        }}
-                                    />
+                                    {selectedQuiz.answers.length > 1 ?
+                                        <DeleteIcon
+                                            className="cursor-pointer ml-3"
+                                            style={styleIcon}
+                                            onClick={(e) => {
+                                                if(window.confirm("¿Quieres eliminar esta respuesta?")) {
+                                                    this.props.dispatch(actionCreators.removeAnswerQuiz(i))
+                                                }
+                                            }}
+                                        />
+                                        :
+                                        null
+                                    }
                                 </div>
                             )
                         })}
@@ -165,7 +179,7 @@ class NewResource extends Component {
         // QUIZ
         else {
 
-            const {value} = this.state
+            const value = resourceSelected.value
 
             content = (
                 <div className="mt-3 resource-quiz">
@@ -174,16 +188,16 @@ class NewResource extends Component {
                         <AddIcon
                             className="cursor-pointer"
                             style={styleIcon}
-                            onClick={(e) => alert("")}
+                            onClick={(e) => this.props.dispatch(actionCreators.addQuiz())}
                         />
 
-                        {resourceSelected.quiz.length ?
+                        {resourceSelected.quiz.length > 1 ?
                             <DeleteIcon
                                 className="cursor-pointer ml-3"
                                 style={styleIcon}
                                 onClick={(e) => {
-                                    if(window.confirm("¿Quieres eliminar este questionario?")) {
-
+                                    if(window.confirm("¿Quieres eliminar esta pregunta?")) {
+                                        this.props.dispatch(actionCreators.removeQuiz(value))
                                     }
                                 }}
                             />
@@ -194,7 +208,7 @@ class NewResource extends Component {
                     <AppBar position="static" style={{background: 'transparent', boxShadow: 'none', color: 'black'}}>
                         <Tabs
                             value={value}
-                            onChange={(e, value) => this.setState({ value })}
+                            onChange={(e, value) => this.props.dispatch(actionCreators.courseChangeValue("value", value, "resourceSelected"))}
                         >
 
                             {this._renderTab(resourceSelected)}

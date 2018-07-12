@@ -1,5 +1,11 @@
 import * as actionType from '../actions/types'
 
+const DEFAULT_QUIZ = {
+    result: 0,
+    question: "pregunta",
+    answers: ["respuesta"]
+}
+
 const INITIAL_STATE = {
     current_page: 1,
     last_page: 1,
@@ -20,12 +26,15 @@ const INITIAL_STATE = {
         resourcesLength: 0,
     },
     resourceSelected: {
+        value: 0,
         type: null,
         title: '',
         id: null,
         section_id: null,
         uri: '',
-        quiz: [],
+        quiz: [
+            DEFAULT_QUIZ
+        ],
         progress: null,
         selectedFile: null,
     },
@@ -202,15 +211,124 @@ export default (state = INITIAL_STATE, action) => {
                 dialogNewResource: false,
                 dialogEditResource: false,
                 resourceSelected: {
+                    value: 0,
                     type: null,
                     title: '',
                     id: null,
                     section_id: null,
                     uri: '',
-                    quiz: [],
+                    quiz: [
+                        DEFAULT_QUIZ
+                    ],
                     progress: null,
                     selectedFile: null,
                 }
+            }
+
+        case actionType.EDIT_DIALOG_RESOURCE:
+
+            const resource = action.payload.resource
+            let resourceSelectedCopy = {...state.resourceSelected}
+
+            resourceSelectedCopy.title = resource.title
+            resourceSelectedCopy.id = resource.id
+            resourceSelectedCopy.section_id = resource.section_id
+            resourceSelectedCopy.quiz = resource.quiz
+            resourceSelectedCopy.uri = resource.uri
+            resourceSelectedCopy.uri = resource.uri
+
+            if(resource.uri) resourceSelectedCopy.type = "uri"
+            else resourceSelectedCopy.type = "quiz"
+            console.warn("resourceSelectedCopy.quiz 2", resourceSelectedCopy.quiz)
+            return {
+                ...state,
+                resourceSelected: resourceSelectedCopy,
+                dialogEditResource: true
+            }
+
+        case actionType.ADD_QUIZ:
+
+            let resourceSelectedAdd = {...state.resourceSelected}
+            resourceSelectedAdd.quiz.push({...DEFAULT_QUIZ})
+
+            return {
+                ...state,
+                resourceSelected: resourceSelectedAdd
+            }
+
+        case actionType.REMOVE_QUIZ:
+
+            let resourceSelectedRemove = {...state.resourceSelected}
+            let quizRemove = resourceSelectedRemove.quiz.filter((quiz, i) => {
+                return i !== action.payload
+            })
+
+            resourceSelectedRemove.quiz = quizRemove
+            resourceSelectedRemove.value = 0
+
+            return {
+                ...state,
+                resourceSelected: resourceSelectedRemove
+            }
+
+        case actionType.EDIT_QUESTION_QUIZ:
+
+            let resourceSelectedEditQuiz = {...state.resourceSelected}
+            resourceSelectedEditQuiz.quiz[state.resourceSelected.value].question = action.payload
+
+            return {
+                ...state,
+                resourceSelected: resourceSelectedEditQuiz
+            }
+
+        case actionType.EDIT_RESULT_QUIZ:
+
+            let resourceSelectedEditResult = {...state.resourceSelected}
+            resourceSelectedEditResult.quiz[state.resourceSelected.value].result = Number(action.payload)
+
+            return {
+                ...state,
+                resourceSelected: resourceSelectedEditResult
+            }
+
+        case actionType.ADD_ANSWER_QUIZ:
+
+            let resourceSelectedAddAnswer = {...state.resourceSelected}
+            resourceSelectedAddAnswer.quiz[state.resourceSelected.value].answers.push("")
+
+            return {
+                ...state,
+                resourceSelected: resourceSelectedAddAnswer
+            }
+
+        case actionType.EDIT_ANSWER_QUIZ:
+
+            let resourceSelectedEditAnswer = {...state.resourceSelected}
+            resourceSelectedEditAnswer.quiz[state.resourceSelected.value].answers[action.payload.i] = action.payload.text
+
+            return {
+                ...state,
+                resourceSelected: resourceSelectedEditAnswer
+            }
+
+        case actionType.REMOVE_ANSWER_QUIZ:
+
+            let resourceSelectedRemoveAnswer = {...state.resourceSelected}
+
+            let quiz = resourceSelectedRemoveAnswer.quiz
+            let quizSelected = quiz[state.resourceSelected.value]
+            let answers = quizSelected.answers
+
+            answers = answers.filter((answer, i) => {
+                return i !== action.payload.i
+            })
+
+            resourceSelectedRemoveAnswer.quiz[state.resourceSelected.value].result = 0
+            resourceSelectedRemoveAnswer.quiz[state.resourceSelected.value].answers = answers
+
+            return {
+                ...state,
+                resourceSelected: resourceSelectedRemoveAnswer
             }
 
         default:

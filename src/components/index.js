@@ -34,5 +34,6 @@ export {Video}
 export {Quiz}
 export {EditCourse}
 export {NewSection}
+export {NewResource}
 export {TableContent}
 export {EditUser}
