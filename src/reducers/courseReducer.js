@@ -233,13 +233,12 @@ export default (state = INITIAL_STATE, action) => {
             resourceSelectedCopy.title = resource.title
             resourceSelectedCopy.id = resource.id
             resourceSelectedCopy.section_id = resource.section_id
-            resourceSelectedCopy.quiz = resource.quiz
-            resourceSelectedCopy.uri = resource.uri
+            resourceSelectedCopy.quiz = resource.quiz //TODO: check
             resourceSelectedCopy.uri = resource.uri
 
             if(resource.uri) resourceSelectedCopy.type = "uri"
             else resourceSelectedCopy.type = "quiz"
-            console.warn("resourceSelectedCopy.quiz 2", resourceSelectedCopy.quiz)
+
             return {
                 ...state,
                 resourceSelected: resourceSelectedCopy,
@@ -274,7 +273,7 @@ export default (state = INITIAL_STATE, action) => {
         case actionType.EDIT_QUESTION_QUIZ:
 
             let resourceSelectedEditQuiz = {...state.resourceSelected}
-            resourceSelectedEditQuiz.quiz[state.resourceSelected.value].question = action.payload
+            resourceSelectedEditQuiz.quiz[resourceSelectedEditQuiz.value].question = action.payload
 
             return {
                 ...state,
@@ -284,7 +283,7 @@ export default (state = INITIAL_STATE, action) => {
         case actionType.EDIT_RESULT_QUIZ:
 
             let resourceSelectedEditResult = {...state.resourceSelected}
-            resourceSelectedEditResult.quiz[state.resourceSelected.value].result = Number(action.payload)
+            resourceSelectedEditResult.quiz[resourceSelectedEditResult.value].result = Number(action.payload)
 
             return {
                 ...state,
@@ -294,7 +293,7 @@ export default (state = INITIAL_STATE, action) => {
         case actionType.ADD_ANSWER_QUIZ:
 
             let resourceSelectedAddAnswer = {...state.resourceSelected}
-            resourceSelectedAddAnswer.quiz[state.resourceSelected.value].answers.push("")
+            resourceSelectedAddAnswer.quiz[resourceSelectedAddAnswer.value].answers = resourceSelectedAddAnswer.quiz[resourceSelectedAddAnswer.value].answers.concat("")
 
             return {
                 ...state,
@@ -304,7 +303,7 @@ export default (state = INITIAL_STATE, action) => {
         case actionType.EDIT_ANSWER_QUIZ:
 
             let resourceSelectedEditAnswer = {...state.resourceSelected}
-            resourceSelectedEditAnswer.quiz[state.resourceSelected.value].answers[action.payload.i] = action.payload.text
+            resourceSelectedEditAnswer.quiz[resourceSelectedEditAnswer.value].answers[action.payload.i] = action.payload.text
 
             return {
                 ...state,
@@ -323,8 +322,8 @@ export default (state = INITIAL_STATE, action) => {
                 return i !== action.payload.i
             })
 
-            resourceSelectedRemoveAnswer.quiz[state.resourceSelected.value].result = 0
-            resourceSelectedRemoveAnswer.quiz[state.resourceSelected.value].answers = answers
+            resourceSelectedRemoveAnswer.quiz[resourceSelectedRemoveAnswer.value].result = 0
+            resourceSelectedRemoveAnswer.quiz[resourceSelectedRemoveAnswer.value].answers = answers
 
             return {
                 ...state,
