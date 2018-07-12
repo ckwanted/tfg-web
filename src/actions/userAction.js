@@ -103,3 +103,23 @@ export const userChangeValue = (key, value, jsonKey = null) => {
         }
     }
 }
+
+export const userDelete = (user_id) => {
+    return (dispatch, getState) => {
+
+        const {
+            authReducer: {access_token},
+        } = getState()
+
+        new Api(access_token).deleteUser(user_id).then(response => {
+            dispatch({
+                type: actionType.USER_DELETE,
+                payload: user_id
+            })
+            window.location.reload()
+        }).catch(error => {
+
+        });
+
+    }
+}

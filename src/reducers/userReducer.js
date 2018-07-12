@@ -75,6 +75,14 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 [key]: value
             }
+
+        case actionType.USER_DELETE:
+
+            return {
+                ...state,
+                modal: false,
+            }
+
         default:
             return state
     }

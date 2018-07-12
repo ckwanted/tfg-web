@@ -86,8 +86,7 @@ class NewResource extends Component {
                     <div className="mt-3 d-flex">
                         <span>Respuestas:</span>
                         <AddIcon
-                            className="ml-1 cursor-pointer"
-                            style={styleIcon}
+                            className="ml-1 cursor-pointer remove-icon"
                             onClick={(e) => this.props.dispatch(actionCreators.addAnswerQuiz())}
                         />
                     </div>
@@ -108,8 +107,7 @@ class NewResource extends Component {
                                     />
                                     {selectedQuiz.answers.length > 1 ?
                                         <DeleteIcon
-                                            className="cursor-pointer ml-3"
-                                            style={styleIcon}
+                                            className="cursor-pointer ml-3 remove-icon"
                                             onClick={(e) => {
                                                 if(window.confirm("¿Quieres eliminar esta respuesta?")) {
                                                     this.props.dispatch(actionCreators.removeAnswerQuiz(i))
@@ -186,15 +184,13 @@ class NewResource extends Component {
 
                     <div className="d-flex justify-content-end">
                         <AddIcon
-                            className="cursor-pointer"
-                            style={styleIcon}
+                            className="cursor-pointer remove-icon"
                             onClick={(e) => this.props.dispatch(actionCreators.addQuiz())}
                         />
 
                         {resourceSelected.quiz.length > 1 ?
                             <DeleteIcon
-                                className="cursor-pointer ml-3"
-                                style={styleIcon}
+                                className="cursor-pointer ml-3 remove-icon"
                                 onClick={(e) => {
                                     if(window.confirm("¿Quieres eliminar esta pregunta?")) {
                                         this.props.dispatch(actionCreators.removeQuiz(value))
@@ -308,6 +304,7 @@ class NewResource extends Component {
                             {TYPE === Constant.EDIT ?
                                 <div className="ml-auto cursor-pointer">
                                     <DeleteIcon
+                                        className="remove-icon"
                                         onClick={(e) => {
                                             if(window.confirm("¿Quieres eliminar este recurso?")) this.props.dispatch(actionCreators.removeResource())
                                         }}
@@ -345,12 +342,6 @@ class NewResource extends Component {
         )
     }
 
-}
-
-const styleIcon = {
-    background: 'rgba(0,0,0,.1)',
-    borderRadius: '50%',
-    padding: '5px'
 }
 
 const mapStateToProps = (state) => {

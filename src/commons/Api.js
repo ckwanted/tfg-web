@@ -198,6 +198,10 @@ class Api {
         return this.axios.delete(`/courses/section/resource/${resource_id}`)
     }
 
+    deleteUser(user_id) {
+        return this.axios.delete(`/users/${user_id}`)
+    }
+
 }
 
 export default Api

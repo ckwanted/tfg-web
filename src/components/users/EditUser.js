@@ -14,6 +14,8 @@ import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
 import NativeSelect from '@material-ui/core/NativeSelect'
 
+import DeleteIcon from '@material-ui/icons/Delete'
+
 import {Constant} from '../../commons'
 
 class EditUser extends Component {
@@ -47,7 +49,17 @@ class EditUser extends Component {
 
 
                         <DialogTitle id="form-dialog-title">
-                            <div className="d-flex">Editar usuario</div>
+                            <div className="d-flex">
+                                Editar usuario
+                                <div className="ml-auto cursor-pointer">
+                                    <DeleteIcon
+                                        className="remove-icon"
+                                        onClick={(e) => {
+                                            if(window.confirm("¿Quieres eliminar este usuario?")) this.props.dispatch(actionCreators.userDelete(userSelected.id))
+                                        }}
+                                    />
+                                </div>
+                            </div>
                         </DialogTitle>
                         <DialogContent>
 

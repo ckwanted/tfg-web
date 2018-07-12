@@ -61,6 +61,7 @@ class NewSection extends Component {
                             {TYPE === Constant.EDIT && sectionSelected.resourcesLength === 0 ?
                                 <div className="ml-auto cursor-pointer">
                                     <DeleteIcon
+                                        className="remove-icon"
                                         onClick={(e) => this.props.dispatch(actionCreators.removeSection(sectionSelected.id))}
                                     />
                                 </div>
