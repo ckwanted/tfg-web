@@ -190,6 +190,8 @@ class Api {
             })
         }
 
+        return this.axios.post(`/courses/section/resource/${resource_id}`, formData)
+
     }
 
     removeResource(resource_id) {

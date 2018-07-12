@@ -315,7 +315,7 @@ export default (state = INITIAL_STATE, action) => {
             let resourceSelectedRemoveAnswer = {...state.resourceSelected}
 
             let quiz = resourceSelectedRemoveAnswer.quiz
-            let quizSelected = quiz[state.resourceSelected.value]
+            let quizSelected = quiz[resourceSelectedRemoveAnswer.value]
             let answers = quizSelected.answers
 
             answers = answers.filter((answer, i) => {

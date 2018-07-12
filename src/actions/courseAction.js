@@ -280,7 +280,7 @@ export const addNewResource = (file = null) => {
         formData.append('title', resourceSelected.title)
 
         if(file) formData.append('uri', file)
-        else formData.append('quiz', resourceSelected.quiz)
+        else formData.append('quiz', JSON.stringify(resourceSelected.quiz))
 
         new Api(access_token, Constant.MULTIPART_FORM_DATA).newResource(resourceSelected.type, formData).then(({data}) => {
             //const {course_resource} = data
@@ -306,10 +306,9 @@ export const editResource = (file = null) => {
         formData.append('section_id', resourceSelected.section_id)
         formData.append('title', resourceSelected.title)
         formData.append('_method', 'PUT')
-        console.warn("resourceSelected.title", resourceSelected.title)
 
         if(file) formData.append('uri', file)
-        else if(resourceSelected.quiz) formData.append('quiz', resourceSelected.quiz)
+        else formData.append('quiz', JSON.stringify(resourceSelected.quiz))
 
         new Api(access_token, Constant.MULTIPART_FORM_DATA).editResource(resourceSelected.type, formData, resourceSelected.id).then(({data}) => {
             //const {course_resource} = data
