@@ -58,6 +58,8 @@ const INITIAL_STATE = {
 
     dialogNewResource: false,
     dialogEditResource: false,
+
+    progress: null
 }
 
 export default (state = INITIAL_STATE, action) => {

@@ -7,6 +7,7 @@ import SendResetPassword from './SendResetPassword'
 import ResetPassword from './ResetPassword'
 import Teacher from './Teacher'
 import MyCourse from './MyCourse'
+import CreateCourse from './CreateCourse'
 import Users from './Users'
 import NotFound from './NotFound'
 
@@ -19,5 +20,6 @@ export {SendResetPassword}
 export {ResetPassword}
 export {Teacher}
 export {MyCourse}
+export {CreateCourse}
 export {Users}
 export {NotFound}

@@ -202,6 +202,15 @@ class Api {
         return this.axios.delete(`/users/${user_id}`)
     }
 
+    createCourse(formData) {
+        return this.axios.post(`/courses`, formData, {
+            onUploadProgress: progressEvent => {
+                const progress = Math.round(progressEvent.loaded / progressEvent.total * 100)
+                store.dispatch(actionCreators.courseChangeValue("progress", progress))
+            }
+        })
+    }
+
 }
 
 export default Api

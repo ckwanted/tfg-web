@@ -24,6 +24,14 @@ class Header extends Component {
                     <span className="my-menu__title">Mi perfil</span>
                     <div className="my-menu__submenu">
 
+                        {AUTH.rol === Constant.TEACHER ?
+                            <Link to="/create/course" className="d-block cursor-pointer">
+                                Crear Curso
+                            </Link>
+                            :
+                            null
+                        }
+
                         {AUTH.rol === Constant.ADMIN ?
                             <Link to="/users" className="d-block cursor-pointer">
                                 Usuarios

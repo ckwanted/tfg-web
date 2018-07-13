@@ -2,6 +2,7 @@ import * as actionType from './types'
 import {Api, Constant} from '../commons'
 import iziToast from 'izitoast'
 import ImageCompressor from 'image-compressor.js'
+import { history } from '../store'
 
 export const fetchAllCourses = () => {
     return (dispatch, getState) => {
@@ -404,6 +405,38 @@ export const removeAnswerQuiz = (i) => {
         payload: {
             i
         }
+    }
+}
+
+export const createCourse = (name, description, price, category, skill_level, selectedFile) => {
+    return (dispatch, getState) => {
+
+        const {
+            authReducer: {access_token},
+        } = getState()
+
+        let formData = new FormData()
+
+        formData.append('name', name)
+        formData.append('slug', name)
+        formData.append('description', description)
+        formData.append('price', price)
+        formData.append('category', category)
+        formData.append('skill_level', skill_level)
+        formData.append('selectedFile', selectedFile)
+
+        new Api(access_token, Constant.MULTIPART_FORM_DATA).createCourse(formData).then((response) => {
+            history.replace(`/my/course`)
+            dispatch(courseChangeValue("progress", null))
+        }).catch(error => {
+            iziToast.error({
+                title: '',
+                message: 'El nombre ya esta en uso',
+                position: 'topRight'
+            })
+            dispatch(courseChangeValue("progress", null))
+        })
+
     }
 }
 

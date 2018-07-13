@@ -38,7 +38,8 @@ import {
     Teacher,
     MyCourse,
     Users,
-    NotFound
+    NotFound,
+    CreateCourse
 } from './containers'
 
 /*
@@ -92,6 +93,7 @@ class App extends Component {
 
                                     <Route path="/about" component={AboutUs} />
                                     <Route path="/my/course" component={MyCourse} />
+                                    <Route path="/create/course" component={CreateCourse} />
                                     <Route path="/users" component={Users} />
 
                                     <Route path="/password/email" component={SendResetPassword} />
