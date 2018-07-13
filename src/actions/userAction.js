@@ -7,10 +7,8 @@ export const fetchUser = () => {
 
         const {
             authReducer: {access_token},
-            userReducer: {q, users}
+            userReducer: {q}
         } = getState()
-
-        const {current_page, last_page} = users
 
         dispatch(userChangeValue("loading", true))
 
@@ -70,7 +68,7 @@ export const userNextPage = () => {
             userReducer: {q, users}
         } = getState()
 
-        const {current_page, last_page} = users
+        const {current_page} = users
 
         dispatch(userChangeValue("loadingNextPage", true))
 

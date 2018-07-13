@@ -104,6 +104,8 @@ class Users extends Component {
                         case Constant.STUDENT:
                             rol = 'Alumno'
                             break
+                        default:
+                            break
                     }
 
                     return(
