@@ -13,6 +13,7 @@ import TextField from '@material-ui/core/TextField'
 import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
 import NativeSelect from '@material-ui/core/NativeSelect'
+import iziToast from 'izitoast'
 
 import {Constant} from '../../commons'
 
@@ -54,10 +55,20 @@ class EditCourse extends Component {
                         method="POST"
                         onSubmit={(e) => {
                             e.preventDefault()
-                            this.props.dispatch(actionCreators.updateCourse(
-                                COURSE.id, this.state.name, this.state.description, this.state.category, this.state.skill_level, this.state.price)
-                            )
-                            this._handleClose()
+
+                            if(!Number(this.state.price)) {
+                                iziToast.error({
+                                    title: '',
+                                    message: 'El precio debe ser numérico',
+                                    position: 'topRight'
+                                })
+                            }
+                            else {
+                                this.props.dispatch(actionCreators.updateCourse(
+                                    COURSE.id, this.state.name, this.state.description, this.state.category, this.state.skill_level, this.state.price)
+                                )
+                                this._handleClose()
+                            }
                         }}
                     >
                         <DialogTitle id="form-dialog-title">Editar Curso</DialogTitle>
@@ -77,7 +88,6 @@ class EditCourse extends Component {
 
                                 <TextField
                                     className="mt-3"
-                                    multiline
                                     margin="dense"
                                     label="Descripción"
                                     fullWidth
