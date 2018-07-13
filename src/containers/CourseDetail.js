@@ -61,7 +61,9 @@ class CourseDetail extends Component {
         const AUTH = this.props.auth
         const id = AUTH.user ? AUTH.user.id : null
 
-        return AUTH.rol === Constant.ADMIN || COURSE.id === id;
+        const ownerCourseId = COURSE.user ? COURSE.user.id : null
+
+        return AUTH.rol === Constant.ADMIN || ownerCourseId === id;
 
     }
 
