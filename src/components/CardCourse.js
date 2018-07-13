@@ -14,8 +14,10 @@ class CardCourse extends Component {
         const userId = this.props.auth.user ? this.props.auth.user.id : null
         const rol = this.props.auth.rol
 
+        const ownerCourseId = ITEM.user ? ITEM.user.id : null
+
         // Own of this course
-        if(ITEM.id === userId || rol === Constant.ADMIN) return true
+        if(ownerCourseId === userId || rol === Constant.ADMIN) return true
 
         const {userPayments} = this.props.courses
 
